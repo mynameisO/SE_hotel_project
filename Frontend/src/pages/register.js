@@ -1,6 +1,6 @@
 import React from "react";
 import './register.css'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 export default function Register() {
     const [username, setUsername] = useState('');
@@ -12,16 +12,18 @@ export default function Register() {
     const [confirmpass, setConfirmpass] = useState('');
     const [phonenum, setPhonenum] = useState('');
 
+    const navigate = useNavigate();
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const Register = {username, password, firstname, lastname, dateofbirth, email, confirmpass, phonenum};
         console.log(Register)
-        fetch('http://localhost:8000/register',{
+        fetch('http://localhost:3050/registers',{
             method:'POST',
             headers:{"content-type":"application/json"},
             body:JSON.stringify(Register)
         }).then((res)=>{
-            <Link to ='/login'></Link>
+            navigate('/login');
         })
     }
     return (
@@ -79,7 +81,7 @@ export default function Register() {
             </div>
             <div className = "input-box">
                 <p>Password</p>
-                <input type = "text" placeholder = "Password"
+                <input type = "password" placeholder = "Password"
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -87,7 +89,7 @@ export default function Register() {
             </div>
             <div className = "input-box">
                 <p>Confirm Password</p>
-                <input type = "text" placeholder = "Confirm Password"
+                <input type = "password" placeholder = "Confirm Password"
                 required
                 value={confirmpass}
                 onChange={(e) => setConfirmpass(e.target.value)}

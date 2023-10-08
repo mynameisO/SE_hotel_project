@@ -1,0 +1,66 @@
+{
+  "registers": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "username": "dd",
+      "password": "dd",
+      "firstname": "dd",
+      "lastname": "dd",
+      "dateofbirth": "dd",
+      "email": "dd",
+      "confirmpass": "dd",
+      "phonenum": "dd",
+      "id": 2
+    }
+  ],
+  "login": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    },
+    {
+      "username": "dd",
+      "password": "dd",
+      "id": 2
+    },
+    {
+      "username": "omartest",
+      "password": "123123",
+      "isProcess": [
+        "0",
+        null
+      ],
+      "id": 3
+    },
+    {
+      "username": "test",
+      "password": "dddd",
+      "isProcess": [
+        "",
+        null
+      ],
+      "id": 4
+    },
+    {
+      "username": "tess",
+      "password": "ssddaa11",
+      "isProcess": 0,
+      "id": 5
+    }
+  ],
+  "payments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

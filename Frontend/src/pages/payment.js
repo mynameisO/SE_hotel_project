@@ -119,7 +119,7 @@ export default function Payment(){
         
         <div class = "col">
             <h3 class = "title">4. Terms and Conditions</h3>
-            <span>By clicking on the Check Out button, I acknowledge and agree that the above information is accurate and that my reservation will be subject to the Hotel Booking Terms and Policies </span>
+            <p>By clicking on the Check Out button, I acknowledge and agree that the above information is accurate and that my reservation will be subject to the Hotel Booking Terms and Policies. </p>
             <label>
                 <input type = "checkbox"></input> Yes, I agree to the MOHG Data Privacy Terms.
             </label>

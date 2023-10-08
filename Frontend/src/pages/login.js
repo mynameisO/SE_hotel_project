@@ -1,14 +1,22 @@
 import React from "react";
 import './login.css'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 export default function Login() {
+    const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const isProcess = 0;
     const handleSubmit = (e) => {
         e.preventDefault();
-        const Login = {username, password};
-        console.log(Login)
+        const Login = {username, password, isProcess};
+        fetch('http://localhost:3050/login',{
+            method:'POST',
+            headers:{"content-type":"application/json"},
+            body:JSON.stringify(Login)
+        }).then((res)=>{
+            navigate('/');
+        })
     }
     return (
     <bodyl>
@@ -23,7 +31,7 @@ export default function Login() {
                 />
             </div>
             <div className = "input-box">
-                <input type = "text" placeholder = "Password"
+                <input type = "password" placeholder = "Password"
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
