@@ -1,5 +1,6 @@
 import React from "react";
 import './payment.css'
+import card from './card.jpg';
 import { Link } from "react-router-dom";
 import { useState } from "react";
 export default function Payment(){
@@ -30,29 +31,45 @@ export default function Payment(){
 
         <div class="col">
 
-            <h3 class="title">billing address</h3>
+            <h3 class="title"> 1. guest information</h3>
 
             <div class="inputBox">
-                <span>full name :</span>
-                <input type="text" placeholder="john deo"/>
+                <span>title :</span>
+                <input type="text" placeholder=""/>
+            </div>
+            <div class="inputBox">
+                <span>first name :</span>
+                <input type="text" placeholder="Omar Yusoh"/>
+            </div>
+            <div class="inputBox">
+                <span>last name :</span>
+                <input type="text" placeholder="Omar Yusoh"/>
             </div>
             <div class="inputBox">
                 <span>email :</span>
                 <input type="email" placeholder="example@example.com"/>
             </div>
             <div class="inputBox">
-                <span>address :</span>
-                <input type="text" placeholder="room - street - locality"/>
+                <span>street address :</span>
+                <input type="text" placeholder="address"/>
             </div>
             <div class="inputBox">
-                <span>city :</span>
-                <input type="text" placeholder="mumbai"/>
+                <span>state :</span>
+                <input type="text" placeholder="state"/>
+            </div>
+            <div class="inputBox">
+                <span>province :</span>
+                <input type="text" placeholder="Bangkok"/>
+            </div>
+            <div class="inputBox">
+                <span>telephone number :</span>
+                <input type="text" placeholder="000-000-0000"/>
             </div>
 
             <div class="flex">
                 <div class="inputBox">
-                    <span>state :</span>
-                    <input type="text" placeholder="india"/>
+                    <span>country :</span>
+                    <input type="text" placeholder="Thailand"/>
                 </div>
                 <div class="inputBox">
                     <span>zip code :</span>
@@ -64,30 +81,26 @@ export default function Payment(){
 
         <div class="col">
 
-            <h3 class="title">payment</h3>
+            <h3 class="title">2. payment information</h3>
 
             <div class="inputBox">
                 <span>cards accepted :</span>
-                <img src="images/card_img.png" alt=""/>
+                <img src={card} alt=""/>
             </div>
             <div class="inputBox">
-                <span>name on card :</span>
-                <input type="text" placeholder="mr. john deo"/>
+                <span>card holder name :</span>
+                <input type="text" placeholder="Mr.Omar Yusoh"/>
             </div>
             <div class="inputBox">
-                <span>credit card number :</span>
+                <span>card number :</span>
                 <input type="number" placeholder="1111-2222-3333-4444"/>
             </div>
             <div class="inputBox">
-                <span>exp month :</span>
-                <input type="text" placeholder="january"/>
+                <span>exp date :</span>
+                <input type="text" placeholder="January"/>
             </div>
 
             <div class="flex">
-                <div class="inputBox">
-                    <span>exp year :</span>
-                    <input type="number" placeholder="2022"/>
-                </div>
                 <div class="inputBox">
                     <span>CVV :</span>
                     <input type="text" placeholder="1234"/>
@@ -96,9 +109,25 @@ export default function Payment(){
 
         </div>
 
+        <div class = "col">
+            <h3 class = "title">3. Additional information</h3>
+            <span>Is there anything else you'd like us to know about your stay?</span>
+            <div class = "comment-box">
+            <textarea rows="4" placeholder="Enter Details"></textarea>
+            </div>
+        </div>
+        
+        <div class = "col">
+            <h3 class = "title">4. Terms and Conditions</h3>
+            <span>By clicking on the Check Out button, I acknowledge and agree that the above information is accurate and that my reservation will be subject to the Hotel Booking Terms and Policies </span>
+            <label>
+                <input type = "checkbox"></input> Yes, I agree to the MOHG Data Privacy Terms.
+            </label>
+        </div>
+
     </div>
 
-    <input type="submit" value="proceed to checkout" class="submit-btn"/>
+    <input type="submit" value="Check Out" class="submit-btn"/>
 
 </form>
 

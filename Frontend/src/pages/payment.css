@@ -13,9 +13,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding:25px;
+  padding:15px;
   min-height: 100vh;
-  background: linear-gradient(90deg, #2ecc71 60%, #27ae60 40.1%);
 }
 
 .container form{
@@ -25,11 +24,11 @@
   box-shadow: 0 5px 10px rgba(0,0,0,.1);
 }
 
-.container form .row{
+/*.container form .row{
   display: flex;
   flex-wrap: wrap;
   gap:15px;
-}
+}*/
 
 .container form .row .col{
   flex:1 1 250px;
@@ -39,7 +38,6 @@
   font-size: 20px;
   color:#333;
   padding-bottom: 5px;
-  text-transform: uppercase;
 }
 
 .container form .row .col .inputBox{
@@ -65,7 +63,7 @@
 
 .container form .row .col .flex{
   display: flex;
-  gap:15px;
+  gap: 20px;
 }
 
 .container form .row .col .flex .inputBox{
@@ -79,15 +77,29 @@
 }
 
 .container form .submit-btn{
-  width: 100%;
-  padding:12px;
-  font-size: 17px;
-  background: #27ae60;
+  background: #292828;
   color:#fff;
-  margin-top: 5px;
+  width: 100%;
+  height: 45px;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
   cursor: pointer;
+  font-size: 16px;
+  color: #fffdfd;
+  font-weight: 600;
 }
 
 .container form .submit-btn:hover{
-  background: #2ecc71;
+  background: #404040;
+}
+
+.comment-box {
+  width: 600px;
+  height: 200px;
+  margin-right: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
