@@ -4,7 +4,3 @@ services:
     build: ./Frontend
     ports:
       - "3000:3000"
-  json-server:
-    build: ./jsonserver
-    ports:
-      - "3050:3050"
