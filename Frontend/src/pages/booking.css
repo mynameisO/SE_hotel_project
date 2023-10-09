@@ -1,8 +1,47 @@
 .dateborder input {
     margin-left: 10px;
     height: 40px;
-    width: 200px;
+    width: 180px;
     font-size: 20px;
-    border: 1px solid #333;
+    color: #000000;
+    background-color: transparent;
+    border: 1px solid #000000;
     border-radius: 5px;
 }
+
+bodylhh{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('./image/loginbg2.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.booking {
+    text-align: center;
+    width: 300px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    color: #fff;
+    border-radius: 10px;
+    padding: 30px 40px;
+}
+
+.booking button {
+    margin-top: 2rem;
+    width: 50%;
+    height: 45px;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;   
+} 

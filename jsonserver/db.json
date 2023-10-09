@@ -78,7 +78,17 @@
       "id": 2
     }
   ],
-  "Booking": {
-    "name": "typicode"
-  }
+  "booking": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    },
+    {
+      "firstdate": "2023-10-03",
+      "enddate": "2023-10-18",
+      "isProcess": 0,
+      "id": 2
+    }
+  ]
 }
