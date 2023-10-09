@@ -103,3 +103,8 @@
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+
+textarea{
+  width: 575px;
+  height: 175px;
+}
