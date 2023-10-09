@@ -1,6 +1,6 @@
 import React from "react";
 import './payment.css'
-import card from './card.jpg';
+import card from './image/card.jpg';
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 export default function Payment(){
