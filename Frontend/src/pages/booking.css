@@ -1,0 +1,8 @@
+.dateborder input {
+    margin-left: 10px;
+    height: 40px;
+    width: 200px;
+    font-size: 20px;
+    border: 1px solid #333;
+    border-radius: 5px;
+}
