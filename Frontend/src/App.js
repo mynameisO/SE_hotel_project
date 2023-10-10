@@ -13,6 +13,7 @@ import Dine from "./pages/dine"
 import Location from "./pages/location"
 import Forgotpass from "./pages/forgotpass"
 import Payment from "./pages/payment"
+import Bookingroom from "./pages/Bookingroom"
 function App() {
   return( 
   <>
@@ -32,6 +33,7 @@ function App() {
         <Route path="/booking" element={<Booking />} />
         <Route path="/forgotpass" element={<Forgotpass />} />
         <Route path="/payment" element={<Payment />} />
+        <Route path="/bookingroom" element={<Bookingroom />} />
     </Routes>
   </>
   )

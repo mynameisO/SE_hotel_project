@@ -17,7 +17,7 @@ export default function Booking() {
             headers:{"content-type":"application/json"},
             body:JSON.stringify(dateBooking)
         }).then((res)=>{
-            navigate('/room');
+            navigate('/bookingroom');
         })
     }
     return (
