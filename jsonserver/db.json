@@ -15,6 +15,39 @@
       "confirmpass": "dd",
       "phonenum": "dd",
       "id": 2
+    },
+    {
+      "username": "dd",
+      "password": "dd",
+      "firstname": "dd",
+      "lastname": "dd",
+      "dateofbirth": "dd",
+      "email": "dd",
+      "confirmpass": "dd",
+      "phonenum": "dd",
+      "id": 3
+    },
+    {
+      "username": "ddd",
+      "password": "ddd",
+      "firstname": "ddd",
+      "lastname": "ddd",
+      "dateofbirth": "ddd",
+      "email": "ddd",
+      "confirmpass": "ddd",
+      "phonenum": "ddd",
+      "id": 4
+    },
+    {
+      "username": "Dddqw",
+      "password": "Dddqw",
+      "firstname": "Dddqw",
+      "lastname": "Dddqw",
+      "dateofbirth": "Dddqw",
+      "email": "Dddqw",
+      "confirmpass": "Dddqw",
+      "phonenum": "Dddqw",
+      "id": 5
     }
   ],
   "login": [
@@ -51,6 +84,24 @@
       "password": "ssddaa11",
       "isProcess": 0,
       "id": 5
+    },
+    {
+      "username": "omartesss",
+      "password": "123334422",
+      "isProcess": 0,
+      "id": 6
+    },
+    {
+      "username": "dddd",
+      "password": "dddd",
+      "isProcess": 0,
+      "id": 7
+    },
+    {
+      "username": "testnew",
+      "password": "112233",
+      "isProcess": 0,
+      "id": 8
     }
   ],
   "payments": [
@@ -149,33 +200,12 @@
       "enddate": "2023-10-05",
       "isProcess": 0,
       "id": 12
-    }
-  ],
-  "roombooking": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
     },
     {
-      "id": 2,
-      "title": "json-server",
-      "author": "typicode"
-    },
-    {
-      "id": 3,
-      "title": "json-server",
-      "author": "typicode"
-    },
-    {
-      "id": 4,
-      "title": "json-server",
-      "author": "typicode"
-    },
-    {
-      "id": 5,
-      "title": "json-server",
-      "author": "typicode"
+      "firstdate": "2023-10-05",
+      "enddate": "2023-10-07",
+      "isProcess": 0,
+      "id": 13
     }
   ]
 }

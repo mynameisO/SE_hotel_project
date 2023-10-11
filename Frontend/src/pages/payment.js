@@ -26,7 +26,7 @@ export default function Payment(){
         const Payment = {title, firstname, lastname, email, address, state, provice, telnum, 
             country, zipcode, cardholdername, cardnum, expdate, cvv, addinfomation}
             console.log(Payment)
-            fetch('http://localhost:3050/payments',{
+            fetch(`http://${process.env.REACT_APP_BACKEND_IP}/payment`,{
                 method:'POST',
                 headers:{"content-type":"application/json"},
                 body:JSON.stringify(Payment)

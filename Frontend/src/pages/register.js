@@ -13,17 +13,16 @@ export default function Register() {
     const [phonenum, setPhonenum] = useState('');
 
     const navigate = useNavigate();
-
+    console.log(process.env.BACKEND_IP) 
     const handleSubmit = (e) => {
         e.preventDefault();
         const Register = {username, password, firstname, lastname, dateofbirth, email, confirmpass, phonenum};
-        console.log(Register)
-        fetch('http://localhost:3050/registers',{
+        fetch(`http://${process.env.REACT_APP_BACKEND_IP}/registers`,{
             method:'POST',
             headers:{"content-type":"application/json"},
             body:JSON.stringify(Register)
         }).then((res)=>{
-            navigate('/login');
+           navigate('/login');
         })
     }
     return (

@@ -1,0 +1,85 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.text-box {
+    margin-top: 5px;
+    margin-left: 10px;
+    float: left;
+}
+
+.text-box h1 {
+    font-size: 20px;
+}
+
+.text-box p {
+    margin-bottom: -5px;
+}
+
+.roomImg {
+    width: 20rem;
+    height: 100%;
+    margin-top: 5px;
+    margin-left: 5px;
+    float: left;
+}
+
+.roomImg_std {
+    width: 20rem;
+    height: 100%;
+    margin-top: 50px;
+    float: left;
+}
+
+.bookingRoom{
+    width: 800px;
+    height: 420px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    color: #000000;
+    border-radius: 10px;
+    padding: 30px 40px;
+}
+
+.brbody body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.bookingRoom input::placeholder {
+    text-align: center;
+    color: #a0a0a0;
+}
+
+.bookingRoom input {
+    margin-top: 80px;
+    width: 50px;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255, 0, 0, 0.2);
+    border-radius: 5px;
+    font-size: 16px;
+    color: #000000;
+    float: right;
+}
+.brbody .btn {
+    width: 100px;
+    height: 45px;
+    border: 1px;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+}

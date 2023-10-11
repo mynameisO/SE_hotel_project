@@ -10,7 +10,7 @@ export default function Login() {
     const handleSubmit = (e) => {
         e.preventDefault();
         const Login = {username, password, isProcess};
-        fetch('http://localhost:3050/login',{
+        fetch(`http://${process.env.REACT_APP_BACKEND_IP}/login`,{
             method:'POST',
             headers:{"content-type":"application/json"},
             body:JSON.stringify(Login)
