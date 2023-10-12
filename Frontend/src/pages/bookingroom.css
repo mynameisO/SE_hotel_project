@@ -79,16 +79,50 @@
     color: #000000;
     float: right;
     cursor: pointer;
+    text-align: center;
 }
-.brbody .btn {
-    width: 100px;
+.brbody .btn-deluxe {
+    width: 150px;
     height: 45px;
-    border: 1px;
-    outline: none;
+    border: 1px solid rgba(0, 0, 0, .1);
     border-radius: 40px;
     box-shadow: 0 0 10px rgba(0, 0, 0, .1);
     cursor: pointer;
     font-size: 16px;
     color: #333;
     font-weight: 600;
+    margin-top: 10px;
+    margin-left: 6cm;
+}
+
+.brbody .btn-booking {
+    width: 150px;
+    height: 45px;
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+    margin-top: 23cm;
+    margin-left: -13cm;
+}
+
+.brbody .btn-std {
+    width: 150px;
+    height: 45px;
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-left: 6cm;   
+}
+
+.bookingRoom .brinput-std {
+    margin-top: 1.5cm;
 }

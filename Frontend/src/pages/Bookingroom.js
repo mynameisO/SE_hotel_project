@@ -44,12 +44,11 @@ export default function Bookingroom() {
                         <p>Price : 12,500 Bath</p>
                             <div className="brinput">
                                 <input type = "text" placeholder = "min:1"
-                               required
                                 value={deluxe}
                                 onChange={(e) => setDeluxe(e.target.value)}
                                 />
                             </div>
-                        <button type = "submit" className = "btn">Login</button>
+                        <button type = "submit" className = "btn-deluxe">Room Detail</button>
                     </div>
                 </div>
                 <div>
@@ -58,16 +57,16 @@ export default function Bookingroom() {
                         <h1>Standard Room</h1>
                         <p>Max Count : 2</p>
                         <p>Price : 10,000 Bath</p>
-                            <div className="brinput">
+                            <div className="brinput-std">
                                 <input type = "text" placeholder = "min:0"
-                                required
                                 value={standard}
                                 onChange={(e) => setStandard(e.target.value)}
                                 />
                             </div>
+                            <button type = "submit" className = "btn-std">Room Detail</button>
                     </div>
                 </div>
-
+                <button type = "submit" className = "btn-booking">Booking</button>
                 </form>
             </div>
         </body>
