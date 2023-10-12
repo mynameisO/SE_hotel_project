@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 //import Room from "./room";
 import DeluxeRoom from "./image/deluxe.jpg"
 import StandardRoom from "./image/standard.jpg"
+import LuxuryRoom from "./image/luxury.jpg"
 import "./bookingroom.css"
 
 export default function Bookingroom() {
@@ -25,6 +26,8 @@ export default function Bookingroom() {
         setLoading(false)
     }, []) */
     const [deluxe, setDeluxe] = useState('');
+    const [standard, setStandard] = useState('');
+    const [luxury, setLuxury] = useState('');
     const handleSubmit = (e) => {
         e.preventDefault();
     }
@@ -38,20 +41,36 @@ export default function Bookingroom() {
                     <div className="text-box">
                         <h1>Deluxe Room</h1>
                         <p>Max Count : 2</p>
-                        <p>Price : 12500 Bath</p>
+                        <p>Price : 12,500 Bath</p>
                             <div className="brinput">
                                 <input type = "text" placeholder = "min:1"
-                                required
+                               required
                                 value={deluxe}
                                 onChange={(e) => setDeluxe(e.target.value)}
                                 />
                             </div>
+                        <button type = "submit" className = "btn">Login</button>
                     </div>
                 </div>
-            </form>
+                <div>
+                <img src= {StandardRoom} className="roomImg"/>
+                    <div className="text-box">
+                        <h1>Standard Room</h1>
+                        <p>Max Count : 2</p>
+                        <p>Price : 10,000 Bath</p>
+                            <div className="brinput">
+                                <input type = "text" placeholder = "min:0"
+                                required
+                                value={standard}
+                                onChange={(e) => setStandard(e.target.value)}
+                                />
+                            </div>
+                    </div>
+                </div>
+
+                </form>
             </div>
         </body>
-        <button type = "submit" className = "btn">Login</button>
         </div>
     )
 }
