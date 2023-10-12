@@ -231,5 +231,29 @@
       "isProcess": 0,
       "id": 17
     }
+  ],
+  "bookingdetail": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    },
+    [
+      "2",
+      "2",
+      "2"
+    ],
+    {
+      "deluxe": "2",
+      "standard": "3",
+      "luxury": "1",
+      "id": 3
+    },
+    {
+      "deluxe": "2",
+      "standard": "5",
+      "luxury": "1",
+      "id": 4
+    }
   ]
 }
