@@ -58,6 +58,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 10px;
     min-height: 100vh;
 }
 
@@ -73,7 +74,8 @@
     background: transparent;
     border: none;
     outline: none;
-    border: 2px solid rgba(255, 0, 0, 0.2);
+    background: #ffffff;
+    border: 2px solid rgba(255, 0, 0, 0.541);
     border-radius: 20px;
     font-size: 15px;
     color: #000000;
@@ -81,7 +83,9 @@
     cursor: pointer;
     text-align: center;
 }
-.brbody .btn-deluxe {
+
+.brbody .btn-std {
+    background: #292828;
     width: 150px;
     height: 45px;
     border: 1px solid rgba(0, 0, 0, .1);
@@ -89,13 +93,37 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, .1);
     cursor: pointer;
     font-size: 16px;
-    color: #333;
+    color: #ffffff;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-left: 6cm;   
+}
+
+.brbody .btn-std:hover{
+    background: #404040;
+}
+
+.brbody .btn-deluxe {
+    background: #292828;
+    width: 150px;
+    height: 45px;
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #ffffff;
     font-weight: 600;
     margin-top: 10px;
     margin-left: 6cm;
 }
 
-.brbody .btn-booking {
+.brbody .btn-deluxe:hover{
+    background: #404040;
+}
+
+.brbody .btn-lux{
+    background: #292828;
     width: 150px;
     height: 45px;
     border: 1px solid rgba(0, 0, 0, .1);
@@ -103,24 +131,33 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, .1);
     cursor: pointer;
     font-size: 16px;
-    color: #333;
+    color: #ffffff;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-left: 6cm; 
+}
+
+.brbody .btn-lux:hover{
+    background: #404040;
+}
+
+.brbody .btn-booking {
+    background: #292828;
+    width: 150px;
+    height: 45px;
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #ffffff;
     font-weight: 600;
     margin-top: 23cm;
     margin-left: -13cm;
 }
 
-.brbody .btn-std {
-    width: 150px;
-    height: 45px;
-    border: 1px solid rgba(0, 0, 0, .1);
-    border-radius: 40px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-    cursor: pointer;
-    font-size: 16px;
-    color: #333;
-    font-weight: 600;
-    margin-top: 10px;
-    margin-left: 6cm;   
+.brbody .btn-booking:hover{
+    background: #404040;
 }
 
 .bookingRoom .brinput-std {

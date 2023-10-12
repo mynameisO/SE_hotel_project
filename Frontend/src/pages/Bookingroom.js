@@ -37,24 +37,9 @@ export default function Bookingroom() {
             <div className="bookingRoom">
                 <form onSubmit={handleSubmit}>
                 <div>
-                    <img src= {DeluxeRoom} className="roomImg"/>
-                    <div className="text-box">
-                        <h1>Deluxe Room</h1>
-                        <p>Max Count : 2</p>
-                        <p>Price : 12,500 Bath</p>
-                            <div className="brinput">
-                                <input type = "text" placeholder = "min:1"
-                                value={deluxe}
-                                onChange={(e) => setDeluxe(e.target.value)}
-                                />
-                            </div>
-                        <button type = "submit" className = "btn-deluxe">Room Detail</button>
-                    </div>
-                </div>
-                <div>
                 <img src= {StandardRoom} className="roomImg"/>
                     <div className="text-box">
-                        <h1>Standard Room</h1>
+                        <h2>Standard Room</h2>
                         <p>Max Count : 2</p>
                         <p>Price : 10,000 Bath</p>
                             <div className="brinput-std">
@@ -66,8 +51,38 @@ export default function Bookingroom() {
                             <button type = "submit" className = "btn-std">Room Detail</button>
                     </div>
                 </div>
-                <button type = "submit" className = "btn-booking">Booking</button>
-                </form>
+                <div>
+                    <img src= {DeluxeRoom} className="roomImg"/>
+                    <div className="text-box">
+                        <h2>Deluxe Room</h2>
+                        <p>Max Count : 2</p>
+                        <p>Price : 15,000 Bath</p>
+                            <div className="brinput">
+                                <input type = "text" placeholder = "min:1"
+                                value={deluxe}
+                                onChange={(e) => setDeluxe(e.target.value)}
+                                />
+                            </div>
+                        <button type = "submit" className = "btn-deluxe">Room Detail</button>
+                    </div>
+                </div>
+                <div>
+                <img src= {LuxuryRoom} className="roomImg"/>
+                    <div className="text-box">
+                        <h2>Luxury Room</h2>
+                        <p>Max Count : 3</p>
+                        <p>Price : 20,000 Bath</p>
+                            <div className="brinput-std">
+                                <input type = "text" placeholder = "min:0"
+                                value={standard}
+                                onChange={(e) => setStandard(e.target.value)}
+                                />
+                            </div>
+                            <button type = "submit" className = "btn-std">Room Detail</button>
+                    </div>
+                    <button type = "submit" className = "btn-booking">Booking</button>
+                </div>
+                </form>    
             </div>
         </body>
         </div>
