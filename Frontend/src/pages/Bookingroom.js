@@ -129,7 +129,7 @@ export default function Bookingroom() {
                 <h2>Deluxe Room</h2>
                 <p>Max Count : 2</p>
                 <p>Price : 15,000 Bath</p>
-                <div className="brinput">
+                <div className="brinput-std">
                   <button type="button" onClick={() => handleDecrement('deluxe')} className="brinput-std">
                     -
                   </button>

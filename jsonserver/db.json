@@ -254,6 +254,12 @@
       "standard": "5",
       "luxury": "1",
       "id": 4
+    },
+    {
+      "deluxe": 0,
+      "standard": 2,
+      "luxury": 1,
+      "id": 5
     }
   ]
 }
