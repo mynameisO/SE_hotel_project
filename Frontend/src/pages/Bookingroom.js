@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 //import Room from "./room";
 import DeluxeRoom from "./image/deluxe.jpg"
 import StandardRoom from "./image/standard.jpg"
 import LuxuryRoom from "./image/luxury.jpg"
 import "./bookingroom.css"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 
 export default function Bookingroom() {
 
@@ -33,6 +33,11 @@ export default function Bookingroom() {
     const [standard, setStandard] = useState(0);
     const [luxury, setLuxury] = useState(0);
     const navigate = useNavigate();
+    const location = useLocation();
+    const firstdate_booking = location.state.dateBooking.firstdate;
+    const enddate_booking = location.state.dateBooking.enddate;
+    console.log(firstdate_booking, enddate_booking)
+
 
 
     const handleDecrement = (roomType) => {
@@ -71,13 +76,7 @@ export default function Bookingroom() {
     const handleSubmit = (e) => {
         e.preventDefault();
         const Bookingroom = {deluxe, standard, luxury};
-        fetch(`http://${process.env.REACT_APP_BACKEND_IP}/bookingdetail`,{
-            method:'POST',
-            headers:{"content-type":"application/json"},
-            body:JSON.stringify(Bookingroom)
-        }).then((res)=>{
-            navigate('/payment');
-        })
+            navigate('/payment', {replace: true, state:{Bookingroom, firstdate_booking, enddate_booking}});
     }
     const handleSubmit_std = (e) => {
         e.preventDefault();

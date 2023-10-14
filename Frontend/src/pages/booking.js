@@ -5,20 +5,12 @@ import "./booking.css"
 export default function Booking() {
     const [firstdate, setFirstDate] = useState('');
     const [enddate, setEndDate] = useState('');
-    const isProcess = 0;
     const navigate = useNavigate();
-    console.log(firstdate, enddate);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const dateBooking = {firstdate, enddate, isProcess};
-        fetch('http://localhost:3050/booking',{
-            method:'POST',
-            headers:{"content-type":"application/json"},
-            body:JSON.stringify(dateBooking)
-        }).then((res)=>{
-            navigate('/bookingroom');
-        })
+        const dateBooking = {firstdate, enddate};
+        navigate('/bookingroom', {replace: true, state:{dateBooking}});
     }
     return (
         <bodylhh>

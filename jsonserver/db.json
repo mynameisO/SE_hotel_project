@@ -127,139 +127,29 @@
       "cvv": "2221",
       "addinfomation": "",
       "id": 2
-    }
-  ],
-  "booking": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
     },
     {
-      "firstdate": "2023-10-03",
-      "enddate": "2023-10-18",
-      "isProcess": 0,
-      "id": 2
-    },
-    {
-      "firstdate": "2023-10-04",
-      "enddate": "2023-10-06",
-      "isProcess": 0,
+      "Firstdate_Booking": "2023-10-04",
+      "Enddate_Booking": "2023-10-06",
+      "StdRoom_Detail": 2,
+      "DlxRoom_Detail": 1,
+      "LuxRoom_Detail": 3,
+      "title": "Test1",
+      "firstname": "Test1",
+      "lastname": "Test1",
+      "email": "Test1@mail.com",
+      "address": "Test1",
+      "state": "Test1",
+      "provice": "Test1",
+      "telnum": "0001112222",
+      "country": "Test1",
+      "zipcode": "112345",
+      "cardholdername": "Test1",
+      "cardnum": "1111222233334444",
+      "expdate": "11/11/2011",
+      "cvv": "1123",
+      "addinfomation": "",
       "id": 3
-    },
-    {
-      "firstdate": "2023-10-03",
-      "enddate": "2023-10-04",
-      "isProcess": 0,
-      "id": 4
-    },
-    {
-      "firstdate": "2023-10-05",
-      "enddate": "2023-10-07",
-      "isProcess": 0,
-      "id": 5
-    },
-    {
-      "firstdate": "2023-10-03",
-      "enddate": "2023-10-04",
-      "isProcess": 0,
-      "id": 6
-    },
-    {
-      "firstdate": "2023-10-01",
-      "enddate": "2023-10-03",
-      "isProcess": 0,
-      "id": 7
-    },
-    {
-      "firstdate": "2023-10-06",
-      "enddate": "2023-10-09",
-      "isProcess": 0,
-      "id": 8
-    },
-    {
-      "firstdate": "2023-10-03",
-      "enddate": "2023-10-04",
-      "isProcess": 0,
-      "id": 9
-    },
-    {
-      "firstdate": "2023-10-03",
-      "enddate": "2023-10-05",
-      "isProcess": 0,
-      "id": 10
-    },
-    {
-      "firstdate": "2023-10-03",
-      "enddate": "2023-10-05",
-      "isProcess": 0,
-      "id": 11
-    },
-    {
-      "firstdate": "2023-10-03",
-      "enddate": "2023-10-05",
-      "isProcess": 0,
-      "id": 12
-    },
-    {
-      "firstdate": "2023-10-05",
-      "enddate": "2023-10-07",
-      "isProcess": 0,
-      "id": 13
-    },
-    {
-      "firstdate": "2023-10-05",
-      "enddate": "2023-10-12",
-      "isProcess": 0,
-      "id": 14
-    },
-    {
-      "firstdate": "2023-10-05",
-      "enddate": "2023-10-12",
-      "isProcess": 0,
-      "id": 15
-    },
-    {
-      "firstdate": "2023-10-05",
-      "enddate": "2023-10-12",
-      "isProcess": 0,
-      "id": 16
-    },
-    {
-      "firstdate": "2023-10-05",
-      "enddate": "2023-10-12",
-      "isProcess": 0,
-      "id": 17
-    }
-  ],
-  "bookingdetail": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    },
-    [
-      "2",
-      "2",
-      "2"
-    ],
-    {
-      "deluxe": "2",
-      "standard": "3",
-      "luxury": "1",
-      "id": 3
-    },
-    {
-      "deluxe": "2",
-      "standard": "5",
-      "luxury": "1",
-      "id": 4
-    },
-    {
-      "deluxe": 0,
-      "standard": 2,
-      "luxury": 1,
-      "id": 5
     }
   ]
 }
