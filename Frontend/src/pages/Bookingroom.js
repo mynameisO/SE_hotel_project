@@ -8,27 +8,6 @@ import { useNavigate, useLocation } from "react-router-dom"
 
 export default function Bookingroom() {
 
-/*    const [data,setData] = useState([]);
-    const [loading, setLoading] =useState();
-    const getData = ()=>{
-        fetch('http://localhost:3050/roombooking',{headers : {
-            'Content-Type' : 'application/json',
-            'Accept' : 'application/json'
-        }}).then((res)=>{
-            return res.json()
-        }).then((myjson)=>{
-            //console.log(data) 
-            setData(myjson)
-        })
-    }
-    useEffect(() => {
-        setLoading(true)
-        getData()
-        setLoading(false)
-    }, []) */
-
-
-
     const [deluxe, setDeluxe] = useState(0);
     const [standard, setStandard] = useState(0);
     const [luxury, setLuxury] = useState(0);
