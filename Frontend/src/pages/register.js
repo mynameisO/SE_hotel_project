@@ -94,7 +94,7 @@ export default function Register() {
                 onChange={(e) => setConfirmpass(e.target.value)}
                 />
             </div>
-            <button type = "submit" className = "btn">Register</button>
+            <button type = "submit" className = "btn-reg">Register</button>
             <div className = "register-link">
             </div>
             <div className = "register-link">

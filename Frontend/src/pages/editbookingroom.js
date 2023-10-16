@@ -6,16 +6,16 @@ import LuxuryRoom from "./image/luxury.jpg"
 import "./bookingroom.css"
 import { useNavigate, useLocation } from "react-router-dom"
 
-export default function Bookingroom() {
+export default function Editbookingroom() {
 
     const [deluxe, setDeluxe] = useState(0);
     const [standard, setStandard] = useState(0);
     const [luxury, setLuxury] = useState(0);
     const navigate = useNavigate();
     const location = useLocation();
-    const firstdate_booking = location.state.dateBooking.firstdate;
-    const enddate_booking = location.state.dateBooking.enddate;
-    console.log(firstdate_booking, enddate_booking)
+    const firstdate_booking = location.state.firstdate_Booking;
+    const enddate_booking = location.state.enddate_Booking;
+    console.log(firstdate_booking, enddate_booking) 
 
 
 

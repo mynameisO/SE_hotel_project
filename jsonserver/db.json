@@ -48,6 +48,17 @@
       "confirmpass": "Dddqw",
       "phonenum": "Dddqw",
       "id": 5
+    },
+    {
+      "username": "dsda",
+      "password": "12341234",
+      "firstname": "asdasd",
+      "lastname": "asdasd",
+      "dateofbirth": "asdasd",
+      "email": "asdasd",
+      "confirmpass": "12341234",
+      "phonenum": "asdasd",
+      "id": 6
     }
   ],
   "login": [
@@ -55,51 +66,53 @@
       "id": 1,
       "body": "some comment",
       "postId": 1
+    }
+  ],
+  "booking": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
     },
     {
-      "username": "dd",
-      "password": "dd",
+      "firstdate": "2023-10-04",
+      "enddate": "2023-10-06",
+      "isProcess": 0,
       "id": 2
     },
     {
-      "username": "omartest",
-      "password": "123123",
-      "isProcess": [
-        "0",
-        null
-      ],
+      "firstdate": "2023-10-04",
+      "enddate": "2023-10-06",
+      "isProcess": 0,
       "id": 3
     },
     {
-      "username": "test",
-      "password": "dddd",
-      "isProcess": [
-        "",
-        null
-      ],
+      "firstdate": "2023-10-03",
+      "enddate": "2023-10-05",
+      "isProcess": 0,
       "id": 4
     },
     {
-      "username": "tess",
-      "password": "ssddaa11",
+      "firstdate": "2023-10-02",
+      "enddate": "2023-10-04",
       "isProcess": 0,
       "id": 5
     },
     {
-      "username": "omartesss",
-      "password": "123334422",
+      "firstdate": "2023-10-02",
+      "enddate": "2023-10-04",
       "isProcess": 0,
       "id": 6
     },
     {
-      "username": "dddd",
-      "password": "dddd",
+      "firstdate": "2023-10-04",
+      "enddate": "2023-10-06",
       "isProcess": 0,
       "id": 7
     },
     {
-      "username": "testnew",
-      "password": "112233",
+      "firstdate": "2023-10-04",
+      "enddate": "2023-10-07",
       "isProcess": 0,
       "id": 8
     }
@@ -150,6 +163,29 @@
       "cvv": "1123",
       "addinfomation": "",
       "id": 3
+    },
+    {
+      "Firstdate_Booking": "2023-10-04",
+      "Enddate_Booking": "2023-10-07",
+      "StdRoom_Detail": 2,
+      "DlxRoom_Detail": 2,
+      "LuxRoom_Detail": 1,
+      "title": "กหก",
+      "firstname": "ฟหกฟหก",
+      "lastname": "ฟหกฟหก",
+      "email": "DDDss@gmail.com",
+      "address": "asdasd",
+      "state": "asdasd",
+      "provice": "asd",
+      "telnum": "2223334444",
+      "country": "dd",
+      "zipcode": "123123",
+      "cardholdername": "dd",
+      "cardnum": "112312131231123",
+      "expdate": "12321",
+      "cvv": "1234",
+      "addinfomation": "",
+      "id": 4
     }
   ]
 }
