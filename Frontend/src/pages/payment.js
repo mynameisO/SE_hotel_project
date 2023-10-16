@@ -21,11 +21,11 @@ export default function Payment(){
     const [addinfomation, setAddinformation] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
-    const Firstdate_Booking = location.state.firstdate_booking;
-    const Enddate_Booking = location.state.enddate_booking;
-    const StdRoom_Detail = location.state.Bookingroom.standard;
-    const DlxRoom_Detail = location.state.Bookingroom.deluxe;
-    const LuxRoom_Detail = location.state.Bookingroom.luxury;
+    const Firstdate_Booking = location.state.firstdate_Booking;
+    const Enddate_Booking = location.state.enddate_Booking;
+    const StdRoom_Detail = location.state.StdRoom_Detail;
+    const DlxRoom_Detail = location.state.DlxRoom_Detail;
+    const LuxRoom_Detail = location.state.LuxRoom_Detail;
 
     const handleSubmit = (e) => {
         e.preventDefault();

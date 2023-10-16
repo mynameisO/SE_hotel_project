@@ -41,7 +41,7 @@ export default function Login() {
                 <label><input type = "checkbox"></input> Remember me </label>
                 <Link to = "/forgotpass">Forgot Your Password?</Link>
             </div>
-            <button type = "submit" className = "btn">Login</button>
+            <button type = "submit" className = "btn-login">Login</button>
             <div className = "register-link">
                 <p>Don't have an account?
                     <Link to="/register"> Register</Link>
