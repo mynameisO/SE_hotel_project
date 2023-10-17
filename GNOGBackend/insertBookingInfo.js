@@ -1,5 +1,5 @@
 const mysql = require('mysql');
-const uuid = require('uuid');
+
 
 const connection = mysql.createConnection({
   host: 'omar-server.trueddns.com',
@@ -107,6 +107,58 @@ function createBooking(bookingData) {
               if (bookingInsertError) {
                 console.error('Error creating booking:', bookingInsertError);
               } else {
+                // Booking created successfully, update room_status and booking_room table
+                bookingData.rooms.forEach(room => {
+                  const { room_type_id, num_rooms } = room;
+
+                  // Query room_id based on room_type_id
+                  const selectRoomIdQuery = `
+                    SELECT room_id
+                    FROM room
+                    WHERE room_type_id = ${room_type_id}
+                      AND room_status = 'free'
+                    ORDER BY room_id ASC
+                    LIMIT ${num_rooms};
+                  `;
+                  console.log('Select Room ID Query:', selectRoomIdQuery);
+
+                  connection.query(selectRoomIdQuery, (selectError, selectResults) => {
+                    if (selectError || selectResults.length === 0) {
+                      console.error(`Error selecting room_id for room_type_id ${room_type_id}:`, selectError);
+                    } else {
+                      const room_id = selectResults[0].room_id;
+
+                
+                      const updateRoomStatusQuery = `
+                        UPDATE room
+                        SET room_status = 'occupined'
+                        WHERE room_id = ${room_id}
+                        LIMIT ${num_rooms};
+                      `;
+
+                      const insertBookingRoomQuery = `
+                        INSERT INTO booking_room (booking_id, room_id)
+                        VALUES (${bookingId}, ${room_id});
+                      `;
+
+                      // Execute room status update and booking_room insertion queries
+                      connection.query(updateRoomStatusQuery, (updateError, updateResults) => {
+                        if (updateError) {
+                          console.error('Error updating room status:', updateError);
+                        } else {
+                          console.log(`Room ${room_id} updated to 'booked'.`);
+                          connection.query(insertBookingRoomQuery, (bookingRoomError, bookingRoomResults) => {
+                            if (bookingRoomError) {
+                              console.error('Error inserting into booking_room:', bookingRoomError);
+                            } else {
+                              console.log('Booking_room entry added successfully.');
+                            }
+                          });
+                        }
+                      });
+                    }
+                  });
+                });
                 console.log('Booking created successfully!');
               }
             });
