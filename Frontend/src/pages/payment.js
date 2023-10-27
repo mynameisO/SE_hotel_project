@@ -18,6 +18,7 @@ export default function Payment(){
     const [cardnum, setCardnum] = useState('');
     const [expdate, setExpdate] = useState('');
     const [cvv, setCvv] = useState('');
+    const [voucher, setVoucher]= useState('');
     const [addinfomation, setAddinformation] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
@@ -134,16 +135,15 @@ export default function Payment(){
                     onChange={(e) => setCountry(e.target.value)}
                     />
                 </div>
-                <div className="inputBox">
-                    <span>zip code :</span>
-                    <input type="text" placeholder="123 456"
-                    required
-                    value={zipcode}
-                    onChange={(e) => setZipcode(e.target.value)}
+            <div className="inputBox">
+                <span>zip code :</span>
+                <input type="text" placeholder="123 456"
+                required
+                value={zipcode}
+                onChange={(e) => setZipcode(e.target.value)}
                     />
-                </div>
             </div>
-
+            </div>
         </div>
 
         <div className="col">
@@ -178,7 +178,6 @@ export default function Payment(){
                 onChange={(e) => setExpdate(e.target.value)}
                 />
             </div>
-
             <div className="flex">
                 <div className="inputBox">
                     <span>CVV :</span>
@@ -188,6 +187,14 @@ export default function Payment(){
                     onChange={(e) => setCvv(e.target.value)}
                     />
                 </div>
+            </div>
+            <div className="inputBox">
+                <span>Voucher Redeem :</span>
+                <input type = "text" placeholder = "V-500"
+                required
+                value={voucher}
+                onchange={(e) => setVoucher(e.target.value)}
+                />
             </div>
 
         </div>
