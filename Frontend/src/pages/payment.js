@@ -26,6 +26,7 @@ export default function Payment(){
     const StdRoom_Detail = location.state.StdRoom_Detail;
     const DlxRoom_Detail = location.state.DlxRoom_Detail;
     const LuxRoom_Detail = location.state.LuxRoom_Detail;
+    const Addbed = location.state.addbed;
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -57,6 +58,7 @@ export default function Payment(){
             <p>Standard Room : {StdRoom_Detail} rooms</p>
             <p>Deluxe Room : {DlxRoom_Detail} rooms</p>
             <p>Luxury Room : {LuxRoom_Detail} rooms</p>
+            <p>Add On : {Addbed} </p>
 
             <div className="inputBox">
                 <span>title :</span>
