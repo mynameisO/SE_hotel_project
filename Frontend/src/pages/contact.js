@@ -1,3 +1,21 @@
+import React from "react";
+import './contact.css'
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 export default function Contact() {
-    return <h1>Contact Us</h1>
+    return (
+      <div className="contact-container">
+        <h1>Contact Us</h1>
+        <p>If you have any questions or inquiries, please feel free to reach out to us:</p>
+  
+        <div className="contact-info">
+          <p>Email:sehotel@gmail.com</p>
+          <p>Phone: +1 (123) 456-7890</p>
+          <p>Address: 123 Hotel St, City, Country</p>
+        </div>
+  
+        <Link to="/">Back to Home</Link>
+      </div>
+    );
 }
+

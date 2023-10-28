@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import "./confirmbooking.css"
 
 export default function Confirmbooking() {
     const navigate = useNavigate();
