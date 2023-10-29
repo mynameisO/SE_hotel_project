@@ -1,23 +1,62 @@
-.bodyl{
+
+.cbbody body{
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    background-color: rgb(255, 255, 255);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-.confirm-booking{
+.Cfbooking-style{
     width: 420px;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, .2);
     backdrop-filter: blur(20px);
     box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-    color: #fff;
+    color: #a18080;
     border-radius: 10px;
     padding: 30px 40px;
 }
+
+.cbbody h1{
+    text-align: center;
+}
+
+.cbbody .btn-back{
+    background: #292828;
+    width: 150px;
+    height: 45px;
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 600;
+    float: left;
+    margin-top: 10px;
+}
+
+.cbbody .btn-confirm{
+    background: #292828;
+    width: 150px;
+    height: 45px;
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 600;
+    float: right;
+    margin-top: 10px;
+}
+
+
+
 
 
   

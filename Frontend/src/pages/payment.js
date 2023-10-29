@@ -27,7 +27,12 @@ export default function Payment(){
     const StdRoom_Detail = location.state.StdRoom_Detail;
     const DlxRoom_Detail = location.state.DlxRoom_Detail;
     const LuxRoom_Detail = location.state.LuxRoom_Detail;
-    const Addbed = location.state.addbed;
+    const addonLux = location.state.addonLux;
+    const addonDlx = location.state.addonDlx;
+    const addonStd = location.state.addonStd;
+    const addondlx_count = location.state.addondlx_count;
+    const addonlux_count = location.state.addonlux_count;
+    const addonstd_count = location.state.addonstd_count;
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -59,7 +64,15 @@ export default function Payment(){
             <p>Standard Room : {StdRoom_Detail} rooms</p>
             <p>Deluxe Room : {DlxRoom_Detail} rooms</p>
             <p>Luxury Room : {LuxRoom_Detail} rooms</p>
-            <p>Add On : {Addbed} </p>
+            { addonlux_count > 0 &&
+                <p>Luxury Room Add On : {addonLux} </p>
+            }
+            { addondlx_count > 0 &&
+                <p>Deluxe Room Add On : {addonDlx} </p>
+            }
+            { addonstd_count > 0 &&
+                <p>Standard Room Add On : {addonStd} </p>
+            }
 
             <div className="inputBox">
                 <span>title :</span>
