@@ -16,6 +16,7 @@ import Payment from "./pages/payment"
 import Bookingroom from "./pages/bookingroom"
 import Confirmbooking from "./pages/confirmbooking"
 import Editbookingroom from "./pages/editbookingroom"
+import Successfulbooking from "./pages/successfulbooking"
 function App() {
   return( 
   <>
@@ -38,6 +39,7 @@ function App() {
         <Route path="/bookingroom" element={<Bookingroom />} />
         <Route path="/confirmbooking" element={<Confirmbooking />} />
         <Route path="/editbookingroom" element={<Editbookingroom />} />
+        <Route path="/successfulbooking" element={<Successfulbooking />} />
     </Routes>
   </>
   )

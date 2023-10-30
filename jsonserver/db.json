@@ -15,50 +15,6 @@
       "confirmpass": "dd",
       "phonenum": "dd",
       "id": 2
-    },
-    {
-      "username": "dd",
-      "password": "dd",
-      "firstname": "dd",
-      "lastname": "dd",
-      "dateofbirth": "dd",
-      "email": "dd",
-      "confirmpass": "dd",
-      "phonenum": "dd",
-      "id": 3
-    },
-    {
-      "username": "ddd",
-      "password": "ddd",
-      "firstname": "ddd",
-      "lastname": "ddd",
-      "dateofbirth": "ddd",
-      "email": "ddd",
-      "confirmpass": "ddd",
-      "phonenum": "ddd",
-      "id": 4
-    },
-    {
-      "username": "Dddqw",
-      "password": "Dddqw",
-      "firstname": "Dddqw",
-      "lastname": "Dddqw",
-      "dateofbirth": "Dddqw",
-      "email": "Dddqw",
-      "confirmpass": "Dddqw",
-      "phonenum": "Dddqw",
-      "id": 5
-    },
-    {
-      "username": "dsda",
-      "password": "12341234",
-      "firstname": "asdasd",
-      "lastname": "asdasd",
-      "dateofbirth": "asdasd",
-      "email": "asdasd",
-      "confirmpass": "12341234",
-      "phonenum": "asdasd",
-      "id": 6
     }
   ],
   "login": [
@@ -81,220 +37,10 @@
       "id": 2
     },
     {
-      "firstdate": "2023-10-04",
-      "enddate": "2023-10-06",
+      "firstdate": "2023-10-05",
+      "enddate": "2023-10-07",
       "isProcess": 0,
       "id": 3
-    },
-    {
-      "firstdate": "2023-10-03",
-      "enddate": "2023-10-05",
-      "isProcess": 0,
-      "id": 4
-    },
-    {
-      "firstdate": "2023-10-02",
-      "enddate": "2023-10-04",
-      "isProcess": 0,
-      "id": 5
-    },
-    {
-      "firstdate": "2023-10-02",
-      "enddate": "2023-10-04",
-      "isProcess": 0,
-      "id": 6
-    },
-    {
-      "firstdate": "2023-10-04",
-      "enddate": "2023-10-06",
-      "isProcess": 0,
-      "id": 7
-    },
-    {
-      "firstdate": "2023-10-04",
-      "enddate": "2023-10-07",
-      "isProcess": 0,
-      "id": 8
-    },
-    {
-      "firstdate": "2023-10-05",
-      "enddate": "2023-10-07",
-      "isProcess": 0,
-      "id": 9
-    },
-    {
-      "firstdate": "2023-10-05",
-      "enddate": "2023-10-07",
-      "isProcess": 0,
-      "id": 10
-    },
-    {
-      "firstdate": "2023-10-05",
-      "enddate": "2023-10-07",
-      "isProcess": 0,
-      "id": 11
-    },
-    {
-      "firstdate": "2023-10-06",
-      "enddate": "2023-10-07",
-      "isProcess": 0,
-      "id": 12
-    },
-    {
-      "firstdate": "2023-10-04",
-      "enddate": "2023-10-07",
-      "isProcess": 0,
-      "id": 13
-    },
-    {
-      "firstdate": "2023-10-05",
-      "enddate": "2023-10-07",
-      "isProcess": 0,
-      "id": 14
-    },
-    {
-      "firstdate": "2023-10-05",
-      "enddate": "2023-10-07",
-      "isProcess": 0,
-      "id": 15
-    },
-    {
-      "firstdate": "2023-10-06",
-      "enddate": "2023-10-07",
-      "isProcess": 0,
-      "id": 16
-    },
-    {
-      "firstdate": "2023-10-20",
-      "enddate": "2023-10-27",
-      "isProcess": 0,
-      "id": 17
-    },
-    {
-      "firstdate": "2023-10-20",
-      "enddate": "2023-10-26",
-      "isProcess": 0,
-      "id": 18
-    },
-    {
-      "firstdate": "2023-10-12",
-      "enddate": "2023-10-13",
-      "isProcess": 0,
-      "id": 19
-    },
-    {
-      "firstdate": "2023-10-12",
-      "enddate": "2023-10-19",
-      "isProcess": 0,
-      "id": 20
-    },
-    {
-      "firstdate": "2023-10-20",
-      "enddate": "2023-10-27",
-      "isProcess": 0,
-      "id": 21
-    },
-    {
-      "firstdate": "2023-10-12",
-      "enddate": "2023-10-13",
-      "isProcess": 0,
-      "id": 22
-    },
-    {
-      "firstdate": "2023-10-12",
-      "enddate": "2023-10-19",
-      "isProcess": 0,
-      "id": 23
-    },
-    {
-      "firstdate": "2023-10-19",
-      "enddate": "2023-10-20",
-      "isProcess": 0,
-      "id": 24
-    },
-    {
-      "firstdate": "2023-10-26",
-      "enddate": "2023-10-27",
-      "isProcess": 0,
-      "id": 25
-    },
-    {
-      "firstdate": "2023-10-12",
-      "enddate": "2023-10-05",
-      "isProcess": 0,
-      "id": 26
-    },
-    {
-      "firstdate": "2023-10-12",
-      "enddate": "2023-10-13",
-      "isProcess": 0,
-      "id": 27
-    },
-    {
-      "firstdate": "2023-10-04",
-      "enddate": "2023-10-05",
-      "isProcess": 0,
-      "id": 28
-    },
-    {
-      "firstdate": "2023-10-04",
-      "enddate": "2023-10-06",
-      "isProcess": 0,
-      "id": 29
-    },
-    {
-      "firstdate": "2023-10-04",
-      "enddate": "2023-10-06",
-      "isProcess": 0,
-      "id": 30
-    },
-    {
-      "firstdate": "2023-10-06",
-      "enddate": "2023-10-13",
-      "isProcess": 0,
-      "id": 31
-    },
-    {
-      "firstdate": "2023-10-03",
-      "enddate": "2023-10-07",
-      "isProcess": 0,
-      "id": 32
-    },
-    {
-      "firstdate": "2023-10-04",
-      "enddate": "2023-10-06",
-      "isProcess": 0,
-      "id": 33
-    },
-    {
-      "firstdate": "2023-10-05",
-      "enddate": "2023-10-07",
-      "isProcess": 0,
-      "id": 34
-    },
-    {
-      "firstdate": "2023-10-06",
-      "enddate": "2023-10-14",
-      "isProcess": 0,
-      "id": 35
-    },
-    {
-      "firstdate": "2023-10-06",
-      "enddate": "2023-10-13",
-      "isProcess": 0,
-      "id": 36
-    },
-    {
-      "firstdate": "2023-10-05",
-      "enddate": "2023-10-06",
-      "isProcess": 0,
-      "id": 37
-    },
-    {
-      "firstdate": "2023-10-05",
-      "enddate": "2023-10-07",
-      "isProcess": 0,
-      "id": 38
     }
   ],
   "payments": [
@@ -304,68 +50,54 @@
       "postId": 1
     },
     {
-      "title": "dd",
-      "firstname": "dd",
-      "lastname": "dd",
-      "email": "dd@mail.com",
-      "address": "dd",
-      "state": "dd",
-      "provice": "dd",
-      "telnum": "dd",
-      "country": "dd",
-      "zipcode": "dd",
-      "cardholdername": "dd",
-      "cardnum": "2222222211114444",
-      "expdate": "ss",
-      "cvv": "2221",
+      "Checkin_date": "2023-10-04",
+      "Checkout_date": "2023-10-06",
+      "Room": [
+        {
+          "StdRoom_Detail": 0,
+          "DlxRoom_Detail": 1,
+          "LuxRoom_Detail": 0
+        }
+      ],
+      "Guest_title": "Dummy Tittle",
+      "Guest_first_name": "Dummy",
+      "Guest_last_name": "Dummy_last",
+      "Guest_email": "dummy@mail.com",
+      "Guest_address": {
+        "address": "dummy adress",
+        "state": "dummy_state",
+        "provice": "dummy_province",
+        "country": "Thailand",
+        "zipcode": "24110"
+      },
+      "Guest_telnum": "0000000000",
       "addinfomation": "",
-      "id": 2
+      "id": 8
     },
     {
-      "Firstdate_Booking": "2023-10-04",
-      "Enddate_Booking": "2023-10-06",
-      "StdRoom_Detail": 2,
-      "DlxRoom_Detail": 1,
-      "LuxRoom_Detail": 3,
-      "title": "Test1",
-      "firstname": "Test1",
-      "lastname": "Test1",
-      "email": "Test1@mail.com",
-      "address": "Test1",
-      "state": "Test1",
-      "provice": "Test1",
-      "telnum": "0001112222",
-      "country": "Test1",
-      "zipcode": "112345",
-      "cardholdername": "Test1",
-      "cardnum": "1111222233334444",
-      "expdate": "11/11/2011",
-      "cvv": "1123",
-      "addinfomation": "",
-      "id": 3
-    },
-    {
-      "Firstdate_Booking": "2023-10-04",
-      "Enddate_Booking": "2023-10-07",
-      "StdRoom_Detail": 2,
-      "DlxRoom_Detail": 2,
-      "LuxRoom_Detail": 1,
-      "title": "กหก",
-      "firstname": "ฟหกฟหก",
-      "lastname": "ฟหกฟหก",
-      "email": "DDDss@gmail.com",
-      "address": "asdasd",
-      "state": "asdasd",
-      "provice": "asd",
-      "telnum": "2223334444",
-      "country": "dd",
-      "zipcode": "123123",
-      "cardholdername": "dd",
-      "cardnum": "112312131231123",
-      "expdate": "12321",
-      "cvv": "1234",
-      "addinfomation": "",
-      "id": 4
+      "Checkin_date": "2023-10-05",
+      "Checkout_date": "2023-10-07",
+      "Room": [
+        {
+          "StdRoom_Detail": 0,
+          "DlxRoom_Detail": 1,
+          "LuxRoom_Detail": 0
+        }
+      ],
+      "Guest_title": "Dummy",
+      "Guest_first_name": "Dummy",
+      "Guest_last_name": "Dummy",
+      "Guest_email": "Dummy@mail.com",
+      "Guest_address": {
+        "address": "Dummy",
+        "state": "Dummy",
+        "provice": "Dummy",
+        "country": "Dummy",
+        "zipcode": "Dummy"
+      },
+      "Guest_telnum": "Dummy",
+      "addinfomation": "Dummy",
+      "id": 9
     }
   ]
 }
