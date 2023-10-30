@@ -5,12 +5,15 @@ const InsertBookingInfo = require('./insertBookingInfo'); // Import the InsertBo
 const app = express();
 app.use(express.json());
 
+require('dotenv').config();
+const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_DATABASE } = process.env;
+
 const connection = mysql.createConnection({
-  host: 'omar-server.trueddns.com',
-  port: 52300,
-  user: 'gnog',
-  password: '29136111',
-  database: 'SEHP_proj'
+  host: DB_HOST,
+  port: DB_PORT,
+  user: DB_USER,
+  password: DB_PASSWORD,
+  database: DB_DATABASE
 });
 
 connection.connect((err) => {
@@ -22,11 +25,23 @@ connection.connect((err) => {
 });
 
 app.get('/api/room/room_room_available', (req, res) => {
+  //const { checkin_date, checkout_date } = req.query; // Get check-in and check-out dates from request query parameters
+  const checkin_date = '2023-11-25';
+  const checkout_date = '2023-11-27';
+
   const query = `
     SELECT rt.room_type_id, rt.room_type_name, COUNT(r.room_id) AS 'Number of room', rt.price
-    FROM room r
-    RIGHT JOIN room_type rt ON r.room_type_id = rt.room_type_id
-    WHERE r.room_status = 'free'
+    FROM room_type rt
+    LEFT JOIN room r ON rt.room_type_id = r.room_type_id
+    WHERE r.room_id NOT IN (
+      SELECT br.room_id
+      FROM booking b
+      JOIN booking_room br ON b.booking_id = br.booking_id
+      WHERE (
+        (b.checkin_date BETWEEN '${checkin_date}' AND '${checkout_date}') OR
+        (b.checkout_date BETWEEN '${checkin_date}' AND '${checkout_date}')
+      )
+    )
     GROUP BY rt.room_type_id, rt.room_type_name, rt.price
   `;
 
@@ -40,6 +55,7 @@ app.get('/api/room/room_room_available', (req, res) => {
     res.json(results);
   });
 });
+
 
 app.post('/api/createBooking', (req, res) => {
   const bookingData = req.body; // Assuming booking data is sent in the request body
