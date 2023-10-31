@@ -12,24 +12,56 @@ const connection = mysql.createConnection({
 });
 
 const bookingData = {
-  "checkin_date": "2023-11-25",
-  "checkout_date": "2023-11-27",
-  "rooms": [
-    {
-      "room_type_id": "3",
-      "num_rooms": 1
-    }
-  ],
-  "guest_title": "Mr",
-  "guest_first_name": "Patrawee",
-  "guest_last_name": "songtuk",
-  "guest_email": "Test1@mail.com",
-  "guest_address": "Test1",
-  "guest_telnum": "0800000000",
+  "Checkin_date": "2023-10-04",
+  "Checkout_date": "2023-10-06",
+  "Room": {
+    "StdRoom_Detail": 0,
+    "DlxRoom_Detail": 0,
+    "LuxRoom_Detail": 1
+  },
+  "Guest_title": "Mr",
+  "Guest_first_name": "Dummy",
+  "Guest_last_name": "Dummy_last",
+  "Guest_email": "dummy@mail.com",
+  "Guest_address": {
+    "address": "dummy address",
+    "state": "dummy_state",
+    "province": "dummy_province",
+    "country": "Thailand",
+    "zipcode": "24110"
+  },
+  "Guest_telnum": "0000000000",
 };
+
+const { StdRoom_Detail, DlxRoom_Detail, LuxRoom_Detail } = bookingData.Room;
+
+
+const rooms = [
+  { room_type_id: 1, num_rooms: StdRoom_Detail },
+  { room_type_id: 2, num_rooms: DlxRoom_Detail },
+  { room_type_id: 3, num_rooms: LuxRoom_Detail }
+];
+console.log('Rooms:', rooms);
+
+
+const modifiedBookingData = {
+  checkin_date: bookingData.Checkin_date,
+  checkout_date: bookingData.Checkout_date,
+  rooms: rooms,
+  guest_title: bookingData.Guest_title,
+  guest_first_name: bookingData.Guest_first_name,
+  guest_last_name: bookingData.Guest_last_name,
+  guest_email: bookingData.Guest_email,
+  guest_address: `${bookingData.Guest_address.address}, ${bookingData.Guest_address.state}, ${bookingData.Guest_address.province}, ${bookingData.Guest_address.country}, ${bookingData.Guest_address.zipcode}`,
+  guest_telnum: bookingData.Guest_telnum,
+  addinfomation: "I want the room that is clean",
+  serviceCount: 1
+};
+
 
 async function checkRoomAvailability(checkinDate, checkoutDate, rooms) {
   // Use parameterized query
+  const availableRooms = rooms.filter(room => room.num_rooms > 0);
   const availabilityQuery = `
     SELECT room_id, COUNT(*) AS available_rooms
     FROM room
@@ -48,7 +80,7 @@ async function checkRoomAvailability(checkinDate, checkoutDate, rooms) {
     HAVING available_rooms >= ?;
   `;
 
-  const availabilityPromises = rooms.map(async room => {
+  const availabilityPromises = availableRooms.map(async room => {
     const { room_type_id, num_rooms } = room;
     const values = [room_type_id, checkinDate, checkoutDate, checkinDate, checkoutDate, num_rooms];
     
@@ -105,15 +137,30 @@ async function createBooking(bookingData) {
           // Proceed to create booking
           const insertBookingQuery = `
             INSERT INTO booking (booking_id, checkin_date, checkout_date, guest_id, booking_status, booking_note)
-            VALUES (?, ?, ?, ?, 'paid', 'Booking confirmed');
+            VALUES (?, ?, ?, ?, 'paid', ?);
           `;
-          const bookingValues = [bookingId, bookingData.checkin_date, bookingData.checkout_date, guestId];
+          const bookingValues = [bookingId, bookingData.checkin_date, bookingData.checkout_date, guestId, bookingData.addinfomation];
           
           // Execute booking insertion query with parameterized query
           connection.query(insertBookingQuery, bookingValues, (bookingInsertError, bookingInsertResults) => {
             if (bookingInsertError) {
               console.error('Error creating booking:', bookingInsertError);
             } else {
+                      // Insert data into booking_service table
+        const insertBookingServiceQuery = `
+        INSERT INTO booking_service (booking_id, service_id, Count)
+        VALUES (?, 1, ?);
+      `;
+      const bookingServiceValues = [bookingId, bookingData.serviceCount];
+
+      // Execute booking_service insertion query with parameterized query
+      connection.query(insertBookingServiceQuery, bookingServiceValues, (bookingServiceError, bookingServiceResults) => {
+        if (bookingServiceError) {
+          console.error('Error inserting into booking_service:', bookingServiceError);
+        } else {
+          console.log('Booking_service entry added successfully.');
+        }
+      });
               // Booking created successfully, update room_status and booking_room table
               bookingData.rooms.forEach(room => {
                 const { room_type_id, num_rooms } = room;
@@ -179,7 +226,7 @@ async function createBooking(bookingData) {
 }
 
 // Call the createBooking function
-createBooking(bookingData)
+createBooking(modifiedBookingData)
   .then(() => {
     console.log('Booking process completed successfully!');
   })

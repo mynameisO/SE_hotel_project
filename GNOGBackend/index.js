@@ -1,6 +1,7 @@
 const express = require('express');
 const mysql = require('mysql');
-const InsertBookingInfo = require('./insertBookingInfo'); // Import the InsertBookingInfo module
+const InsertBookingInfo = require('./insertBookingInfo');
+//const adminLogin = require('./adminLogin'); // Import the InsertBookingInfo module
 
 const app = express();
 app.use(express.json());
@@ -24,7 +25,7 @@ connection.connect((err) => {
   console.log('Connected to MySQL as id ' + connection.threadId);
 });
 
-app.get('/api/room/room_room_available', (req, res) => {
+app.get('/api/room/room_available', (req, res) => {
   //const { checkin_date, checkout_date } = req.query; // Get check-in and check-out dates from request query parameters
   const checkin_date = '2023-11-25';
   const checkout_date = '2023-11-27';
@@ -72,6 +73,21 @@ app.post('/api/createBooking', (req, res) => {
   });
 });
 
+// Sample login endpoint
+/*app.post('/api/admin/login', async (req, res) => {
+  const { email, password } = req.body;
+  const connection = await createConnection();
+
+  try {
+    const token = await adminLogin.login(email, password, connection);
+    res.status(200).json({ token });
+  } catch (error) {
+    console.error('Error during login:', error.message);
+    res.status(401).json({ error: error.message });
+  } finally {
+    connection.end(); // Close the database connection after handling the request
+  }
+});*/
 
 const PORT = 5000;
 app.listen(PORT, () => {
