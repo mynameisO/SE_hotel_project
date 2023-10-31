@@ -38,7 +38,23 @@ export default function Payment(){
         e.preventDefault();
         const Room = [{StdRoom_Detail, DlxRoom_Detail, LuxRoom_Detail}]
         const Guest_address = {address, state, provice, country, zipcode}
-        const Payment = {Checkin_date, Checkout_date,Room,Guest_title, Guest_first_name, Guest_last_name, Guest_email, Guest_address, Guest_telnum, 
+        /*if(addonstd_count > 0 && addondlx_count > 0 && addonlux_count > 0){
+            const addon_All = {addonStd, addonDlx, addonLux}
+        }
+        else if(addondlx_count > 0 && addonstd_count > 0 && addonlux_count == 0){
+            const addon_DlxnStd = {addonStd, addonDlx}
+        }
+        else if(addonstd_count > 0 && addonlux_count > 0 && addondlx_count == 0){
+            const addon_StdnLux = {addonStd, addonLux}
+        }
+        else if(addonlux_count > 0 && addondlx_count > 0 && addonstd_count == 0){
+            const addon_LuxnDlx = {addonDlx, addonLux}
+        }
+        else if(addonstd_count > 0 && addondlx_count == 0 && addonlux_count == 0){
+            const addon_Standard = {addonStd}
+        }*/
+        const addon = [{addonStd, addonDlx, addonLux}]
+        const Payment = {Checkin_date, Checkout_date,Room, addon,Guest_title, Guest_first_name, Guest_last_name, Guest_email, Guest_address, Guest_telnum, 
             addinfomation}
             console.log(Payment)
             fetch(`http://${process.env.REACT_APP_BACKEND_IP}/payments`,{
@@ -46,7 +62,8 @@ export default function Payment(){
                 headers:{"content-type":"application/json"},
                 body:JSON.stringify(Payment)
             }).then((res)=>{
-                navigate('/successfulbooking', {replace: true, state:{Guest_first_name, Guest_last_name}});
+                navigate('/successfulbooking', {replace: true, state:{Guest_title,Guest_first_name, Guest_last_name, Checkin_date, Checkout_date, addonlux_count, addonLux, addonDlx, addondlx_count, 
+                addonstd_count, addonStd, StdRoom_Detail, DlxRoom_Detail, LuxRoom_Detail, address, state, provice, country, zipcode, Guest_telnum, addinfomation, voucher}});
             })
     }
     return (
