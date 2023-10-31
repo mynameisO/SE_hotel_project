@@ -1,4 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
+import './successfulbooking.css'
 
 export default function Successfulbooking() {
 
@@ -13,13 +14,21 @@ export default function Successfulbooking() {
     }
 
     return (
-    <div>
-        <h1>Thank You For Booking. Name : {Guest_Firstname} {Guest_Lastname} </h1>
+    <div className="sbbody">
+        <body>
+        <h1>Your payment was successful</h1>
+        <h1>{Guest_Firstname} {Guest_Lastname}</h1>
+        <h2>Thank you for your payment. </h2>
+        <p>If you have any questions or inquiries, please feel free to reach out to us</p>
         <form onSubmit={handleSubmit}>
-              <button type="submit" className="">
+
+        <div className="sbbutton">
+            <button type="submit" className="sbhome">
                 Home
               </button>
+            </div>
         </form>
+        </body>
     </div>
     )
 }
