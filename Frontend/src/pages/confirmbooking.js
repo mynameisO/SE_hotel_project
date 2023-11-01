@@ -72,10 +72,34 @@ export default function Confirmbooking() {
                     { StdRoom_Detail > 0 &&
                         <div className="add-on">
                         <p>For Standard Room</p>
+                    <div>
                     <input type = "checkbox"
                         value = 'Add On Bed. '
                         onChange={handleChange_Std}
-                    /><span>Add One Bed 500 Bath</span>
+                    /><span> Add One Bed. 500 Bath</span>
+                    </div>
+                    <div>
+                    <input type = "checkbox"
+                        value = 'Add Breakfast. '
+                        onChange={handleChange_Std}
+                    /><span> Add Breakfast. 100 Bath</span>
+                    </div>
+                    <div>
+                    <input type = "checkbox"
+                        value = 'Add Parking. '
+                        onChange={handleChange_Std}
+                    /><span> Add Parking</span>
+                    </div>
+                    <div>
+                    <input type = "checkbox"
+                        value = 'Add Spa. '
+                        onChange={handleChange_Std}
+                    /><span> Add Spa. 400Bath</span>
+                    </div>
+                    <input type = "checkbox"
+                        value = 'Add Champagne. '
+                        onChange={handleChange_Std}
+                    /><span> Add Champagne. 1500 Bath</span>
                     </div>
                     }
                     { DlxRoom_Detail > 0 &&
@@ -84,7 +108,17 @@ export default function Confirmbooking() {
                     <input type = "checkbox"
                         value=' Add One Bed. '
                         onChange={handleChange_Dlx}
-                    /><span>Add One Bed 500 Bath</span>
+                    /><span> Add One Bed 500 Bath</span>
+                                        <div>
+                    <input type = "checkbox"
+                        value = 'Add Spa. '
+                        onChange={handleChange_Dlx}
+                    /><span> Add Spa. 400Bath</span>
+                    </div>
+                    <input type = "checkbox"
+                        value = 'Add Champagne. '
+                        onChange={handleChange_Dlx}
+                    /><span> Add Champagne. 1500 Bath</span>
                     </div>
                     }
                     { LuxRoom_Detail > 0 &&
@@ -94,6 +128,12 @@ export default function Confirmbooking() {
                         value= ' Add One Bed. '
                         onChange={handleChange_Lux}
                     /> Add One Bed 500 Bath
+                    <div>
+                    <input type = "checkbox"
+                        value = 'Add Champagne. '
+                        onChange={handleChange_Lux}
+                    /><span> Add Champagne. 1500 Bath</span>
+                    </div>
                     </div>
                     }
                     <form onSubmit={handleSubmit_back}>
