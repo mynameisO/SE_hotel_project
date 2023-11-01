@@ -26,9 +26,9 @@ connection.connect((err) => {
 });
 
 app.get('/api/room/room_available', (req, res) => {
-  //const { checkin_date, checkout_date } = req.query; // Get check-in and check-out dates from request query parameters
-  const checkin_date = '2023-11-25';
-  const checkout_date = '2023-11-27';
+  const { checkin_date, checkout_date } = req.query; // Get check-in and check-out dates from request query parameters
+  //const checkin_date = '2023-11-25';
+  //const checkout_date = '2023-11-27';
 
   const query = `
     SELECT rt.room_type_id, rt.room_type_name, COUNT(r.room_id) AS 'Number of room', rt.price

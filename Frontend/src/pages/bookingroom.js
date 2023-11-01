@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 //import Room from "./room";
 import DeluxeRoom from "./image/deluxe.jpg"
 import StandardRoom from "./image/standard.jpg"
@@ -16,19 +16,21 @@ export default function Bookingroom() {
     const firstdate_booking = location.state.dateBooking.firstdate;
     const enddate_booking = location.state.dateBooking.enddate;
     console.log(firstdate_booking, enddate_booking)
-
-
-
+    useEffect(() => {
+      fetch(`http://${process.env.REACT_APP_BACKEND_IP}/registers`)
+      .then(res => {return res.json()})
+      .then(data => {console.log(data[1].username)})
+    }, []);
     const handleDecrement = (roomType) => {
         switch (roomType) {
           case 'standard':
-            setStandard(standard > 0 ? standard - 1 : standard);
+            setStandard((standard > 0) ? standard - 1 : standard);
             break;
           case 'deluxe':
-            setDeluxe(deluxe > 0 ? deluxe - 1 : deluxe);
+            setDeluxe((deluxe > 0) ? deluxe - 1 : deluxe);
             break;
           case 'luxury':
-            setLuxury(luxury > 0 ? luxury - 1 : luxury);
+            setLuxury((luxury > 0) ? luxury - 1 : luxury);
             break;
           default:
             break;
