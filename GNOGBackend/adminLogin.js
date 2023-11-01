@@ -1,9 +1,20 @@
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
-const secretKey = 'test123'; // Use a secure secret key for JWT
+const { secretKeyJWT } = process.env;
+const bcrypt = require('bcrypt'); 
 
-async function login(email, password, connection) {
-  const selectQuery = 'SELECT * FROM staff WHERE email = ?';
+
+async function verifyPassword(password, hashedPassword) {
+  return bcrypt.compare(password, hashedPassword);
+}
+
+function generateToken(email, staff_id) {
+  return jwt.sign({ email, staff_id }, process.env.secretKeyJWT, {
+    expiresIn: '1h' // Token expiration time
+  });
+}
+
+async function login(email, password) {
+  const selectQuery = 'SELECT * FROM Admin WHERE email = ?';
 
   try {
     const [rows] = await connection.execute(selectQuery, [email]);
@@ -19,20 +30,16 @@ async function login(email, password, connection) {
       throw new Error('Invalid email or password');
     }
 
-    const token = jwt.sign({ email: rows[0].email, staff_id: rows[0].staff_id }, secretKey, {
-      expiresIn: '1h' // Token expiration time
-    });
-
+    // Creating a JSON Web Token using the secret key from .env
+    const token = generateToken(rows[0].email, rows[0].staff_id);
     return token;
   } catch (error) {
     throw error;
   }
 }
 
-async function verifyPassword(password, hashedPassword) {
-  return bcrypt.compare(password, hashedPassword);
-}
-
 module.exports = {
-  login: login
+  login: login,
+  verifyPassword: verifyPassword,
+  generateToken: generateToken
 };
