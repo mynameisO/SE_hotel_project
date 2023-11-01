@@ -27,8 +27,8 @@ const pool = mysql.createPool({
 });
 
 app.get('/api/room/room_available', async (req, res) => {
-  const checkin_date = '2023-11-25';
-  const checkout_date = '2023-11-27';
+
+  const { checkin_date, checkout_date } = req.query;
 
   try {
     const connection = await pool.getConnection();
