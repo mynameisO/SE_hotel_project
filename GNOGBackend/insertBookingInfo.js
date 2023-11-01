@@ -85,8 +85,7 @@ function transformBookingData(bookingData) {
     guest_email: bookingData.Guest_email,
     guest_address: `${bookingData.Guest_address.address}, ${bookingData.Guest_address.state}, ${bookingData.Guest_address.province}, ${bookingData.Guest_address.country}, ${bookingData.Guest_address.zipcode}`,
     guest_telnum: bookingData.Guest_telnum,
-    addinfomation: bookingData.addinfomation,
-    serviceCount: bookingData.serviceCount
+    addinfomation: bookingData.addinfomation
   };
 
   return transformedData;
@@ -126,21 +125,6 @@ async function createBooking(bookingData) {
             if (bookingInsertError) {
               console.error('Error creating booking:', bookingInsertError);
             } else {
-                      // Insert data into booking_service table
-        const insertBookingServiceQuery = `
-        INSERT INTO booking_service (booking_id, service_id, Count)
-        VALUES (?, 1, ?);
-      `;
-      const bookingServiceValues = [bookingId, bookingData.serviceCount];
-
-      // Execute booking_service insertion query with parameterized query
-      connection.query(insertBookingServiceQuery, bookingServiceValues, (bookingServiceError, bookingServiceResults) => {
-        if (bookingServiceError) {
-          console.error('Error inserting into booking_service:', bookingServiceError);
-        } else {
-          console.log('Booking_service entry added successfully.');
-        }
-      });
               // Booking created successfully, update room_status and booking_room table
               bookingData.rooms.forEach(room => {
                 const { room_type_id, num_rooms } = room;
@@ -219,5 +203,3 @@ async function createBooking(bookingData) {
     createBooking,
     transformBookingData
   };
-
-

@@ -5,11 +5,14 @@ const InsertBookingInfo = require('./insertBookingInfo');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
+const exp_logger = require('express-requests-logger');
+const cors = require('cors');
 
 const app = express();
 app.use(express.json());
 app.use(bodyParser.json());
-
+app.use(exp_logger());
+app.use(cors());
 
 require('dotenv').config();
 const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_DATABASE } = process.env;

@@ -11,13 +11,7 @@ export default function Booking() {
     const handleSubmit = (e) => {
         e.preventDefault();
         const dateBooking = {firstdate, enddate, isProcess};
-        fetch(`http://${process.env.REACT_APP_BACKEND_IP}/booking`,{
-            method:'POST',
-            headers:{"content-type":"application/json"},
-            body:JSON.stringify(dateBooking)
-        }).then((res)=>{
-            navigate('/bookingroom', {replace: true, state:{dateBooking}});
-        })
+        navigate('/bookingroom', {replace: true, state:{dateBooking}});
     }
     return (
         <bodylhh>
