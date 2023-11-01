@@ -1,7 +1,17 @@
-.headContainer {
+.homebody {
     text-align: center;
-    justify-content: center;
-    display: block;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color:aliceblue
+}
+
+.imageItem{
+    position: center;
 }
 
 .btn {
@@ -19,6 +29,8 @@
 .btn:hover {
     background-color: #404040; 
 }
+
+
 
 
   
