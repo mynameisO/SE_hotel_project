@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 //import Room from "./room";
 import DeluxeRoom from "./image/deluxe.jpg"
 import StandardRoom from "./image/standard.jpg"
@@ -15,12 +15,70 @@ export default function Bookingroom() {
     const location = useLocation();
     const firstdate_booking = location.state.dateBooking.firstdate;
     const enddate_booking = location.state.dateBooking.enddate;
-    console.log(firstdate_booking, enddate_booking)
-    useEffect(() => {
-      fetch(`http://${process.env.REACT_APP_BACKEND_IP}/registers`)
-      .then(res => {return res.json()})
-      .then(data => {console.log(data[1].username)})
-    }, []);
+    const [num_room_1, setNumroom1] = useState(0);
+    const [num_room_2, setNumroom2] = useState(0);
+    const [num_room_3, setNumroom3] = useState(0);
+    const [price_room_1, setPrice1] = useState(3000);
+    const [price_room_2, setPrice2] = useState(5500);
+    const [price_room_3, setPrice3] = useState(8000);
+    fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/room/room_available?checkin_date=${firstdate_booking}&checkout_date=${enddate_booking}`)
+    .then(res => {return res.json()})
+    .then(data => { 
+      if(data[0]){
+        switch(data[0]["room_type_id"]){
+          case 1:
+            setNumroom1(data[0]["Number of room"]);
+            setPrice1(data[0]["price"])
+            break;
+          case 2:
+            setNumroom2(data[0]["Number of room"]);
+            setPrice2(data[0]["price"])
+            break;
+          case 3:
+            setNumroom3(data[0]["Number of room"]);
+            setPrice3(data[0]["price"])
+            break;
+          default:
+            break;
+        }
+      }
+      if(data[1]){
+        switch(data[1]["room_type_id"]){
+          case 1:
+            setNumroom1(data[1]["Number of room"]);
+            setPrice1(data[1]["price"])
+            break;
+          case 2:
+            setNumroom2(data[1]["Number of room"]);
+            setPrice2(data[1]["price"])
+            break;
+          case 3:
+            setNumroom3(data[1]["Number of room"]);
+            setPrice3(data[1]["price"])
+            break;
+          default:
+            break;
+        }
+      }
+      if(data[2]){
+        switch(data[2]["room_type_id"]){
+          case 1:
+            setNumroom1(data[2]["Number of room"]);
+            setPrice1(data[2]["price"])
+            break;
+          case 2:
+            setNumroom2(data[2]["Number of room"]);
+            setPrice2(data[2]["price"])
+            break;
+          case 3:
+            setNumroom3(data[2]["Number of room"]);
+            setPrice3(data[2]["price"])
+            break;
+          default:
+            break;
+        }
+      }
+    });
     const handleDecrement = (roomType) => {
         switch (roomType) {
           case 'standard':
@@ -40,13 +98,13 @@ export default function Bookingroom() {
     const handleIncrement = (roomType) => {
         switch (roomType) {
           case 'standard':
-            setStandard(standard + 1);
+            setStandard((standard < num_room_1) ? standard + 1 : standard);
             break;
           case 'deluxe':
-            setDeluxe(deluxe + 1);
+            setDeluxe((deluxe < num_room_2) ? deluxe + 1 : deluxe);
             break;
           case 'luxury':
-            setLuxury(luxury + 1);
+            setLuxury((luxury < num_room_3) ? luxury + 1 : luxury);
             break;
           default:
             break;
@@ -80,8 +138,8 @@ export default function Bookingroom() {
               <img src={StandardRoom} className="roomImg" alt="" />
               <div className="text-box">
                 <h2>Standard Room</h2>
-                <p>Max Count : 2</p>
-                <p>Price : 10,000 Bath</p>
+                <p>Max Count : {num_room_1}</p>
+                <p>Price : {price_room_1} Bath</p>
                 <div className="brinput-std">
                   <button type="button" onClick={() => handleDecrement('standard')} className="brinput-std">
                     -
@@ -107,8 +165,8 @@ export default function Bookingroom() {
               <img src={DeluxeRoom} className="roomImg" alt="" />
               <div className="text-box">
                 <h2>Deluxe Room</h2>
-                <p>Max Count : 2</p>
-                <p>Price : 15,000 Bath</p>
+                <p>Max Count : {num_room_2}</p>
+                <p>Price : {price_room_2} Bath</p>
                 <div className="brinput-std">
                   <button type="button" onClick={() => handleDecrement('deluxe')} className="brinput-std">
                     -
@@ -134,8 +192,8 @@ export default function Bookingroom() {
               <img src={LuxuryRoom} className="roomImg" alt="" />
               <div className="text-box">
                 <h2>Luxury Room</h2>
-                <p>Max Count : 3</p>
-                <p>Price : 20,000 Bath</p>
+                <p>Max Count : {num_room_3}</p>
+                <p>Price : {price_room_3} Bath</p>
                 <div className="brinput-std">
                   <button type="button" onClick={() => handleDecrement('luxury')} className="brinput-std">
                     -
