@@ -6,7 +6,7 @@ export default function Contact() {
     return (
       <div className="contact-container">
         <h1>Contact Us</h1>
-        <p>If you have any questions or inquiries, please feel free to reach out to us:</p>
+        <p>If you have any questions or inquiries, please feel free to reach out to us</p>
   
         <div className="contact-info">
           <p>Email:sehotel@gmail.com</p>

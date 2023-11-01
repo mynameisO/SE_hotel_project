@@ -17,6 +17,7 @@ import Bookingroom from "./pages/bookingroom"
 import Confirmbooking from "./pages/confirmbooking"
 import Editbookingroom from "./pages/editbookingroom"
 import Successfulbooking from "./pages/successfulbooking"
+import Seedetail from "./pages/seedetail"
 function App() {
   return( 
   <>
@@ -40,6 +41,7 @@ function App() {
         <Route path="/confirmbooking" element={<Confirmbooking />} />
         <Route path="/editbookingroom" element={<Editbookingroom />} />
         <Route path="/successfulbooking" element={<Successfulbooking />} />
+        <Route path="/seedetail" element={<Seedetail />} />
     </Routes>
   </>
   )

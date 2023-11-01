@@ -11,52 +11,6 @@ const connection = mysql.createConnection({
   database: DB_DATABASE
 });
 
-const bookingData = {
-  "Checkin_date": "2023-10-04",
-  "Checkout_date": "2023-10-06",
-  "Room": {
-    "StdRoom_Detail": 0,
-    "DlxRoom_Detail": 0,
-    "LuxRoom_Detail": 1
-  },
-  "Guest_title": "Mr",
-  "Guest_first_name": "Dummy",
-  "Guest_last_name": "Dummy_last",
-  "Guest_email": "dummy@mail.com",
-  "Guest_address": {
-    "address": "dummy address",
-    "state": "dummy_state",
-    "province": "dummy_province",
-    "country": "Thailand",
-    "zipcode": "24110"
-  },
-  "Guest_telnum": "0000000000",
-};
-
-const { StdRoom_Detail, DlxRoom_Detail, LuxRoom_Detail } = bookingData.Room;
-
-
-const rooms = [
-  { room_type_id: 1, num_rooms: StdRoom_Detail },
-  { room_type_id: 2, num_rooms: DlxRoom_Detail },
-  { room_type_id: 3, num_rooms: LuxRoom_Detail }
-];
-console.log('Rooms:', rooms);
-
-
-const modifiedBookingData = {
-  checkin_date: bookingData.Checkin_date,
-  checkout_date: bookingData.Checkout_date,
-  rooms: rooms,
-  guest_title: bookingData.Guest_title,
-  guest_first_name: bookingData.Guest_first_name,
-  guest_last_name: bookingData.Guest_last_name,
-  guest_email: bookingData.Guest_email,
-  guest_address: `${bookingData.Guest_address.address}, ${bookingData.Guest_address.state}, ${bookingData.Guest_address.province}, ${bookingData.Guest_address.country}, ${bookingData.Guest_address.zipcode}`,
-  guest_telnum: bookingData.Guest_telnum,
-  addinfomation: "I want the room that is clean",
-  serviceCount: 1
-};
 
 
 async function checkRoomAvailability(checkinDate, checkoutDate, rooms) {
@@ -110,6 +64,32 @@ async function checkRoomAvailability(checkinDate, checkoutDate, rooms) {
   } catch (error) {
     throw error;
   }
+}
+
+function transformBookingData(bookingData) {
+  const { StdRoom_Detail, DlxRoom_Detail, LuxRoom_Detail } = bookingData.Room;
+
+  const rooms = [
+    { room_type_id: 1, num_rooms: StdRoom_Detail },
+    { room_type_id: 2, num_rooms: DlxRoom_Detail },
+    { room_type_id: 3, num_rooms: LuxRoom_Detail }
+  ];
+
+  const transformedData = {
+    checkin_date: bookingData.Checkin_date,
+    checkout_date: bookingData.Checkout_date,
+    rooms: rooms,
+    guest_title: bookingData.Guest_title,
+    guest_first_name: bookingData.Guest_first_name,
+    guest_last_name: bookingData.Guest_last_name,
+    guest_email: bookingData.Guest_email,
+    guest_address: `${bookingData.Guest_address.address}, ${bookingData.Guest_address.state}, ${bookingData.Guest_address.province}, ${bookingData.Guest_address.country}, ${bookingData.Guest_address.zipcode}`,
+    guest_telnum: bookingData.Guest_telnum,
+    addinfomation: bookingData.addinfomation,
+    serviceCount: bookingData.serviceCount
+  };
+
+  return transformedData;
 }
 
 async function createBooking(bookingData) {
@@ -226,12 +206,18 @@ async function createBooking(bookingData) {
 }
 
 // Call the createBooking function
-createBooking(modifiedBookingData)
+/*createBooking(modifiedBookingData)
   .then(() => {
     console.log('Booking process completed successfully!');
   })
   .catch(error => {
     console.error('Error:', error);
-  });
+  });*/
+
+  module.exports = {
+    checkRoomAvailability,
+    createBooking,
+    transformBookingData
+  };
 
 
