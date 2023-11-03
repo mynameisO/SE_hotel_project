@@ -1,7 +1,7 @@
 .dine-container {
     text-align: center;
     margin: 20px;
-  }
+}
   
 .restaurant {
     margin-top: 20px;
@@ -10,21 +10,21 @@
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
+}
   
 .restaurant h3 {
     color: #333;
     font-size: 24px;
     margin-bottom: 10px;
-  }
+}
   
 .restaurant p {
     color: #666;
     font-size: 16px;
     margin: 10px 0;
-  }
+}
   
-.restaurant img {
-    max-width: 100%;
-    border-radius: 10px;
-  }
+.responsive-image{
+  max-width: 100%;
+  height: auto;
+}
