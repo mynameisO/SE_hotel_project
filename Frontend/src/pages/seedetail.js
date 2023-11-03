@@ -10,13 +10,7 @@ export default function Seedetail(){
     const StdRoom_Detail = location.state.StdRoom_Detail;
     const DlxRoom_Detail = location.state.DlxRoom_Detail;
     const LuxRoom_Detail = location.state.LuxRoom_Detail;
-    const addonLux = location.state.addonLux;
-    const addonDlx = location.state.addonDlx;
-    const addonStd = location.state.addonStd;
-    const addondlx_count = location.state.addondlx_count;
-    const addonlux_count = location.state.addonlux_count;
-    const addonstd_count = location.state.addonstd_count;
-    const AddInformation = location.state.addinfomation;
+    const AddInformation = location.state.AddInfomation;
     const Voucher = location.state.Voucher;
     const title = location.state.title;
     const Telnumber = location.state.Telnumber;
@@ -40,15 +34,6 @@ export default function Seedetail(){
                     <p>Standard Room : {StdRoom_Detail} rooms</p>
                     <p>Deluxe Room : {DlxRoom_Detail} rooms</p>
                     <p>Luxury Room : {LuxRoom_Detail} rooms</p>
-                    { addonlux_count > 0 &&
-                        <p>Luxury Room Add On : {addonLux} </p>
-                    }
-                    { addondlx_count > 0 &&
-                        <p>Deluxe Room Add On : {addonDlx} </p>
-                    }
-                    { addonstd_count > 0 &&
-                        <p>Standard Room Add On : {addonStd} </p>
-                    }
                     <p>Address : {Address}</p>
                     <p>State : {State}      Province : {Provice}</p>
                     <p>Country : {Country}  Zipcode : {Zipcode}</p>
@@ -59,3 +44,26 @@ export default function Seedetail(){
         </div>
     )
 }
+
+/*
+{
+  "Checkin_date": "2023-10-04",
+  "Checkout_date": "2023-10-06",
+  "Room": {
+    "StdRoom_Detail": 0,
+    "DlxRoom_Detail": 0,
+    "LuxRoom_Detail": 1
+  },
+  "Guest_title": "Mr",
+  "Guest_first_name": "Dummy",
+  "Guest_last_name": "Dummy_last",
+  "Guest_email": "dummy@mail.com",
+  "Guest_address": {
+    "address": "dummy address",
+    "state": "dummy_state",
+    "province": "dummy_province",
+    "country": "Thailand",
+    "zipcode": "24110"
+  },
+  "Guest_telnum": "0000000000",
+  "addinfomation": "I want the room that is clean",*/

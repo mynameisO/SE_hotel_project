@@ -1,7 +1,6 @@
-import React,  { useState, useEffect } from "react";
+import React from "react";
 import './home.css'
 import home1 from './image/home1.jpg';
-import {useNavigate} from "react-router-dom"
 
 export default function Home() {
     return (
