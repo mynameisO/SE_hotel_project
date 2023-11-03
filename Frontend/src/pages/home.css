@@ -2,16 +2,23 @@
     text-align: center;
 }
 
+bodyhome{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('./image/home1.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .centered {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     color:aliceblue
-}
-
-.imageItem{
-    position: center;
 }
 
 .btn {
