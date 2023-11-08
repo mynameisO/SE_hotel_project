@@ -10,7 +10,6 @@ export default function Login() {
     const MySwal = withReactContent(Swal);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const isProcess = 0;
    /* const handleSubmit = (e) => {
         e.preventDefault();
         const Login = {username, password, isProcess};
