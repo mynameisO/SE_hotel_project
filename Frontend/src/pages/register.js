@@ -2,7 +2,11 @@ import React from "react";
 import './register.css'
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
 export default function Register() {
+    const MySwal = withReactContent(Swal);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [firstname, setFirstname] = useState('');
@@ -16,14 +20,25 @@ export default function Register() {
     console.log(process.env.BACKEND_IP) 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const Register = {username, password, firstname, lastname, dateofbirth, email, confirmpass, phonenum};
-        fetch(`http://${process.env.REACT_APP_BACKEND_IP}/registers`,{
+        if(password === confirmpass){
+        const Register = {username, password, firstname, lastname, dateofbirth, email, phonenum};
+        fetch(`http://omar-server.trueddns.com:52302/api/admin/register`,{
             method:'POST',
             headers:{"content-type":"application/json"},
             body:JSON.stringify(Register)
         }).then((res)=>{
+            MySwal.fire({
+                html : <i>Register Success.</i>,
+                icon : 'success'
+            })
            navigate('/login');
         })
+        } else{
+            MySwal.fire({
+                html : <i>Password Not Matched</i>,
+                icon: 'error'
+            })
+        }
     }
     return (
     <bodylh>

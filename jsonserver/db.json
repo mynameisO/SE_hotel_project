@@ -1,11 +1,6 @@
 {
   "registers": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    },
-    {
       "username": "dd",
       "password": "dd",
       "firstname": "dd",
@@ -15,6 +10,50 @@
       "confirmpass": "dd",
       "phonenum": "dd",
       "id": 2
+    },
+    {
+      "username": "asd",
+      "password": "123",
+      "firstname": "asd",
+      "lastname": "dd",
+      "dateofbirth": "dd",
+      "email": "bok2@mail.com",
+      "confirmpass": "123",
+      "phonenum": "0022",
+      "id": 3
+    },
+    {
+      "username": "dummy",
+      "password": "dummy",
+      "firstname": "dummy",
+      "lastname": "dummy",
+      "dateofbirth": "dummy",
+      "email": "dummy@mail.com",
+      "phonenum": "dummy",
+      "id": 4
+    },
+    {
+      "id": 5
+    },
+    {
+      "username": "test",
+      "password": "test",
+      "firstname": "test",
+      "lastname": "test",
+      "dateofbirth": "test",
+      "email": "tset@mail.com",
+      "phonenum": "test",
+      "id": 6
+    },
+    {
+      "username": "test1",
+      "password": "test1",
+      "firstname": "test1",
+      "lastname": "test1",
+      "dateofbirth": "test1",
+      "email": "tset1@mail.com",
+      "phonenum": "test1",
+      "id": 7
     }
   ],
   "login": [
@@ -22,6 +61,37 @@
       "id": 1,
       "body": "some comment",
       "postId": 1
+    },
+    {
+      "username": "test1",
+      "password": "test1",
+      "firstname": "test1",
+      "lastname": "test1",
+      "dateofbirth": "test1",
+      "email": "tset1@mail.com",
+      "phonenum": "test1",
+      "id": 2
+    },
+    {
+      "username": "test1",
+      "password": "test1",
+      "firstname": "test1",
+      "lastname": "test1",
+      "dateofbirth": "test1",
+      "email": "tset1@mail.com",
+      "phonenum": "test1",
+      "id": 3
+    },
+    {
+      "username": "test1",
+      "password": "test1",
+      "id": 4
+    },
+    {
+      "username": "test1",
+      "password": "test1",
+      "isProcess": 0,
+      "id": 5
     }
   ],
   "booking": [

@@ -2,12 +2,16 @@ import React from "react";
 import './login.css'
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
 export default function Login() {
     const navigate = useNavigate();
+    const MySwal = withReactContent(Swal);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const isProcess = 0;
-    const handleSubmit = (e) => {
+   /* const handleSubmit = (e) => {
         e.preventDefault();
         const Login = {username, password, isProcess};
         fetch(`http://${process.env.REACT_APP_BACKEND_IP}/login`,{
@@ -17,6 +21,42 @@ export default function Login() {
         }).then((res)=>{
             navigate('/');
         })
+    }*/
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+        "email": username,
+        "password": password
+        });
+
+        var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+        };
+
+        fetch("http://omar-server.trueddns.com:52302/api/admin/login", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+            if(result.error){
+                MySwal.fire({
+                    html : <i>{result.error}</i>,
+                    icon : 'error'
+                })
+               navigate('/login');
+            }else{
+                MySwal.fire({
+                    html : <i>login Success.</i>,
+                    icon : 'success'
+                })
+               navigate('/');
+            }
+        })
+        .catch(error => console.log('error', error));
     }
     return (
     <bodyl>

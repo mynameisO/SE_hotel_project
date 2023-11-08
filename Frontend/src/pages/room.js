@@ -24,6 +24,7 @@ export default function Room() {
 
     return (
         <div className="room-container">
+          <h1>Our Rooms</h1>
             <div className="stdroom">
               <img src={standard} className="std-pic" alt=""/>
               <h3>Standard Room</h3>

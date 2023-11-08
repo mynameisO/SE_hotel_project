@@ -10,7 +10,6 @@ export default function Navbar2(){
             <CustomLink to="/location">Location</CustomLink>
             <CustomLink to="/contact">Contact Us</CustomLink>
             <CustomLink to="/booking">Booking</CustomLink>
-            <CustomLink to="/payment">Payment</CustomLink>
         </ul>
     </nav>
 }
