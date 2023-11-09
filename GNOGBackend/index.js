@@ -2,6 +2,7 @@ const express = require('express');
 const mysql = require('mysql2/promise');
 const adminLogin = require('./adminLogin');
 const InsertBookingInfo = require('./insertBookingInfo');
+const adminAuth = require('./adminAuth');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
@@ -74,36 +75,29 @@ app.post('/api/createBooking', async (req, res) => {
 
 
 
-
 app.post('/api/admin/login', async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // Get a connection from the pool
-    const connection = await pool.getConnection();
-    // Query the database
-    const [results, fields] = await connection.execute('SELECT * FROM Admin WHERE email = ?', [email]);
-    connection.release(); // Release the connection back to the pool
-
-    // Handle the query results
-    if (results.length === 0) {
-      throw new Error('Invalid email or password');
-    }
-
-    const storedPassword = results[0].password;
-    const isPasswordValid = await adminLogin.verifyPassword(password, storedPassword);
-
-    if (!isPasswordValid) {
-      throw new Error('Invalid email or password');
-    }
-
-    // Generate and send the token
-    const token = adminLogin.generateToken(results[0].email, results[0].staff_id);
-    res.status(200).json({ token });
+    const response = await adminLogin.login(email, password);
+    res.status(200).json(response);
   } catch (error) {
     console.error('Error during login:', error.message);
-    res.status(401).json({ error: error.message });
+    res.status(401).json({ status: 'error', message: 'Login failed' });
   }
+});
+
+app.get('/api/admin/auth', adminAuth.authenticateAdmin, (req, res) => {
+  const { staff_id, fname, lname, email } = req.user;
+  res.status(200).json({
+    status: 'ok',
+    user: {
+      staff_id: staff_id,
+      fname: fname,
+      lname: lname,
+      email: email,
+    },
+  });
 });
 
 app.post('/api/admin/register', async (req, res) => {

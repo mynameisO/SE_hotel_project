@@ -14,7 +14,6 @@ const connection = mysql.createConnection({
 
 
 async function checkRoomAvailability(checkinDate, checkoutDate, rooms) {
-  // Use parameterized query
   const availableRooms = rooms.filter(room => room.num_rooms > 0);
   const availabilityQuery = `
     SELECT room_id, COUNT(*) AS available_rooms
