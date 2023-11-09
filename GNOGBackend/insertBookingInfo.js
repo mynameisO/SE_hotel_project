@@ -14,13 +14,11 @@ const connection = mysql.createConnection({
 
 
 async function checkRoomAvailability(checkinDate, checkoutDate, rooms) {
-  // Use parameterized query
   const availableRooms = rooms.filter(room => room.num_rooms > 0);
   const availabilityQuery = `
     SELECT room_id, COUNT(*) AS available_rooms
     FROM room
     WHERE room_type_id = ?
-      AND room_status = 'free'
       AND room_id NOT IN (
         SELECT room_id
         FROM booking_room
@@ -133,7 +131,6 @@ async function createBooking(bookingData) {
                   SELECT room_id
                   FROM room
                   WHERE room_type_id = ?
-                    AND room_status = 'free'
                   ORDER BY room_id ASC
                   LIMIT ?;
                 `;
