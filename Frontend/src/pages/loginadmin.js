@@ -1,11 +1,11 @@
 import React from "react";
 import './login.css'
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
-export default function Login() {
+export default function Loginadmin() {
     const navigate = useNavigate();
     const MySwal = withReactContent(Swal);
     const [username, setUsername] = useState('');
@@ -46,13 +46,16 @@ export default function Login() {
                     html : <i>{result.error}</i>,
                     icon : 'error'
                 })
-               navigate('/login');
+               navigate('/loginadmin');
             }else{
                 MySwal.fire({
                     html : <i>login Success.</i>,
                     icon : 'success'
+                }).then((value) => {
+                    localStorage.setItem('token', result.token)
+                    console.log(result.token)
+                    navigate('/adminmenu');
                 })
-               navigate('/');
             }
         })
         .catch(error => console.log('error', error));
@@ -61,9 +64,9 @@ export default function Login() {
     <bodyl>
       <div className = "Login">
         <form onSubmit={handleSubmit}>
-            <h1>Login</h1>
+            <h1>Admin Login</h1>
             <div class = "input-box">
-                <input type = "text" placeholder = "Username"
+                <input type = "text" placeholder = "Email"
                 required
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
@@ -76,16 +79,7 @@ export default function Login() {
                 onChange={(e) => setPassword(e.target.value)}
                 />
             </div>
-            <div className = "remember-forger">
-                <label><input type = "checkbox"></input> Remember me </label>
-                <Link to = "/forgotpass">Forgot Your Password?</Link>
-            </div>
             <button type = "submit" className = "btn-login">Login</button>
-            <div className = "register-link">
-                <p>Don't have an account?
-                    <Link to="/register"> Register</Link>
-                </p>
-            </div>
         </form>
     </div>
     </bodyl>

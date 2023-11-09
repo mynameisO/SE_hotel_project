@@ -110,3 +110,14 @@ label{
 .register-link a:hover{
     text-decoration: underline;
 }
+
+.bodyaddmin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('./image/loginbg2.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

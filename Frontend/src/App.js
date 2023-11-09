@@ -4,7 +4,7 @@ import Register from "./pages/register"
 import Home from "./pages/home"
 import Login from "./pages/login"
 import Room from "./pages/room"
-import { Route, Routes} from "react-router-dom"
+import { Route, Routes } from "react-router-dom"
 import Facilities from "./pages/facilities"
 import Contact from "./pages/contact"
 import Booking from "./pages/booking"
@@ -18,7 +18,12 @@ import Confirmbooking from "./pages/confirmbooking"
 import Editbookingroom from "./pages/editbookingroom"
 import Successfulbooking from "./pages/successfulbooking"
 import Seedetail from "./pages/seedetail"
+import Loginadmin from "./pages/loginadmin"
+import Roomadmin from "./pages/roomadmin"
+import Adminmenu from "./pages/adminmenu"
+
 function App() {
+
   return( 
   <>
     <Navbar /> 
@@ -42,8 +47,12 @@ function App() {
         <Route path="/editbookingroom" element={<Editbookingroom />} />
         <Route path="/successfulbooking" element={<Successfulbooking />} />
         <Route path="/seedetail" element={<Seedetail />} />
+        <Route path="/loginadmin" element={<Loginadmin />} />
+        <Route path="/roomadmin" element={<Roomadmin />} />
+        <Route path="/adminmenu" element={<Adminmenu />} />
     </Routes>
   </>
+
   )
 }
 export default App;
