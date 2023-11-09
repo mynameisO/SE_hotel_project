@@ -27,16 +27,16 @@ export default function Payment(){
     const StdRoom_Detail = location.state.StdRoom_Detail;
     const DlxRoom_Detail = location.state.DlxRoom_Detail;
     const LuxRoom_Detail = location.state.LuxRoom_Detail;
-    const addonLux = 0;
+    /*const addonLux = 0;
     const addonDlx = 0;
     const addonStd = 0;
     const addondlx_count = 0;
     const addonlux_count = 0;
-    const addonstd_count = 0;
+    const addonstd_count = 0; */
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const Room = [{StdRoom_Detail, DlxRoom_Detail, LuxRoom_Detail}]
+        const Room = {StdRoom_Detail, DlxRoom_Detail, LuxRoom_Detail};
         const Guest_address = {address, state, provice, country, zipcode}
         /*if(addonstd_count > 0 && addondlx_count > 0 && addonlux_count > 0){
             const addon_All = {addonStd, addonDlx, addonLux}
@@ -53,17 +53,16 @@ export default function Payment(){
         else if(addonstd_count > 0 && addondlx_count == 0 && addonlux_count == 0){
             const addon_Standard = {addonStd}
         }*/
-        const addon = [{addonStd, addonDlx, addonLux}]
-        const Payment = {Checkin_date, Checkout_date,Room, addon,Guest_title, Guest_first_name, Guest_last_name, Guest_email, Guest_address, Guest_telnum, 
+        // const addon = [{addonStd, addonDlx, addonLux}]
+        const Payment = {Checkin_date, Checkout_date, Room, Guest_title, Guest_first_name, Guest_last_name, Guest_email, Guest_address, Guest_telnum, 
             addinfomation}
             console.log(Payment)
-            fetch(`http://${process.env.REACT_APP_BACKEND_IP}/payments`,{
+            fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/createBooking`,{ //${process.env.REACT_APP_BACKEND_IP}/api/createBooking http://localhost:3050/payments
                 method:'POST',
                 headers:{"content-type":"application/json"},
                 body:JSON.stringify(Payment)
             }).then((res)=>{
-                navigate('/successfulbooking', {replace: true, state:{Guest_title,Guest_first_name, Guest_last_name, Checkin_date, Checkout_date, addonlux_count, addonLux, addonDlx, addondlx_count, 
-                addonstd_count, addonStd, StdRoom_Detail, DlxRoom_Detail, LuxRoom_Detail, address, state, provice, country, zipcode, Guest_telnum, addinfomation, voucher}});
+                navigate('/successfulbooking', {replace: true, state:{Guest_title,Guest_first_name, Guest_last_name, Checkin_date, Checkout_date, StdRoom_Detail, DlxRoom_Detail, LuxRoom_Detail, address, state, provice, country, zipcode, Guest_telnum, addinfomation, voucher}});
             })
     }
     return (
@@ -83,15 +82,6 @@ export default function Payment(){
             {StdRoom_Detail > 0 && <p>Standard Room : {StdRoom_Detail} rooms</p>}
             {DlxRoom_Detail > 0 && <p>Deluxe Room : {DlxRoom_Detail} rooms</p>}
             {LuxRoom_Detail > 0 && <p>Luxury Room : {LuxRoom_Detail} rooms</p>}
-            { addonlux_count > 0 &&
-                <p>Luxury Room Add On : {addonLux} </p>
-            }
-            { addondlx_count > 0 &&
-                <p>Deluxe Room Add On : {addonDlx} </p>
-            }
-            { addonstd_count > 0 &&
-                <p>Standard Room Add On : {addonStd} </p>
-            }
 
             <div className="inputBox">
                 <span>title :</span>
@@ -204,7 +194,7 @@ export default function Payment(){
             <h3 className = "title">4. Terms and Conditions</h3>
             <p>By clicking on the Check Out button, I acknowledge and agree that the above information is accurate and that my reservation will be subject to the Hotel Booking Terms and Policies. </p>
             <label>
-                <input type = "checkbox"></input> Yes, I agree to the MOHG Data Privacy Terms.
+                <input type = "checkbox"></input> Yes, I agree to the Data Privacy Terms.
             </label>
         </div>
 
@@ -259,4 +249,15 @@ export default function Payment(){
         onChange={(e) => setCvv(e.target.value)}
         />
     </div>
-</div> */
+</div> 
+
+{ addonlux_count > 0 &&
+                <p>Luxury Room Add On : {addonLux} </p>
+            }
+            { addondlx_count > 0 &&
+                <p>Deluxe Room Add On : {addonDlx} </p>
+            }
+            { addonstd_count > 0 &&
+                <p>Standard Room Add On : {addonStd} </p>
+            }
+*/

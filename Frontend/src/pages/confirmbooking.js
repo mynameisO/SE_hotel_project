@@ -1,13 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./confirmbooking.css"
 
 export default function Confirmbooking() {
     const navigate = useNavigate();
     const location = useLocation();
-    const [addonLux, setAddonLux] = useState([]);
-    const [addonDlx, setAddonDlx] = useState([]);
-    const [addonStd, setAddonStd] = useState([]);
     const firstdate_Booking = location.state.firstdate_booking;
     const enddate_Booking = location.state.enddate_booking;
     const StdRoom_Detail = location.state.Bookingroom.standard;

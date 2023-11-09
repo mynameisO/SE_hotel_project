@@ -1,0 +1,187 @@
+.room-container {
+    justify-content: space-between;
+    text-align: center;
+    margin: 20px;
+}
+
+.std-pic{
+    height: 500px;
+    width: 900px;
+}
+
+.room {
+    width: 950px;
+    margin-top: 20px;
+    margin: auto;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.stdroom{
+    width: 950px;
+    margin-top: 20px;
+    margin: auto;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);   
+    margin-bottom: 20px;
+}
+
+.stdroom .btn-booking{
+    width: 20%;
+    height: 45px;
+    margin-top: 5px;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 16px;
+    background-color: #000000;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.toilet{
+    margin-top: -2px;
+    margin-left: 27px;
+}
+
+.stdroom h3, .stdroom p, .stdroom h4{
+    text-align: left;
+}
+
+
+.luxroom {
+    width: 950px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.luxroom p{
+    text-align: left;
+}
+
+.luxroom h4{
+    text-align: left;
+}
+
+.deluxe-pic{
+    width: 100%;
+    height: 100%;
+    scroll-snap-align: start;
+}
+
+.luxury-pic{
+    width: 100%;
+    height: 509px;
+    scroll-snap-align: start;
+}
+
+.luxroom h3 {
+    margin-top: 10px;
+    text-align: left;
+}
+
+.room h3 {
+    margin-top: 10px;
+    text-align: left;
+}
+
+.room p {
+    text-align: left;
+}
+
+.room h4{
+    text-align: left;
+}
+
+.Icon {
+    width: 20px;
+    height: 100%;
+    float: left;
+}
+
+.window{
+    margin-top: -2px;
+    margin-left: 27px;
+}
+
+.bath{
+    margin-left: 27px;
+}
+
+.dining{
+    margin-top: -2px;
+    margin-left: 27px;
+}
+
+.closet{
+    margin-top: -2px;
+    margin-left: 27px;    
+}
+
+.elavator{
+    margin-top: -2px;
+    margin-left: 27px;
+}
+
+.gym{
+    margin-top: -4px;
+    margin-left: 27px;
+}
+
+.workstation{
+    margin-top: -2px;
+    margin-left: 27px;
+}
+
+.marblebath{
+    margin-top: -2px;
+    margin-left: 27px;
+}
+
+.luxroom .btn-booking{
+    width: 20%;
+    height: 45px;
+    margin-top: 5px;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 16px;
+    background-color: #000000;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.room .btn-booking{
+    width: 20%;
+    height: 45px;
+    margin-top: 5px;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 16px;
+    background-color: #000000;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+::-webkit-scrollbar{
+    display: none;
+}

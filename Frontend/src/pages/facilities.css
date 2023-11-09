@@ -1,0 +1,24 @@
+.facilities-container {
+    text-align: center;
+    margin: 20px;
+}
+
+.facilities {
+    margin-top: 20px;
+    margin-block: auto;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.services {
+    margin-block: auto;
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

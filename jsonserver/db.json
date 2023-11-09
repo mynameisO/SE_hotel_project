@@ -1,11 +1,6 @@
 {
   "registers": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    },
-    {
       "username": "dd",
       "password": "dd",
       "firstname": "dd",
@@ -15,6 +10,50 @@
       "confirmpass": "dd",
       "phonenum": "dd",
       "id": 2
+    },
+    {
+      "username": "asd",
+      "password": "123",
+      "firstname": "asd",
+      "lastname": "dd",
+      "dateofbirth": "dd",
+      "email": "bok2@mail.com",
+      "confirmpass": "123",
+      "phonenum": "0022",
+      "id": 3
+    },
+    {
+      "username": "dummy",
+      "password": "dummy",
+      "firstname": "dummy",
+      "lastname": "dummy",
+      "dateofbirth": "dummy",
+      "email": "dummy@mail.com",
+      "phonenum": "dummy",
+      "id": 4
+    },
+    {
+      "id": 5
+    },
+    {
+      "username": "test",
+      "password": "test",
+      "firstname": "test",
+      "lastname": "test",
+      "dateofbirth": "test",
+      "email": "tset@mail.com",
+      "phonenum": "test",
+      "id": 6
+    },
+    {
+      "username": "test1",
+      "password": "test1",
+      "firstname": "test1",
+      "lastname": "test1",
+      "dateofbirth": "test1",
+      "email": "tset1@mail.com",
+      "phonenum": "test1",
+      "id": 7
     }
   ],
   "login": [
@@ -22,6 +61,37 @@
       "id": 1,
       "body": "some comment",
       "postId": 1
+    },
+    {
+      "username": "test1",
+      "password": "test1",
+      "firstname": "test1",
+      "lastname": "test1",
+      "dateofbirth": "test1",
+      "email": "tset1@mail.com",
+      "phonenum": "test1",
+      "id": 2
+    },
+    {
+      "username": "test1",
+      "password": "test1",
+      "firstname": "test1",
+      "lastname": "test1",
+      "dateofbirth": "test1",
+      "email": "tset1@mail.com",
+      "phonenum": "test1",
+      "id": 3
+    },
+    {
+      "username": "test1",
+      "password": "test1",
+      "id": 4
+    },
+    {
+      "username": "test1",
+      "password": "test1",
+      "isProcess": 0,
+      "id": 5
     }
   ],
   "booking": [
@@ -409,6 +479,136 @@
       "Guest_telnum": "0826249968",
       "addinfomation": "",
       "id": 16
+    },
+    {
+      "Checkin_date": "2023-11-16",
+      "Checkout_date": "2023-11-23",
+      "Room": [
+        {
+          "StdRoom_Detail": 0,
+          "DlxRoom_Detail": 0,
+          "LuxRoom_Detail": 2
+        }
+      ],
+      "addon": [
+        {
+          "addonStd": 0,
+          "addonDlx": 0,
+          "addonLux": 0
+        }
+      ],
+      "Guest_title": "d",
+      "Guest_first_name": "dd",
+      "Guest_last_name": "ddd",
+      "Guest_email": "dddd@email.com",
+      "Guest_address": {
+        "address": "dsadsa",
+        "state": "dasdadas",
+        "provice": "adasdsa",
+        "country": "dasda",
+        "zipcode": "dasd"
+      },
+      "Guest_telnum": "asdassdada",
+      "addinfomation": "asdadsa",
+      "id": 17
+    },
+    {
+      "Checkin_date": "2023-11-17",
+      "Checkout_date": "2023-11-24",
+      "Room": [
+        {
+          "StdRoom_Detail": 0,
+          "DlxRoom_Detail": 0,
+          "LuxRoom_Detail": 2
+        }
+      ],
+      "Guest_title": "dasf",
+      "Guest_first_name": "dasf",
+      "Guest_last_name": "asdf",
+      "Guest_email": "sdaf@fdasf.cp",
+      "Guest_address": {
+        "address": "asdf",
+        "state": "safd",
+        "provice": "safd",
+        "country": "asdf",
+        "zipcode": "asdfdasasfda"
+      },
+      "Guest_telnum": "fdasf",
+      "addinfomation": "asdfasdff",
+      "id": 18
+    },
+    {
+      "Checkin_date": "2023-11-23",
+      "Checkout_date": "2023-11-30",
+      "Room": [
+        {
+          "StdRoom_Detail": 0,
+          "DlxRoom_Detail": 0,
+          "LuxRoom_Detail": 2
+        }
+      ],
+      "Guest_title": "2355gfdgf",
+      "Guest_first_name": "h3rthb",
+      "Guest_last_name": "fsnr45",
+      "Guest_email": "ku345t43@gafg.lo",
+      "Guest_address": {
+        "address": "vhtru34",
+        "state": "m56yuyy",
+        "provice": "brt5t4",
+        "country": "shashr",
+        "zipcode": "ahfgt"
+      },
+      "Guest_telnum": "kyu8ouiy",
+      "addinfomation": "hfhagfg",
+      "id": 19
+    },
+    {
+      "Checkin_date": "2023-11-09",
+      "Checkout_date": "2023-11-16",
+      "Room": [
+        {
+          "StdRoom_Detail": 0,
+          "DlxRoom_Detail": 0,
+          "LuxRoom_Detail": 2
+        }
+      ],
+      "Guest_title": "fasdf",
+      "Guest_first_name": "asdf",
+      "Guest_last_name": "fasd",
+      "Guest_email": "fsd@dfas",
+      "Guest_address": {
+        "address": "afs",
+        "state": "afsd",
+        "provice": "asf",
+        "country": "fads",
+        "zipcode": "fasd"
+      },
+      "Guest_telnum": "fdas",
+      "addinfomation": "fasdf",
+      "id": 20
+    },
+    {
+      "Checkin_date": "2023-11-16",
+      "Checkout_date": "2023-11-17",
+      "Room": {
+        "StdRoom_Detail": 0,
+        "DlxRoom_Detail": 1,
+        "LuxRoom_Detail": 0
+      },
+      "Guest_title": "adfsdafsadf",
+      "Guest_first_name": "fasdfasdfds",
+      "Guest_last_name": "asdfasdfsda",
+      "Guest_email": "dsfasf@dgfas",
+      "Guest_address": {
+        "address": "asdgfdas",
+        "state": "afsdgafg",
+        "provice": "adfgadf",
+        "country": "3r4r14e3",
+        "zipcode": "gadfgadagf"
+      },
+      "Guest_telnum": "asdgfagfagaf",
+      "addinfomation": "asfgd",
+      "id": 21
     }
   ]
 }

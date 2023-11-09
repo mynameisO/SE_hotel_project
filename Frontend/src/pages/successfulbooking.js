@@ -12,12 +12,6 @@ export default function Successfulbooking() {
     const StdRoom_Detail = location.state.StdRoom_Detail;
     const DlxRoom_Detail = location.state.DlxRoom_Detail;
     const LuxRoom_Detail = location.state.LuxRoom_Detail;
-    const addonLux = location.state.addonLux;
-    const addonDlx = location.state.addonDlx;
-    const addonStd = location.state.addonStd;
-    const addondlx_count = location.state.addondlx_count;
-    const addonlux_count = location.state.addonlux_count;
-    const addonstd_count = location.state.addonstd_count;
     const AddInformation = location.state.addinfomation;
     const Voucher = location.state.voucher;
     const title = location.state.Guest_title;
@@ -36,8 +30,8 @@ export default function Successfulbooking() {
     }
     const handleSubmit_detail = (e) => {
         e.preventDefault();
-            navigate('/seedetail' ,{replace: true, state:{title,Firstname, Lastname, Checkin_date, Checkout_date, addonlux_count, addonLux, addonDlx, addondlx_count, 
-                addonstd_count, addonStd, StdRoom_Detail, DlxRoom_Detail, LuxRoom_Detail, Address, State, Provice, Country, Zipcode, Telnumber, AddInformation, Voucher}})
+            navigate('/seedetail' ,{replace: true, state:{title,Firstname, Lastname, Checkin_date, Checkout_date, 
+                StdRoom_Detail, DlxRoom_Detail, LuxRoom_Detail, Address, State, Provice, Country, Zipcode, Telnumber, AddInformation, Voucher}})
     }
 
     return (
