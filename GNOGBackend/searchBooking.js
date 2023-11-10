@@ -1,5 +1,7 @@
 const mysql = require('mysql2/promise');
 require('dotenv').config();
+
+
 const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_DATABASE } = process.env;
 
 // Create a connection pool
@@ -14,6 +16,7 @@ const pool = mysql.createPool({
   queueLimit: 0
 });
 
+
 async function searchBooking({ guest_name, guest_tel, status }) {
   try {
     const connection = await pool.getConnection();
@@ -22,6 +25,7 @@ async function searchBooking({ guest_name, guest_tel, status }) {
     let whereClause = '';
     const queryParams = [];
     
+    // Add conditions for guest_name and guest_tel
     if (guest_name) {
       whereClause += '(guest.guest_first_name LIKE ? OR guest.guest_last_name LIKE ?)';
       queryParams.push(`%${guest_name}%`, `%${guest_name}%`);
