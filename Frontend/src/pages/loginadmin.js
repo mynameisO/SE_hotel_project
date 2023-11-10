@@ -52,8 +52,8 @@ export default function Loginadmin() {
                     html : <i>login Success.</i>,
                     icon : 'success'
                 }).then((value) => {
-                    localStorage.setItem('token', result.token)
-                    console.log(result.token)
+                    localStorage.setItem('token', result.accessToken)
+                    console.log(result.accessToken)
                     navigate('/adminmenu');
                 })
             }
