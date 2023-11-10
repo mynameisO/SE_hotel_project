@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import './roomadmin.css'
+import 'table.css'
 
 export default function Roomadmin() {
     const navigate = useNavigate();
@@ -74,11 +75,22 @@ export default function Roomadmin() {
                 </div>
               )}
             </div>
-            <div className="seachbar">
+            <div className="searchbar">
               <p>Search<input type="text" placeholder="Booking ID" onChange={e => 
               setSearch(e.target.value)} /></p>
             </div>
+            <div className="searchbar2">
+              <p>Search<input type="text" placeholder="Room ID" onChange={e => 
+              setSearch(e.target.value)} /></p> 
+            </div>
             <div><button onClick={logout}>Logout</button></div>
-        </div>
+            <div className=""></div>
+            <div className="table">
+              <table>
+
+              </table>
+
+            </div>
+        </div>                     
     )
 }

@@ -45,7 +45,7 @@
     font-weight: bold;
 }
 
-.seachbar input{
+.searchbar input{
     width: 200px;
     height: 5px;
     background: transparent;
@@ -59,6 +59,24 @@
     margin-left: 10px;
 }
 
-.seachbar{
+.searchbar{
+    margin-top: 10px;
+}
+
+.searchbar2 input{
+    width: 200px;
+    height: 5px;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0px;
+    font-size: 16px;
+    color: #000000;
+    padding: 20px 45px 20px 20px;
+    margin-left: 10px;
+}
+
+.searchbar2{
     margin-top: 10px;
 }
