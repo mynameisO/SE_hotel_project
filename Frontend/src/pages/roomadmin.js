@@ -42,7 +42,7 @@ export default function Roomadmin() {
             }
           })
           .catch(error => console.log('error', error));
-      }, [])
+      }, [MySwal, navigate]);
       
       const fetchDataFromBackend = async () => {
         try {
@@ -55,9 +55,10 @@ export default function Roomadmin() {
             headers: myHeaders,
             redirect: 'follow'
           };
-    
+
           const response = await fetch("http://omar-server.trueddns.com:52302/api/admin/showBooking", requestOptions);
           const jsonData = await response.json();
+          console.log('jsonData:', jsonData);
           setBookings(jsonData);
         } catch (error) {
           console.error('Error fetching data:', error);
