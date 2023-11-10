@@ -21,16 +21,27 @@ async function searchBooking({ guest_name, guest_tel, status }) {
     // Build the WHERE clause based on the provided parameters
     let whereClause = '';
     const queryParams = [];
+    
     if (guest_name) {
-      whereClause += 'guest.guest_first_name LIKE ? OR guest.guest_last_name LIKE ?';
+      whereClause += '(guest.guest_first_name LIKE ? OR guest.guest_last_name LIKE ?)';
       queryParams.push(`%${guest_name}%`, `%${guest_name}%`);
     }
+
     if (guest_tel) {
       if (whereClause !== '') {
         whereClause += ' OR ';
       }
       whereClause += 'guest.guest_telnum = ?';
       queryParams.push(guest_tel);
+    }
+
+    // Add a condition to filter by status if it is provided
+    if (status && ['pending', 'paid', 'checked_in', 'checked_out'].includes(status)) {
+      if (whereClause !== '') {
+        whereClause = `(${whereClause}) AND `;
+      }
+      whereClause += 'booking.booking_status = ?';
+      queryParams.push(status);
     }
 
     // Execute the search query
