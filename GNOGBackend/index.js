@@ -8,6 +8,8 @@ const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
 const exp_logger = require('express-requests-logger');
 const cors = require('cors');
+const searchBooking = require('./searchBooking');
+const showBooking = require('./showBooking');
 
 const app = express();
 app.use(express.json());
@@ -119,6 +121,37 @@ app.post('/api/admin/register', async (req, res) => {
     res.status(201).json({ message: 'Admin registered successfully', token });
   } catch (error) {
     console.error('Error during registration:', error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+app.post('/api/admin/searchBooking', async (req, res) => {
+  const { checkin_date, checkout_date, guest_name, guest_tel, status } = req.body;
+
+  try {
+    const results = await searchBooking.searchBooking({
+      checkin_date,
+      checkout_date,
+      guest_name,
+      guest_tel,
+      status,
+    });
+
+    res.json(results);
+  } catch (error) {
+    console.error('Error during searchBooking:', error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+
+app.get('/api/admin/showBooking', async (req, res) => {
+  try {
+    const results = await showBooking.showBookings();
+    res.json(results);
+  } catch (error) {
+    console.error('Error during showBookings:', error.message);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
