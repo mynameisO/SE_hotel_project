@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom"
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import './roomadmin.css'
-import 'table.css'
 
 export default function Roomadmin() {
     const navigate = useNavigate();
@@ -13,7 +12,9 @@ export default function Roomadmin() {
     const [isActive, setIsActive] = useState(false);
     const [selected, setSelected] = useState('All roomtype');
     const [Search, setSearch] = useState('');
+    const [bookings, setBookings] = useState([]);
     const options = ['Deluxe room', 'Luxury room', 'Standard room', 'All roomtype'];
+    
     useEffect(() => {
         const token = localStorage.getItem('token');
         var myHeaders = new Headers();
@@ -41,7 +42,29 @@ export default function Roomadmin() {
             }
           })
           .catch(error => console.log('error', error));
-      }, [])
+      }, [MySwal, navigate]);
+      
+      const fetchDataFromBackend = async () => {
+        try {
+          const token = localStorage.getItem('token');
+          var myHeaders = new Headers();
+          myHeaders.append("Authorization", "Bearer " + token);
+    
+          var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+          };
+
+          const response = await fetch("http://omar-server.trueddns.com:52302/api/admin/showBooking", requestOptions);
+          const jsonData = await response.json();
+          console.log('jsonData:', jsonData);
+          setBookings(jsonData);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+
       const logout = ()=> {
         localStorage.removeItem('token')
         navigate('/loginadmin')
@@ -50,6 +73,7 @@ export default function Roomadmin() {
       console.log(data)
 
     if(isLoaded) return(<div>Loading..</div>)
+    
     return (
         <div>
             <h3>Welcome! {admin.fname} </h3>
@@ -80,16 +104,34 @@ export default function Roomadmin() {
               setSearch(e.target.value)} /></p>
             </div>
             <div className="searchbar2">
-              <p>Search<input type="text" placeholder="Room ID" onChange={e => 
+              <p>Search<input type="text" placeholder="Guest Name" onChange={e => 
               setSearch(e.target.value)} /></p> 
             </div>
             <div><button onClick={logout}>Logout</button></div>
             <div className=""></div>
             <div className="table">
               <table>
-
+                <thead>
+                  <tr>
+                    <th>Booking ID</th>
+                    <th>Guest Name</th>
+                    <th>Guest Telephone Number</th>
+                    <th>Booking Detail</th>
+                    <th>Booking Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {bookings.map(item => (
+                    <tr key = {item.id}>
+                      <td>{item.booking_id}</td>
+                      <td>{item.guest_name}</td>
+                      <td>{item.guest_telenum}</td>
+                      <td>{item.booking_detail}</td>
+                      <td>{item.booking_status}</td> 
+                    </tr>
+                  ))}
+                </tbody>
               </table>
-
             </div>
         </div>                     
     )
