@@ -126,15 +126,13 @@ app.post('/api/admin/register', async (req, res) => {
 });
 
 app.post('/api/admin/searchBooking', async (req, res) => {
-  const { checkin_date, checkout_date, guest_name, guest_tel, status } = req.body;
+  const { guest_name, guest_tel, status } = req.body;
 
   try {
     const results = await searchBooking.searchBooking({
-      checkin_date,
-      checkout_date,
       guest_name,
       guest_tel,
-      status,
+      status
     });
 
     res.json(results);

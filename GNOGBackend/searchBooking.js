@@ -20,6 +20,7 @@ const pool = mysql.createPool({
 async function searchBooking({ guest_name, guest_tel, status }) {
   try {
     const connection = await pool.getConnection();
+    const currentDate = new Date().toLocaleDateString('en-CA');
 
     // Build the WHERE clause based on the provided parameters
     let whereClause = '';
@@ -27,8 +28,8 @@ async function searchBooking({ guest_name, guest_tel, status }) {
     
     // Add conditions for guest_name and guest_tel
     if (guest_name) {
-      whereClause += '(guest.guest_first_name LIKE ? OR guest.guest_last_name LIKE ?)';
-      queryParams.push(`%${guest_name}%`, `%${guest_name}%`);
+      whereClause += 'guest.guest_first_name LIKE ?';
+      queryParams.push(`%${guest_name}%`);
     }
 
     if (guest_tel) {
@@ -40,12 +41,24 @@ async function searchBooking({ guest_name, guest_tel, status }) {
     }
 
     // Add a condition to filter by status if it is provided
-    if (status && ['pending', 'paid', 'checked_in', 'checked_out'].includes(status)) {
-      if (whereClause !== '') {
-        whereClause = `(${whereClause}) AND `;
+    if (status === 'check_in') {
+      if(whereClause !== ''){
+        whereClause += `(${whereClause}) AND `;
       }
-      whereClause += 'booking.booking_status = ?';
-      queryParams.push(status);
+      whereClause += 'DATE(booking.checkin_date) == ?';
+      queryParams.push(currentDate);
+    }else if (status === 'check_out') {
+      if(whereClause !== ''){
+        whereClause += `(${whereClause}) AND `;
+      }
+      whereClause += 'DATE(booking.checkout_date) == ?';
+      queryParams.push(currentDate);
+    }else {
+      if(whereClause !== ''){
+        whereClause += `(${whereClause}) AND `;
+      }
+      whereClause += '(DATE(booking.checkout_date) == ? AND WHERE DATE(booking.checkin_date) == ?)';
+      queryParams.push(currentDate);
     }
 
     // Execute the search query
