@@ -26,6 +26,7 @@ async function showBookings() {
     const [results, fields] = await connection.execute(`
       SELECT booking.booking_id, 
              CONCAT(guest.guest_first_name, ' ', guest.guest_last_name) AS guest_name, 
+             guest.guest_telnum AS guest_telnum,  -- Include guest_telnum in the SELECT statement
              GROUP_CONCAT(DISTINCT CONCAT('Room ID: ', room.room_id, ' - Room Type: ', room_type.room_type_name) SEPARATOR ', ') AS booking_detail, 
              booking.booking_status
       FROM booking
@@ -34,7 +35,7 @@ async function showBookings() {
       LEFT JOIN room ON booking_room.room_id = room.room_id
       LEFT JOIN room_type ON room.room_type_id = room_type.room_type_id
       WHERE DATE(booking.checkin_date) <= ? AND DATE(booking.checkout_date) >= ?
-      GROUP BY booking.booking_id, guest.guest_first_name, guest.guest_last_name, booking.booking_status
+      GROUP BY booking.booking_id, guest.guest_first_name, guest.guest_last_name, guest.guest_telnum, booking.booking_status
     `, [currentDate, currentDate]);
 
     console.log('currentDate: ', currentDate);
@@ -43,6 +44,7 @@ async function showBookings() {
     const formattedResults = results.map((result) => ({
       booking_id: result.booking_id,
       guest_name: result.guest_name,
+      guest_telnum: result.guest_telnum,
       booking_detail: result.booking_detail,
       booking_status: result.booking_status,
     }));
