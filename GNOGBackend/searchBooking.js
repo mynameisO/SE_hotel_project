@@ -24,7 +24,7 @@ async function searchBooking({ guest_name, guest_tel, status }) {
 
     // Build the WHERE clause based on the provided parameters
     let whereClause = '';
-    const queryParams = [];
+    let queryParams = [];
     
     // Add conditions for guest_name and guest_tel
     if (guest_name) {
@@ -43,23 +43,26 @@ async function searchBooking({ guest_name, guest_tel, status }) {
     // Add a condition to filter by status if it is provided
     if (status === 'check_in') {
       if(whereClause !== ''){
-        whereClause += `(${whereClause}) AND `;
+        whereClause = `(${whereClause}) AND `;
       }
-      whereClause += 'DATE(booking.checkin_date) == ?';
+      whereClause += 'DATE(booking.checkin_date) = ?';
       queryParams.push(currentDate);
     }else if (status === 'check_out') {
       if(whereClause !== ''){
-        whereClause += `(${whereClause}) AND `;
+        whereClause = `(${whereClause}) AND `;
       }
-      whereClause += 'DATE(booking.checkout_date) == ?';
+      whereClause += 'DATE(booking.checkout_date) = ?';
       queryParams.push(currentDate);
     }else {
       if(whereClause !== ''){
-        whereClause += `(${whereClause}) AND `;
+        whereClause = `(${whereClause}) AND `;
       }
-      whereClause += '(DATE(booking.checkout_date) == ? AND WHERE DATE(booking.checkin_date) == ?)';
+      whereClause += '(DATE(booking.checkout_date) = ? OR DATE(booking.checkin_date) = ?)';
+      queryParams.push(currentDate);
       queryParams.push(currentDate);
     }
+
+    console.log(`${whereClause}`,queryParams)
 
     // Execute the search query
     const [results, fields] = await connection.execute(`
