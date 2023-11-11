@@ -119,3 +119,10 @@ th {
     background-color: #4CAF50;
     color: white;
 }
+
+.searchbar2 button{
+    margin-top: 10px;
+    margin-left: 220px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}

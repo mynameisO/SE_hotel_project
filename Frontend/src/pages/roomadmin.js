@@ -10,10 +10,13 @@ export default function Roomadmin() {
     const [isLoaded, setIsLoaded] = useState(true);
     const [admin, setAdmin] = useState([]);
     const [isActive, setIsActive] = useState(false);
-    const [selected, setSelected] = useState('All roomtype');
-    const [Search, setSearch] = useState('');
+    const [status, setStatus] = useState('paid');
     const [bookings, setBookings] = useState([]);
-    const options = ['Deluxe room', 'Luxury room', 'Standard room', 'All roomtype'];
+    const [guestTelnum,setGuestTelnum] = useState('');
+    const [guestName, setGuestName] = useState('');
+    const options = ['check_in', 'check_out', 'none'];
+    const [search, setSearch] = useState(false);
+    const [searchBooking, setSearchBooking] = useState([]);
     
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -42,9 +45,9 @@ export default function Roomadmin() {
             }
           })
           .catch(error => console.log('error', error));
-      }, [MySwal, navigate]);
+      });
       
-      const fetchDataFromBackend = async () => {
+     /* const fetchDataFromBackend = async () => {
         try {
           const token = localStorage.getItem('token');
           var myHeaders = new Headers();
@@ -63,14 +66,56 @@ export default function Roomadmin() {
         } catch (error) {
           console.error('Error fetching data:', error);
         }
-      };
+      };*/
 
+     
+ useEffect(()=> {
+        var requestOptions = {
+          method: 'GET',
+          redirect: 'follow'
+        };
+        
+        fetch("http://omar-server.trueddns.com:52302/api/admin/showBooking", requestOptions)
+          .then(response => response.json())
+          .then(result => {
+            console.log(result)
+            setBookings(result)
+          })
+          .catch(error => console.log('error', error));
+      },[]
+      )
       const logout = ()=> {
         localStorage.removeItem('token')
         navigate('/loginadmin')
       }
-      const data = {selected, Search};
-      console.log(data)
+
+      const handlesubmit_search = (e) => {
+        e.preventDefault();
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+          "status": status,
+          "guest_name": guestName,
+          "guest_tel": guestTelnum
+        });
+
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: raw,
+          redirect: 'follow'
+        };
+
+        fetch("http://omar-server.trueddns.com:52302/api/admin/searchBooking", requestOptions)
+          .then(response => response.json())
+          .then(result => {
+            console.log(result)
+            setSearchBooking(result)
+          })
+          .catch(error => console.log('error', error));
+           setSearch(true)
+        }
 
     if(isLoaded) return(<div>Loading..</div>)
     
@@ -81,7 +126,7 @@ export default function Roomadmin() {
             <div className="dropdown">
               <div className="dropdown-btn" onClick={(e) =>
               setIsActive(!isActive)}>
-                {selected}
+                {status}
                 <span className="dropdown-span">v</span>
               </div>
               {isActive && (
@@ -89,7 +134,7 @@ export default function Roomadmin() {
                   { options.map((options) =>
                     <div
                       onClick={(e) => {
-                        setSelected(options);
+                        setStatus(options);
                         setIsActive(false);
                       }}
                       className="dropdown-item">
@@ -100,12 +145,13 @@ export default function Roomadmin() {
               )}
             </div>
             <div className="searchbar">
-              <p>Search<input type="text" placeholder="Booking ID" onChange={e => 
-              setSearch(e.target.value)} /></p>
+              <p>Tel:<input type="text" placeholder="Guest TelNum" onChange={e => 
+              setGuestTelnum(e.target.value)} /></p>
             </div>
             <div className="searchbar2">
-              <p>Search<input type="text" placeholder="Guest Name" onChange={e => 
-              setSearch(e.target.value)} /></p> 
+              <p>Name<input type="text" placeholder="Guest Name" onChange={e => 
+              setGuestName(e.target.value)} /></p> 
+              <button onClick={handlesubmit_search}>Search</button>
             </div>
             <div><button onClick={logout}>Logout</button></div>
             <div className=""></div>
@@ -118,16 +164,30 @@ export default function Roomadmin() {
                     <th>Guest Telephone Number</th>
                     <th>Booking Detail</th>
                     <th>Booking Status</th>
+                    <th>Update Status</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {bookings.map(item => (
+                  {search === false && bookings.map(item => (
                     <tr key = {item.id}>
                       <td>{item.booking_id}</td>
                       <td>{item.guest_name}</td>
-                      <td>{item.guest_telenum}</td>
+                      <td>{item.guest_telnum}</td>
                       <td>{item.booking_detail}</td>
                       <td>{item.booking_status}</td> 
+                      {item.booking_status === "checked_in" && <td><button>Check Out</button></td>}
+                      {item.booking_status === "checked_out" && <td><button>Check In</button></td>}
+                    </tr>
+                  ))}
+                  {search === true && searchBooking.map(item => (
+                    <tr key = {item.id}>
+                      <td>{item.booking_id}</td>
+                      <td>{item.guest_name}</td>
+                      <td>{item.guest_telnum}</td>
+                      <td>{item.booking_detail}</td>
+                      <td>{item.booking_status}</td> 
+                      {item.booking_status === "checked_in" && <td><button>Check Out</button></td>}
+                      {item.booking_status === "checked_out" && <td><button>Check In</button></td>}
                     </tr>
                   ))}
                 </tbody>
