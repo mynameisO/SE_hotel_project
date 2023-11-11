@@ -45,19 +45,19 @@ async function searchBooking({ guest_name, guest_tel, status }) {
       if(whereClause !== ''){
         whereClause = `(${whereClause}) AND `;
       }
-      whereClause += 'DATE(booking.checkin_date) = ?';
+      whereClause += '(DATE(booking.checkin_date) = ? AND booking.booking_status = "checked in")' ;
       queryParams.push(currentDate);
     }else if (status === 'check_out') {
       if(whereClause !== ''){
         whereClause = `(${whereClause}) AND `;
       }
-      whereClause += '(DATE(booking.checkout_date) >= ? AND booking.status = \'checked_in\')';
+      whereClause += '(DATE(booking.checkout_date) >= ? AND booking.booking_status = "checked_in")';
       queryParams.push(currentDate);
     }else {
       if(whereClause !== ''){
         whereClause = `(${whereClause}) AND `;
       }
-      whereClause += '((DATE(booking.checkout_date) >= ? AND booking.status = \'checked_in\') OR DATE(booking.checkin_date) = ?)';
+      whereClause += '((DATE(booking.checkout_date) >= ? AND booking.booking_status = "checked_in") OR DATE(booking.checkin_date) = ? AND booking.booking_status = "checked in" )';
       queryParams.push(currentDate);
       queryParams.push(currentDate);
     }

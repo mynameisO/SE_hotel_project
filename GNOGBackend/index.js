@@ -10,6 +10,8 @@ const exp_logger = require('express-requests-logger');
 const cors = require('cors');
 const searchBooking = require('./searchBooking');
 const showBooking = require('./showBooking');
+const { updateBookingStatus } = require('./updateBookingStatus');
+
 
 const app = express();
 app.use(express.json());
@@ -150,6 +152,16 @@ app.get('/api/admin/showBooking', async (req, res) => {
     res.json(results);
   } catch (error) {
     console.error('Error during showBookings:', error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+app.post('/api/admin/updateBookingStatus', async (req, res) => {
+  try {
+    const { booking_id, status } = req.body;
+    const result = await updateBookingStatus({ booking_id, status });
+    res.json(result);
+  } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
