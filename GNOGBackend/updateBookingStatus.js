@@ -62,3 +62,5 @@ async function updateBookingStatus({ booking_id, status }) {
 module.exports = {
   updateBookingStatus: updateBookingStatus,
 };
+
+// github workflow testing.
