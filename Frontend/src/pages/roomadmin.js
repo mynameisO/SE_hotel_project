@@ -4,6 +4,7 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import './roomadmin.css'
 
+
 export default function Roomadmin() {
     const navigate = useNavigate();
     const MySwal = withReactContent(Swal);
@@ -117,13 +118,13 @@ export default function Roomadmin() {
           .catch(error => console.log('error', error));
            setSearch(true)
         }
-      const check_in = () =>{
-        const booking_status = [bookingID,'check_in'];
+      const check_in = (booking_id) =>{
+        const booking_status = [booking_id,'check_in'];
         console.log(booking_status)
       }
 
-      const check_out = () =>{
-        const booking_status = [bookingID,'check_out'];
+      const check_out = (booking_id) =>{
+        const booking_status = [booking_id,'check_out'];
         console.log(booking_status)
       }
 
@@ -174,6 +175,7 @@ export default function Roomadmin() {
                     <th>Guest Telephone Number</th>
                     <th>Booking Detail</th>
                     <th>Booking Status</th>
+                    <th>Update Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -183,7 +185,9 @@ export default function Roomadmin() {
                       <td>{item.guest_name}</td>
                       <td>{item.guest_telnum}</td>
                       <td>{item.booking_detail}</td>
-                      <td>{item.booking_status}</td> 
+                      <td>{item.booking_status}</td>
+                      {item.booking_status === "checked_in" && <td><button onClick={()=>check_out(item.booking_id)}>Check Out</button></td>}
+                      {item.booking_status === "checked_out" && <td><button onClick={()=>check_in(item.booking_id)}>Check In</button></td>} 
                     </tr>
                   ))}
                   {search === true && searchBooking.map(item => (
@@ -192,17 +196,13 @@ export default function Roomadmin() {
                       <td>{item.guest_name}</td>
                       <td>{item.guest_telnum}</td>
                       <td>{item.booking_detail}</td>
-                      <td>{item.booking_status}</td> 
+                      <td>{item.booking_status}</td>
+                      {item.booking_status === "checked_in" && <td><button onClick={()=>check_out(item.booking_id)}>Check Out</button></td>}
+                      {item.booking_status === "checked_out" && <td><button onClick={()=>check_in(item.booking_id)}>Check In</button></td>} 
                     </tr>
                   ))}
                 </tbody>
               </table>
-            </div>
-            <div className="update-status">
-                    <h3>Update Booking Status</h3>
-                    <div className="searchbar">
-                      <p>Booking ID:<input type="text" placeholder="Booking ID" required onChange={e => setBookingID(e.target.value)}/><button onClick={check_in}>Check In</button><button onClick={check_out}>Check Out</button></p>
-                    </div>
             </div>
         </div>                     
     )
