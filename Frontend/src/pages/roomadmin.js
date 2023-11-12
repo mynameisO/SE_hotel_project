@@ -17,6 +17,7 @@ export default function Roomadmin() {
     const options = ['check_in', 'check_out', 'none'];
     const [search, setSearch] = useState(false);
     const [searchBooking, setSearchBooking] = useState([]);
+    const [bookingID, setBookingID] = useState([]);
     
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -116,6 +117,15 @@ export default function Roomadmin() {
           .catch(error => console.log('error', error));
            setSearch(true)
         }
+      const check_in = () =>{
+        const booking_status = [bookingID,'check_in'];
+        console.log(booking_status)
+      }
+
+      const check_out = () =>{
+        const booking_status = [bookingID,'check_out'];
+        console.log(booking_status)
+      }
 
     if(isLoaded) return(<div>Loading..</div>)
     
@@ -164,7 +174,6 @@ export default function Roomadmin() {
                     <th>Guest Telephone Number</th>
                     <th>Booking Detail</th>
                     <th>Booking Status</th>
-                    <th>Update Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -175,8 +184,6 @@ export default function Roomadmin() {
                       <td>{item.guest_telnum}</td>
                       <td>{item.booking_detail}</td>
                       <td>{item.booking_status}</td> 
-                      {item.booking_status === "checked_in" && <td><button>Check Out</button></td>}
-                      {item.booking_status === "checked_out" && <td><button>Check In</button></td>}
                     </tr>
                   ))}
                   {search === true && searchBooking.map(item => (
@@ -186,12 +193,16 @@ export default function Roomadmin() {
                       <td>{item.guest_telnum}</td>
                       <td>{item.booking_detail}</td>
                       <td>{item.booking_status}</td> 
-                      {item.booking_status === "checked_in" && <td><button>Check Out</button></td>}
-                      {item.booking_status === "checked_out" && <td><button>Check In</button></td>}
                     </tr>
                   ))}
                 </tbody>
               </table>
+            </div>
+            <div className="update-status">
+                    <h3>Update Booking Status</h3>
+                    <div className="searchbar">
+                      <p>Booking ID:<input type="text" placeholder="Booking ID" required onChange={e => setBookingID(e.target.value)}/><button onClick={check_in}>Check In</button><button onClick={check_out}>Check Out</button></p>
+                    </div>
             </div>
         </div>                     
     )
