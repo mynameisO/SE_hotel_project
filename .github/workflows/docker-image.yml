@@ -10,7 +10,7 @@ jobs:
 
   build:
 
-    runs-on: self-hosted
+    runs-on: gh-rpi-runner-1
 
     steps:
     - uses: actions/checkout@v3
