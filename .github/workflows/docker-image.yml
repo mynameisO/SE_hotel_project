@@ -17,5 +17,4 @@ jobs:
     - name: Build the Docker image
       run: |
         docker compose down
-        docker compose rm -f
         docker compose up --build -d
