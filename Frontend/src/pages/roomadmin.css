@@ -126,3 +126,19 @@ th {
     margin-bottom: 10px;
     cursor: pointer;
 }
+
+.update-status{
+    text-align: center;
+    margin-top: 10px;
+}
+
+.update-status .searchbar button{
+    margin-left: 10px;
+    cursor: pointer;
+    border: #000000;
+    outline: #000000;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    color: #000000;
+    padding: 10px 15px 5px 10px;
+}
