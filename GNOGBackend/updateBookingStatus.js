@@ -19,6 +19,25 @@ async function updateBookingStatus({ booking_id, status }) {
   try {
     const connection = await pool.getConnection();
 
+    // Get the current booking status
+    const [currentStatusResults, _] = await connection.execute(
+      'SELECT booking_status FROM booking WHERE booking_id = ?',
+      [booking_id]
+    );
+
+    // Check if the received status is the same as the current status
+    if (currentStatusResults.length === 0) {
+      connection.release(); // Release the connection back to the pool
+      return { success: false, message: 'Booking not found.' };
+    }
+
+    const currentStatus = currentStatusResults[0].booking_status;
+
+    if (currentStatus === status) {
+      connection.release(); // Release the connection back to the pool
+      return { success: false, message: 'Booking status is already ' + status, booking_id, currentStatus };
+    }
+
     // Update the booking_status in the booking table
     const [results, fields] = await connection.execute(
       'UPDATE booking SET booking_status = ? WHERE booking_id = ?',
@@ -29,7 +48,7 @@ async function updateBookingStatus({ booking_id, status }) {
 
     if (results.affectedRows === 1) {
       // Successfully updated
-      return { success: true, message: 'Booking status updated successfully.' };
+      return { success: true, message: 'Booking status updated successfully.', booking_id, updatedStatus: status };
     } else {
       // No rows affected, booking_id not found
       return { success: false, message: 'Booking not found.' };
