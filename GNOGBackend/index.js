@@ -160,7 +160,13 @@ app.post('/api/admin/updateBookingStatus', async (req, res) => {
   try {
     const { booking_id, status } = req.body;
     const result = await updateBookingStatus({ booking_id, status });
-    res.json(result);
+
+    if (result.success) {
+      res.json(result);
+    } else {
+      res.status(400).json(result);
+    }
+
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
   }
