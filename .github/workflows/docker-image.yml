@@ -17,12 +17,9 @@ jobs:
     - name: Build the Docker image
       run: |
         docker compose down
-        docker compose up --build -d 
-        docker exec se_hotel_project-frontend_user_server-1 sh -c "touch ./.env"
-        docker exec se_hotel_project-frontend_user_server-1 sh -c "echo \"${{ vars.FRONTEND_ENV }}\" >> ./.env"
-        docker exec se_hotel_project-reservation_service_api-1 sh -c "touch ./.env"
-        docker exec se_hotel_project-reservation_service_api-1 sh -c "echo \"${{ vars.BACKEND_ENV }}\" >> ./.env"
-        docker stop se_hotel_project-frontend_user_server-1
-        docker stop se_hotel_project-reservation_service_api-1
-        docker start se_hotel_project-frontend_user_server-1
-        docker start se_hotel_project-reservation_service_api-1
+        touch ./Frontend/.env
+        echo "${{ vars.FRONTEND_ENV }}" >> ./Frontend/.env
+        touch ./GNOGBackend/.env
+        echo "${{ vars.BACKEND_ENV }}" >> ./GNOGBackend/.env
+        docker compose up --build -d
+
