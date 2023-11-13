@@ -2,6 +2,7 @@ import { React, useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import './adminmenu.css'
 
 export default function Adminmenu() {
 
@@ -48,7 +49,7 @@ export default function Adminmenu() {
 
     if(isLoaded) return(<div>Loading..</div>)
     return (
-        <div>
+        <div className="admin-menu-container">
             <h3>Welcome! {admin.fname} </h3>
             <form onSubmit={handleSubmit_roomadmin}>
                 <button type="submit" className="btn-roomadmin">

@@ -1,0 +1,40 @@
+.admin-menu-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.admin-menu-container h3 {
+    color: #333; 
+}
+
+.admin-menu-container form {
+    margin-top: 20px;
+}
+
+.admin-menu-container .btn-roomadmin {
+    background-color: #4CAF50; 
+    color: #fff; 
+    padding: 10px 20px; 
+    font-size: 16px;
+    border: none;
+    cursor: pointer; 
+}
+
+.admin-menu-container .btn-roomadmin:hover {
+    background-color: #45a049; 
+}
+
+
+.admin-menu-container button {
+    margin-top: 10px; 
+    background-color: #e74c3c; 
+    color: #fff; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    border: none; 
+    cursor: pointer;
+}
+
+.admin-menu-container button:hover {
+    background-color: #c0392b;
+}

@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate,} from "react-router-dom"
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import './roomadmin.css'
@@ -187,12 +187,16 @@ export default function Roomadmin() {
       }
 
     if(isLoaded) return(<div>Loading..</div>)
+
+      const viewallroomadmin = () => {
+        navigate('/viewallroomadmin');
+      }
     
     return (
         <div>
             <h3>Welcome! {admin.fname} </h3>
             <h4>Room Editing</h4>
-            <div className="dropdown">
+              <div className="dropdown">
               <div className="dropdown-btn" onClick={(e) =>
               setIsActive(!isActive)}>
                 {status}
@@ -218,11 +222,14 @@ export default function Roomadmin() {
               setGuestTelnum(e.target.value)} /></p>
             </div>
             <div className="searchbar2">
-              <p>Name<input type="text" placeholder="Guest Name" onChange={e => 
+              <p>Name:<input type="text" placeholder="Guest Name" onChange={e => 
               setGuestName(e.target.value)} /></p> 
-              <button onClick={handlesubmit_search}>Search</button>
+              <div className="search-button" onClick={handlesubmit_search}>
+                Search
+              </div>
             </div>
-            <div><button onClick={logout}>Logout</button></div>
+            <div className="button-container"><button onClick={logout}>Logout</button></div>
+            <div className="button-container"><button onClick={viewallroomadmin}>View All Rooms</button></div>
             <div className=""></div>
             <div className="table">
               <table>
