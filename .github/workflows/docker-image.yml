@@ -18,3 +18,5 @@ jobs:
       run: |
         docker compose down
         docker compose up --build -d
+        docker exec se_hotel_project-frontend_user_server-1 sh -c "echo \"${{ vars.FRONTEND_ENV }}\" >> .env"
+        docker exec se_hotel_project-reservation_service_api-1 sh -c "echo \"${{ vars.BACKEND_ENV }}\" >> .env" 
