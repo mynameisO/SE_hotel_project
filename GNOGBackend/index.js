@@ -11,6 +11,7 @@ const cors = require('cors');
 const searchBooking = require('./searchBooking');
 const showBooking = require('./showBooking');
 const { updateBookingStatus } = require('./updateBookingStatus');
+const { viewAllBookings } = require('./viewAllBooking');
 
 
 const app = express();
@@ -172,6 +173,15 @@ app.post('/api/admin/updateBookingStatus', async (req, res) => {
   }
 });
 
+app.get('/api/admin/viewAllBooking', async (req, res) => {
+  try {
+    const results = await viewAllBookings();
+    res.json(results);
+  } catch (error) {
+    console.error('Error during viewAllBookings:', error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 const PORT = 5000;
 app.listen(PORT, () => {
