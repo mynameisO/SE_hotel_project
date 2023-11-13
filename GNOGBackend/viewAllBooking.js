@@ -34,7 +34,7 @@ async function viewAllBookings() {
       GROUP BY booking.booking_id, guest.guest_first_name, guest.guest_last_name, guest.guest_telnum, booking.booking_status
     `);
 
-    connection.release(); 
+    connection.release(); // Release the connection back to the pool
 
     const formattedResults = results.map((result) => ({
       booking_id: result.booking_id,
