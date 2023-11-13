@@ -17,4 +17,6 @@ jobs:
     - name: Build the Docker image
       run: |
         docker compose down
+        echo "${{ vars.FRONTEND_ENV}} " >> ./Frontend/.env
+        echo "${{ vars.BACKEND_ENV}} " >> ./GNOGBackend/.env
         docker compose up --build -d
