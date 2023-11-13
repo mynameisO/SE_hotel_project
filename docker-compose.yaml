@@ -2,13 +2,20 @@ version: '3.1'
 services:
   frontend_user_server:
     build: ./Frontend
-    
+    environment:
+      - REACT_APP_BACKEND_IP=${{ vars.FRONTEND_API_IP }}
     ports:
       - "3000:3000"
 
   reservation_service_api:
     build: ./GNOGBackend
-
+    environment:
+      - DB_HOST=${{ vars.DB_HOST }}
+      - DB_PORT=${{ vars.DB_PORT }}
+      - DB_USER=${{ vars.DB_USER}}
+      - DB_PASSWORD=${{ vars.DB_PASSWORD }}
+      - DB_DATABASE=${{ vars.DB_DATABASE }}
+      - secretKeyJWT=${{ vars.sercretKeyJWT }}
     # When deploy. It is recommended to not publish any backend(api) port.
     ports:
       - "5000:5000"
