@@ -4,20 +4,21 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import './roomadmin.css'
 
+
 export default function Roomadmin() {
     const navigate = useNavigate();
     const MySwal = withReactContent(Swal);
     const [isLoaded, setIsLoaded] = useState(true);
     const [admin, setAdmin] = useState([]);
     const [isActive, setIsActive] = useState(false);
-    const [status, setStatus] = useState('paid');
+    const [status, setStatus] = useState('none');
     const [bookings, setBookings] = useState([]);
     const [guestTelnum,setGuestTelnum] = useState('');
     const [guestName, setGuestName] = useState('');
     const options = ['check_in', 'check_out', 'none'];
     const [search, setSearch] = useState(false);
     const [searchBooking, setSearchBooking] = useState([]);
-    const [bookingID, setBookingID] = useState([]);
+    //const [bookingID, setBookingID] = useState([]);
     
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -117,14 +118,72 @@ export default function Roomadmin() {
           .catch(error => console.log('error', error));
            setSearch(true)
         }
-      const check_in = () =>{
-        const booking_status = [bookingID,'check_in'];
-        console.log(booking_status)
+      const check_in = (booking_id) =>{
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+          "booking_id": booking_id,
+          "status": "checked_in"
+        });
+
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: raw,
+          redirect: 'follow'
+        };
+
+        fetch("http://omar-server.trueddns.com:52302/api/admin/updateBookingStatus", requestOptions)
+          .then(response => response.json())
+          .then(result => {
+            if(result.success === true ){
+              MySwal.fire({
+                html : <i>{result.message}</i>,
+                icon : 'success'
+            })
+            }else if(result.success === false){
+              MySwal.fire({
+                html : <i>{result.message}</i>,
+                icon : 'error'
+            })
+            }
+          })
+          .catch(error => console.log('error', error));
       }
 
-      const check_out = () =>{
-        const booking_status = [bookingID,'check_out'];
-        console.log(booking_status)
+      const check_out = (booking_id) =>{
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+          "booking_id": booking_id,
+          "status": "checked_out"
+        });
+
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: raw,
+          redirect: 'follow'
+        };
+
+        fetch("http://omar-server.trueddns.com:52302/api/admin/updateBookingStatus", requestOptions)
+          .then(response => response.json())
+          .then(result => {
+            if(result.success === true ){
+              MySwal.fire({
+                html : <i>{result.message}</i>,
+                icon : 'success'
+            })
+            }else if(result.success === false){
+              MySwal.fire({
+                html : <i>{result.message}</i>,
+                icon : 'error'
+            })
+            }
+          })
+          .catch(error => console.log('error', error));
       }
 
     if(isLoaded) return(<div>Loading..</div>)
@@ -174,6 +233,7 @@ export default function Roomadmin() {
                     <th>Guest Telephone Number</th>
                     <th>Booking Detail</th>
                     <th>Booking Status</th>
+                    <th>Update Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -183,7 +243,9 @@ export default function Roomadmin() {
                       <td>{item.guest_name}</td>
                       <td>{item.guest_telnum}</td>
                       <td>{item.booking_detail}</td>
-                      <td>{item.booking_status}</td> 
+                      <td>{item.booking_status}</td>
+                      {item.booking_status === "checked_in" && <td><button onClick={()=>check_out(item.booking_id)}>Check Out</button></td>}
+                      {item.booking_status === "checked_out" && <td><button onClick={()=>check_in(item.booking_id)}>Check In</button></td>} 
                     </tr>
                   ))}
                   {search === true && searchBooking.map(item => (
@@ -192,17 +254,13 @@ export default function Roomadmin() {
                       <td>{item.guest_name}</td>
                       <td>{item.guest_telnum}</td>
                       <td>{item.booking_detail}</td>
-                      <td>{item.booking_status}</td> 
+                      <td>{item.booking_status}</td>
+                      {item.booking_status === "checked_in" && <td><button onClick={()=>check_out(item.booking_id)}>Check Out</button></td>}
+                      {item.booking_status === "checked_out" && <td><button onClick={()=>check_in(item.booking_id)}>Check In</button></td>} 
                     </tr>
                   ))}
                 </tbody>
               </table>
-            </div>
-            <div className="update-status">
-                    <h3>Update Booking Status</h3>
-                    <div className="searchbar">
-                      <p>Booking ID:<input type="text" placeholder="Booking ID" required onChange={e => setBookingID(e.target.value)}/><button onClick={check_in}>Check In</button><button onClick={check_out}>Check Out</button></p>
-                    </div>
             </div>
         </div>                     
     )

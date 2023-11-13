@@ -1,0 +1,25 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: self-hosted
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: |
+        docker compose down
+        touch ./Frontend/.env
+        echo "${{ vars.FRONTEND_ENV }}" > ./Frontend/.env
+        touch ./GNOGBackend/.env
+        echo "${{ vars.BACKEND_ENV }}" > ./GNOGBackend/.env
+        docker compose up --build -d
+
