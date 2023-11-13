@@ -11,14 +11,14 @@ export default function Roomadmin() {
     const [isLoaded, setIsLoaded] = useState(true);
     const [admin, setAdmin] = useState([]);
     const [isActive, setIsActive] = useState(false);
-    const [status, setStatus] = useState('paid');
+    const [status, setStatus] = useState('none');
     const [bookings, setBookings] = useState([]);
     const [guestTelnum,setGuestTelnum] = useState('');
     const [guestName, setGuestName] = useState('');
     const options = ['check_in', 'check_out', 'none'];
     const [search, setSearch] = useState(false);
     const [searchBooking, setSearchBooking] = useState([]);
-    const [bookingID, setBookingID] = useState([]);
+    //const [bookingID, setBookingID] = useState([]);
     
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -119,13 +119,71 @@ export default function Roomadmin() {
            setSearch(true)
         }
       const check_in = (booking_id) =>{
-        const booking_status = [booking_id,'check_in'];
-        console.log(booking_status)
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+          "booking_id": booking_id,
+          "status": "checked_in"
+        });
+
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: raw,
+          redirect: 'follow'
+        };
+
+        fetch("http://omar-server.trueddns.com:52302/api/admin/updateBookingStatus", requestOptions)
+          .then(response => response.json())
+          .then(result => {
+            if(result.success === true ){
+              MySwal.fire({
+                html : <i>{result.message}</i>,
+                icon : 'success'
+            })
+            }else if(result.success === false){
+              MySwal.fire({
+                html : <i>{result.message}</i>,
+                icon : 'error'
+            })
+            }
+          })
+          .catch(error => console.log('error', error));
       }
 
       const check_out = (booking_id) =>{
-        const booking_status = [booking_id,'check_out'];
-        console.log(booking_status)
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+          "booking_id": booking_id,
+          "status": "checked_out"
+        });
+
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: raw,
+          redirect: 'follow'
+        };
+
+        fetch("http://omar-server.trueddns.com:52302/api/admin/updateBookingStatus", requestOptions)
+          .then(response => response.json())
+          .then(result => {
+            if(result.success === true ){
+              MySwal.fire({
+                html : <i>{result.message}</i>,
+                icon : 'success'
+            })
+            }else if(result.success === false){
+              MySwal.fire({
+                html : <i>{result.message}</i>,
+                icon : 'error'
+            })
+            }
+          })
+          .catch(error => console.log('error', error));
       }
 
     if(isLoaded) return(<div>Loading..</div>)
