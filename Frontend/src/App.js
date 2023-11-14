@@ -21,6 +21,7 @@ import Seedetail from "./pages/seedetail"
 import Loginadmin from "./pages/loginadmin"
 import Roomadmin from "./pages/roomadmin"
 import Adminmenu from "./pages/adminmenu"
+import Viewallroomadmin from "./pages/viewallroomadmin"
 
 function App() {
 
@@ -50,6 +51,7 @@ function App() {
         <Route path="/loginadmin" element={<Loginadmin />} />
         <Route path="/roomadmin" element={<Roomadmin />} />
         <Route path="/adminmenu" element={<Adminmenu />} />
+        <Route path="/viewallroomadmin" element={<Viewallroomadmin />} />
     </Routes>
   </>
 
