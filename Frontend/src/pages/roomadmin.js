@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react"
-import { useNavigate,} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import './roomadmin.css'
@@ -188,7 +188,8 @@ export default function Roomadmin() {
 
     if(isLoaded) return(<div>Loading..</div>)
 
-      const viewallroomadmin = () => {
+      const viewallroomadmin = (e) => {
+        e.preventDefault();
         navigate('/viewallroomadmin');
       }
     
