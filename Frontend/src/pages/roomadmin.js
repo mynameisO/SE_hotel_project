@@ -151,6 +151,9 @@ export default function Roomadmin() {
           })
           .catch(error => console.log('error', error));
       }
+      const booking_detail = (booking_id) =>{
+        navigate('/bookingdetail', {replace: true, state:{booking_id}});
+      }
 
       const check_out = (booking_id) =>{
         var myHeaders = new Headers();
@@ -242,6 +245,7 @@ export default function Roomadmin() {
                     <th>Booking Detail</th>
                     <th>Booking Status</th>
                     <th>Update Status</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -254,6 +258,7 @@ export default function Roomadmin() {
                       <td>{item.booking_status}</td>
                       {item.booking_status === "checked_in" && <td><button onClick={()=>check_out(item.booking_id)}>Check Out</button></td>}
                       {item.booking_status === "checked_out" && <td><button onClick={()=>check_in(item.booking_id)}>Check In</button></td>} 
+                      <td><button onClick={() => booking_detail(item.booking_id)}>Detail</button></td>
                     </tr>
                   ))}
                   {search === true && searchBooking.map(item => (
@@ -265,6 +270,7 @@ export default function Roomadmin() {
                       <td>{item.booking_status}</td>
                       {item.booking_status === "checked_in" && <td><button onClick={()=>check_out(item.booking_id)}>Check Out</button></td>}
                       {item.booking_status === "checked_out" && <td><button onClick={()=>check_in(item.booking_id)}>Check In</button></td>} 
+                      <td><button onClick={() => booking_detail(item.booking_id)}>Detail</button></td>
                     </tr>
                   ))}
                 </tbody>

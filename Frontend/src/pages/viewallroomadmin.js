@@ -111,6 +111,9 @@ export default function Viewallroomadmin() {
         })
         .catch(error => console.log('error', error));
     }
+    const booking_detail = (booking_id) =>{
+      navigate('/bookingdetail', {replace: true, state:{booking_id}});
+    }
 
 
 /*useEffect(() => {
@@ -150,6 +153,7 @@ export default function Viewallroomadmin() {
                 <td>{item.booking_detail}</td>
                 <td>{item.booking_status}</td>
                 {item.booking_status !== 'cancel' && <td><button onClick={()=>cancel_booking(item.booking_id)}>Cancel</button></td>}
+                <td><button onClick={() => booking_detail(item.booking_id)}>Detail</button></td>
               </tr>
             ))}
         </tbody>
