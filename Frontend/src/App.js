@@ -22,6 +22,7 @@ import Loginadmin from "./pages/loginadmin"
 import Roomadmin from "./pages/roomadmin"
 import Adminmenu from "./pages/adminmenu"
 import Viewallroomadmin from "./pages/viewallroomadmin"
+import BookingDetail from "./pages/bookingdetail"
 
 function App() {
 
@@ -52,6 +53,7 @@ function App() {
         <Route path="/roomadmin" element={<Roomadmin />} />
         <Route path="/adminmenu" element={<Adminmenu />} />
         <Route path="/viewallroomadmin" element={<Viewallroomadmin />} />
+        <Route path="/bookingdetail" element={<BookingDetail />} />
     </Routes>
   </>
 
