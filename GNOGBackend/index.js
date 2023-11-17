@@ -13,7 +13,7 @@ const showBooking = require('./showBooking');
 const { updateBookingStatus } = require('./updateBookingStatus');
 const { viewAllBookings } = require('./viewAllBooking');
 const { viewBookingDetail } = require('./viewBookingDetail');
-
+const { updateRoomStatus } = require('./updateRoomStatus');
 
 const app = express();
 app.use(express.json());
@@ -194,6 +194,22 @@ app.post('/api/admin/viewBookingDetail', async (req, res) => {
     } else {
       res.status(400).json(result);
     }
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+app.post('/api/admin/updateRoomStatus', async (req, res) => {
+  try {
+    const { room_id, status } = req.body;
+    const result = await updateRoomStatus({ room_id, status });
+
+    if (result.success) {
+      res.json(result);
+    } else {
+      res.status(400).json(result);
+    }
+
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
   }

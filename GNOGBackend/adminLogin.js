@@ -23,7 +23,7 @@ async function verifyPassword(password, hashedPassword) {
 function generateToken(user) {
   const { staff_id, fname, lname, email } = user;
   return jwt.sign({ staff_id, fname, lname, email }, process.env.secretKeyJWT, {
-    expiresIn: '300000ms', // Token expiration time in milliseconds
+    expiresIn: '1800000ms', // Token expiration time in milliseconds
   });
 }
 
