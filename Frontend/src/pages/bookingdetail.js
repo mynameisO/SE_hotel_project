@@ -67,6 +67,63 @@ export default function BookingDetail(){
             setFetch(false)
     });
       },[])
+      const update_room_status = (room_id) => {
+        console.log(room_id,'check_out')
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+        "room_id": room_id,
+        "status": "check_out"
+        });
+
+        var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+        };
+
+        fetch("http://omar-server.trueddns.com:52302/api/admin/updateRoomStatus", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+                            if(result.success === true){
+                                console.log(result)
+                                if(result.success === true){
+                                    MySwal.fire({
+                                      html : <i>Room ID: {room_id} {result.message}</i>,
+                                      icon : 'success'
+                                    }).then((value) => {
+                                        var myHeaders = new Headers();
+                                        myHeaders.append("Content-Type", "application/json");
+                                
+                                        var raw = JSON.stringify({
+                                        "booking_id": location.state.booking_id
+                                        });
+                                
+                                        var requestOptions = {
+                                        method: 'POST',
+                                        headers: myHeaders,
+                                        body: raw,
+                                        redirect: 'follow'
+                                        };
+                                
+                                        fetch("http://omar-server.trueddns.com:52302/api/admin/viewBookingDetail", requestOptions)
+                                        .then(response => response.json())
+                                        .then(result => {
+                                            console.log(result)
+                                            setGuest_Info(result)
+                                            setFetch(true)
+                                        })
+                                        .catch(error => {
+                                            console.log('error', error)
+                                            setFetch(false)
+                                    });})
+                            }
+        }})
+        .catch(error => console.log('error', error));
+      }
+
     if(isLoaded) return(<div>Loading...</div>)
 
     return(
@@ -86,10 +143,12 @@ export default function BookingDetail(){
                     <p>Guest Telnumber:{guestinfo.bookingDetails.guest_telnum}</p>
                     <p>Guest Address:{guestinfo.bookingDetails.guest_address}</p>
                     {
-                        guestinfo.bookingDetails.room_ids.map((item) => (
-                            <div>
-                                <p>Room ID: {item}</p>
-                                <button>Check Out</button>
+                        guestinfo.bookingDetails.rooms.map((item) => (
+                            <div key={item.id}>
+                                <p>Room ID: {item.room_id}</p>
+                                <p>Room Type: {item.room_type_name}</p>
+                                <p>Room Status: {item.room_status}</p>
+                                {item.room_status === "free" && <button onClick={() => update_room_status(item.room_id)}>Check Out</button>}
                             </div>
                         ))}
                 </div>
