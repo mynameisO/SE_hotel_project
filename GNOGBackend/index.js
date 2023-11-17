@@ -12,6 +12,7 @@ const searchBooking = require('./searchBooking');
 const showBooking = require('./showBooking');
 const { updateBookingStatus } = require('./updateBookingStatus');
 const { viewAllBookings } = require('./viewAllBooking');
+const { viewBookingDetail } = require('./viewBookingDetail');
 
 
 const app = express();
@@ -182,6 +183,22 @@ app.get('/api/admin/viewAllBooking', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+app.post('/api/admin/viewBookingDetail', async (req, res) => {
+  try {
+    const { booking_id } = req.body;
+    const result = await viewBookingDetail(booking_id);
+
+    if (result.success) {
+      res.json(result);
+    } else {
+      res.status(400).json(result);
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 
 const PORT = 5000;
 app.listen(PORT, () => {
