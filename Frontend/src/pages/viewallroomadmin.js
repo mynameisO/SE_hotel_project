@@ -65,26 +65,53 @@ export default function Viewallroomadmin() {
     }
     const cancel_booking = (booking_id) =>{
       console.log(booking_id,'cancel')
-      MySwal.fire({
-        html : <i>Cancel Booking ID {booking_id} success.</i>,
-        icon : 'success'
-      })
+      var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+
+      var raw = JSON.stringify({
+        "booking_id": booking_id,
+        "status": "cancel"
+      });
+
       var requestOptions = {
-        method: 'GET',
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
         redirect: 'follow'
       };
-      
-      fetch("http://omar-server.trueddns.com:52302/api/admin/viewAllBooking", requestOptions)
+
+      fetch("http://omar-server.trueddns.com:52302/api/admin/updateBookingStatus", requestOptions)
         .then(response => response.json())
         .then(result => {
-          console.log(result)
-          setBookings(result)
+          if(result.success === true){
+            MySwal.fire({
+              html : <i>{result.message}</i>,
+              icon : 'success'
+            }).then((value) => {
+              var requestOptions = {
+                method: 'GET',
+                redirect: 'follow'
+              };
+              
+              fetch("http://omar-server.trueddns.com:52302/api/admin/viewAllBooking", requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                  setBookings(result)
+                })
+                .catch(error => {
+                  console.log('error', error)
+              })
+            })
+          }else{
+            MySwal.fire({
+              html : <i>{result.message}</i>,
+              icon : 'error'
+            })
+          }
         })
-        .catch(error => {
-          console.log('error', error)
-      })
+        .catch(error => console.log('error', error));
     }
- 
+
 
 /*useEffect(() => {
     fetch("http://omar-server.trueddns.com:52302/api/admin/viewAllBooking", requestOptions)
