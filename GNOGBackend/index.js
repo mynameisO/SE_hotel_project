@@ -201,8 +201,8 @@ app.post('/api/admin/viewBookingDetail', async (req, res) => {
 
 app.post('/api/admin/updateRoomStatus', async (req, res) => {
   try {
-    const { room_id, status } = req.body;
-    const result = await updateRoomStatus({ room_id, status });
+    const { booking_id, room_id, status } = req.body;
+    const result = await updateRoomStatus({ booking_id, room_id, status });
 
     if (result.success) {
       res.json(result);
@@ -211,10 +211,10 @@ app.post('/api/admin/updateRoomStatus', async (req, res) => {
     }
 
   } catch (error) {
+    console.error('Error in updateRoomStatus route:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
-
 
 const PORT = 5000;
 app.listen(PORT, () => {

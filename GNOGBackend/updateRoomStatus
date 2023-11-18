@@ -15,24 +15,66 @@ const pool = mysql.createPool({
   queueLimit: 0
 });
 
-async function updateRoomStatus({ room_id, status }) {
+async function updateRoomStatus({ booking_id, room_id, status }) {
   try {
     const connection = await pool.getConnection();
 
     // Update the room_status in the room table
-    const [results, fields] = await connection.execute(
-      'UPDATE room SET room_status = ? WHERE room_id = ?',
-      [status, room_id]
+    const [updateResults, updateFields] = await connection.execute(
+      'UPDATE room ' +
+      'SET room_status = ? ' +
+      'WHERE room_id = ? ' +
+      'AND room_id IN (SELECT room_id FROM booking_room WHERE booking_id = ?)',
+      [status, room_id, booking_id]
     );
+
+    // Log statement for room checked out
+    console.log(`Room ${room_id} in booking ${booking_id} has been checked out. Room status updated to '${status}'.`);
+
+    // Query to get the total number of rooms in the booking
+    const [totalRoomsResult, totalRoomsFields] = await connection.execute(
+      'SELECT COUNT(*) AS total FROM booking_room WHERE booking_id = ?',
+      [booking_id]
+    );
+
+    const totalRoomsInBooking = totalRoomsResult[0].total;
+
+    // Check if all rooms associated with the same booking_id have 'check_out' status
+    const [allCheckedOutResults, allCheckedOutFields] = await connection.execute(
+      'SELECT COUNT(*) AS total FROM booking_room WHERE booking_id = ? AND room_id IN (SELECT room_id FROM room WHERE room_status = ?)',
+      [booking_id, 'check_out']
+    );
+
+    const totalCheckedOutRooms = allCheckedOutResults[0].total;
+
+    // Log statement for the count of rooms checked out
+    console.log(`Total rooms checked out in booking ${booking_id}: ${totalCheckedOutRooms}`);
+
+    if (totalCheckedOutRooms === totalRoomsInBooking) {
+      // All rooms are checked out, update room_status to 'free' for the entire booking
+      await connection.execute(
+        'UPDATE room SET room_status = ? WHERE room_id IN (SELECT room_id FROM booking_room WHERE booking_id = ?)',
+        ['free', booking_id]
+      );
+
+      // Log statement for all rooms checked out
+      console.log(`All rooms in booking ${booking_id} have been checked out. Room status updated to 'free'.`);
+
+      await connection.execute(
+        'UPDATE booking set booking_status = ? WHERE booking_id = ?',
+        ['checked_out', booking_id]
+      )
+      console.log(`All rooms in booking ${booking_id} have been checked out. booking status updated to 'checked_out'.`)
+    }
 
     connection.release(); // Release the connection back to the pool
 
-    if (results.affectedRows === 1) {
+    if (updateResults.affectedRows === 1) {
       // Successfully updated
       return { success: true, message: 'Room status updated successfully.', room_id, updatedStatus: status };
     } else {
-      // No rows affected, room_id not found
-      return { success: false, message: 'Room not found.' };
+      // No rows affected, room_id not found or not part of the specified booking
+      return { success: false, message: 'Room not found or not part of the specified booking.' };
     }
   } catch (error) {
     console.error('Error updating room status:', error);
