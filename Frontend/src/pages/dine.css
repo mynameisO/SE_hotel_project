@@ -5,11 +5,6 @@
     margin-top: 20px;
 }
 
-.restaurant-container {
-    display: flex;
-    justify-content: space-between;
-}
-
 .restaurant {
     margin-top: 20px;
     padding: 20px;
