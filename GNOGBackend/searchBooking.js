@@ -1,7 +1,6 @@
 const mysql = require('mysql2/promise');
 require('dotenv').config();
 
-
 const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_DATABASE } = process.env;
 
 // Create a connection pool
@@ -16,7 +15,6 @@ const pool = mysql.createPool({
   queueLimit: 0
 });
 
-
 async function searchBooking({ guest_name, guest_tel, status }) {
   try {
     const connection = await pool.getConnection();
@@ -25,7 +23,7 @@ async function searchBooking({ guest_name, guest_tel, status }) {
     // Build the WHERE clause based on the provided parameters
     let whereClause = '';
     let queryParams = [];
-    
+
     // Add conditions for guest_name and guest_tel
     if (guest_name) {
       whereClause += 'guest.guest_first_name LIKE ?';
@@ -42,27 +40,22 @@ async function searchBooking({ guest_name, guest_tel, status }) {
 
     // Add a condition to filter by status if it is provided
     if (status === 'check_in') {
-      if(whereClause !== ''){
-        whereClause = `(${whereClause}) AND `;
-      }
-      whereClause += '(DATE(booking.checkin_date) = ? AND booking.booking_status = "checked in")' ;
+      whereClause += ` AND (DATE(booking.checkin_date) = ? AND booking.booking_status = "checked in")`;
       queryParams.push(currentDate);
-    }else if (status === 'check_out') {
-      if(whereClause !== ''){
-        whereClause = `(${whereClause}) AND `;
-      }
-      whereClause += '(DATE(booking.checkout_date) >= ? AND booking.booking_status = "checked_in")';
+    } else if (status === 'check_out') {
+      whereClause += ` AND (DATE(booking.checkout_date) >= ? AND booking.booking_status = "checked_in")`;
       queryParams.push(currentDate);
-    }else {
-      if(whereClause !== ''){
-        whereClause = `(${whereClause}) AND `;
-      }
-      whereClause += '((DATE(booking.checkout_date) >= ? AND booking.booking_status = "checked_in") OR DATE(booking.checkin_date) = ? AND booking.booking_status = "checked in" )';
+    } else {
+      whereClause += ` AND (
+        (DATE(booking.checkout_date) >= ? AND booking.booking_status = "checked_in") OR 
+        (DATE(booking.checkin_date) = ? AND booking.booking_status = "checked in") OR 
+        booking.booking_status = "paid"
+      )`;
       queryParams.push(currentDate);
       queryParams.push(currentDate);
     }
 
-    console.log(`${whereClause}`,queryParams)
+    console.log(`${whereClause}`, queryParams);
 
     // Execute the search query
     const [results, fields] = await connection.execute(`

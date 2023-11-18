@@ -34,7 +34,10 @@ async function showBookings() {
       LEFT JOIN booking_room ON booking.booking_id = booking_room.booking_id
       LEFT JOIN room ON booking_room.room_id = room.room_id
       LEFT JOIN room_type ON room.room_type_id = room_type.room_type_id
-      WHERE (DATE(booking.checkin_date) = ? AND booking.booking_status != 'checked_in') OR (DATE(booking.checkout_date) >= ? AND booking.booking_status = 'checked_in')
+      WHERE (
+        (DATE(booking.checkin_date) = ? AND booking.booking_status != 'checked_in') OR 
+        (DATE(booking.checkout_date) >= ? AND (booking.booking_status = 'checked_in' OR booking.booking_status = "paid"))
+      )
       GROUP BY booking.booking_id, guest.guest_first_name, guest.guest_last_name, guest.guest_telnum, booking.booking_status
     `, [currentDate, currentDate]);
 
