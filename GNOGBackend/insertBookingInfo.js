@@ -143,7 +143,7 @@ async function createBooking(bookingData) {
                     const room_id = selectResults[0].room_id;
                     const updateRoomStatusQuery = `
                       UPDATE room
-                      SET room_status = 'occupined'
+                      SET room_status = 'free'
                       WHERE room_id = ?
                       LIMIT ?;
                     `;

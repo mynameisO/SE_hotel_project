@@ -21,32 +21,38 @@ async function updateBookingStatus({ booking_id, status }) {
 
     // Get the current booking status and additional details
     const [currentStatusResults, detailsResults] = await Promise.all([
-      connection.execute('SELECT booking_status FROM booking WHERE booking_id = ?', [booking_id]),
+      connection.execute(
+        // Use aliases to avoid potential naming conflicts
+        'SELECT b.booking_status, br.room_id FROM booking b LEFT JOIN booking_room br ON b.booking_id = br.booking_id WHERE b.booking_id = ?',
+        [booking_id]
+      ),
       connection.execute(`
         SELECT
           CONCAT(guest.guest_first_name, ' ', guest.guest_last_name) AS guest_name,
           guest.guest_telnum AS guest_tel,
           GROUP_CONCAT(DISTINCT CONCAT('Room ID: ', room.room_id, ' - Room Type: ', room_type.room_type_name) SEPARATOR ', ') AS booking_detail
-        FROM booking
-        JOIN guest ON booking.guest_id = guest.guest_id
-        LEFT JOIN booking_room ON booking.booking_id = booking_room.booking_id
-        LEFT JOIN room ON booking_room.room_id = room.room_id
+        FROM booking b
+        JOIN guest ON b.guest_id = guest.guest_id
+        LEFT JOIN booking_room br ON b.booking_id = br.booking_id
+        LEFT JOIN room ON br.room_id = room.room_id
         LEFT JOIN room_type ON room.room_type_id = room_type.room_type_id
-        WHERE booking.booking_id = ?
-        GROUP BY booking.booking_id, guest.guest_first_name, guest.guest_last_name, guest.guest_telnum
+        WHERE b.booking_id = ?
+        GROUP BY b.booking_id, guest.guest_first_name, guest.guest_last_name, guest.guest_telnum
       `, [booking_id]),
     ]);
 
     console.log('currentStatusResults:', currentStatusResults);
 
     // Check if the received status is the same as the current status
-    if (currentStatusResults.length === 0) {
+    if (currentStatusResults.length === 0 || currentStatusResults[0].length === 0) {
       connection.release(); // Release the connection back to the pool
       return { success: false, message: 'Booking not found.' };
     }
-    
+
+    // Extract current status and room_id
     const currentStatus = currentStatusResults[0][0].booking_status;
-    
+    const room_id = currentStatusResults[0][0].room_id;
+
     if (currentStatus === status) {
       connection.release(); // Release the connection back to the pool
       console.log('Booking status is already ' + status);
@@ -61,11 +67,34 @@ async function updateBookingStatus({ booking_id, status }) {
       };
     }
 
+    const currentStatusRows = currentStatusResults[0];
+
+    if (currentStatusRows.length === 0) {
+      connection.release(); // Release the connection back to the pool
+      return { success: false, message: 'Booking not found.' };
+    }
+    
+    // Array to store room_ids for room status update
+    const roomIds = currentStatusRows.map(row => row.room_id);
+    
     // Update the booking_status in the booking table
     const [results, fields] = await connection.execute(
       'UPDATE booking SET booking_status = ? WHERE booking_id = ?',
       [status, booking_id]
     );
+    
+    // Update the room_status to "free" for each room_id
+    if (status === "cancel" || status === "checked_out") {
+      // Update the room_status and log the result for each room_id
+      for (const roomId of roomIds) {
+        const [roomUpdateResults, roomUpdateFields] = await connection.execute(
+          'UPDATE room SET room_status = "free" WHERE room_id = ?',
+          [roomId]
+        );
+    
+        console.log('Room status update result for room_id ' + roomId + ':', roomUpdateResults);
+      }
+    }
 
     console.log('detailsResults:', detailsResults);
 
@@ -93,4 +122,3 @@ async function updateBookingStatus({ booking_id, status }) {
 module.exports = {
   updateBookingStatus: updateBookingStatus,
 };
-
