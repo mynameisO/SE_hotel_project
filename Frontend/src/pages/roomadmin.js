@@ -15,7 +15,7 @@ export default function Roomadmin() {
     const [bookings, setBookings] = useState([]);
     const [guestTelnum,setGuestTelnum] = useState('');
     const [guestName, setGuestName] = useState('');
-    const options = ['check_in', 'check_out', 'none'];
+    const options = ['checked_in', 'checked_out', 'none'];
     const [search, setSearch] = useState(false);
     const [searchBooking, setSearchBooking] = useState([]);
     //const [bookingID, setBookingID] = useState([]);
@@ -178,13 +178,25 @@ export default function Roomadmin() {
               MySwal.fire({
                 html : <i>{result.message}</i>,
                 icon : 'success'
+            }).then((value)=>{
+              var requestOptions = {
+                method: 'GET',
+                redirect: 'follow'
+              };
+              
+              fetch("http://omar-server.trueddns.com:52302/api/admin/showBooking", requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                  console.log(result)
+                  setBookings(result)
+                })
+                .catch(error => console.log('error', error));
             })
             }else if(result.success === false){
               MySwal.fire({
                 html : <i>{result.message}</i>,
                 icon : 'error'
-            })
-            }
+            })}
           })
           .catch(error => console.log('error', error));
       }
@@ -245,7 +257,7 @@ export default function Roomadmin() {
                     <th>Booking Detail</th>
                     <th>Booking Status</th>
                     <th>Update Status</th>
-                    <th></th>
+                    <th>Booking Detail</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -256,9 +268,9 @@ export default function Roomadmin() {
                       <td>{item.guest_telnum}</td>
                       <td>{item.booking_detail}</td>
                       <td>{item.booking_status}</td>
-                      {item.booking_status === "checked_in" && <td><button onClick={()=>check_out(item.booking_id)}>Check Out</button></td>}
-                      {item.booking_status === "checked_out" && <td><button onClick={()=>check_in(item.booking_id)}>Check In</button></td>} 
-                      <td><button onClick={() => booking_detail(item.booking_id)}>Detail</button></td>
+                      {item.booking_status === "checked_in" && <td><button className="btn-checkin" onClick={()=>check_out(item.booking_id)}>Check Out</button></td>}
+                      {item.booking_status === "checked_out" && <td><button className="btn-cancel" onClick={()=>check_in(item.booking_id)}>Check In</button></td>} 
+                      <td><button className="btn-detail" onClick={() => booking_detail(item.booking_id)}>Detail</button></td>
                     </tr>
                   ))}
                   {search === true && searchBooking.map(item => (
@@ -268,9 +280,9 @@ export default function Roomadmin() {
                       <td>{item.guest_telnum}</td>
                       <td>{item.booking_detail}</td>
                       <td>{item.booking_status}</td>
-                      {item.booking_status === "checked_in" && <td><button onClick={()=>check_out(item.booking_id)}>Check Out</button></td>}
-                      {item.booking_status === "checked_out" && <td><button onClick={()=>check_in(item.booking_id)}>Check In</button></td>} 
-                      <td><button onClick={() => booking_detail(item.booking_id)}>Detail</button></td>
+                      {item.booking_status === "checked_in" && <td><button className="btn-checkin" onClick={()=>check_out(item.booking_id)}>Check Out</button></td>}
+                      {item.booking_status === "checked_out" && <td><button className="btn-cancel" onClick={()=>check_in(item.booking_id)}>Check In</button></td>} 
+                      <td><button className="btn-detail" onClick={() => booking_detail(item.booking_id)}>Detail</button></td>
                     </tr>
                   ))}
                 </tbody>

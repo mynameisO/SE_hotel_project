@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { React, useEffect, useState } from "react"
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import './bookingdetail.css'
 
 export default function BookingDetail(){
     const navigate = useNavigate();
@@ -12,6 +13,17 @@ export default function BookingDetail(){
     const MySwal = withReactContent(Swal);
     const [guestinfo, setGuest_Info] = useState([]);
     const [Fetch, setFetch] = useState(false);
+    const back=()=>{
+        navigate('/viewallroomadmin')
+    }
+    const logout=()=>{
+        localStorage.removeItem('token')
+        MySwal.fire({
+            html : <i>Log Out Successful</i>,
+            icon : 'success'
+        })
+            navigate('/loginadmin') 
+    }
     useEffect(() => {
         const token = localStorage.getItem('token');
         var myHeaders = new Headers();
@@ -67,10 +79,68 @@ export default function BookingDetail(){
             setFetch(false)
     });
       },[])
+      const update_room_status = (room_id) => {
+        console.log(room_id,'check_out')
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+        "booking_id" : location.state.booking_id,
+        "room_id": room_id,
+        "status": "check_out"
+        });
+
+        var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+        };
+
+        fetch("http://omar-server.trueddns.com:52302/api/admin/updateRoomStatus", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+                            if(result.success === true){
+                                console.log(result)
+                                if(result.success === true){
+                                    MySwal.fire({
+                                      html : <i>Room ID: {room_id} {result.message}</i>,
+                                      icon : 'success'
+                                    }).then((value) => {
+                                        var myHeaders = new Headers();
+                                        myHeaders.append("Content-Type", "application/json");
+                                
+                                        var raw = JSON.stringify({
+                                        "booking_id": location.state.booking_id
+                                        });
+                                
+                                        var requestOptions = {
+                                        method: 'POST',
+                                        headers: myHeaders,
+                                        body: raw,
+                                        redirect: 'follow'
+                                        };
+                                
+                                        fetch("http://omar-server.trueddns.com:52302/api/admin/viewBookingDetail", requestOptions)
+                                        .then(response => response.json())
+                                        .then(result => {
+                                            console.log(result)
+                                            setGuest_Info(result)
+                                            setFetch(true)
+                                        })
+                                        .catch(error => {
+                                            console.log('error', error)
+                                            setFetch(false)
+                                    });})
+                            }
+        }})
+        .catch(error => console.log('error', error));
+      }
+
     if(isLoaded) return(<div>Loading...</div>)
 
     return(
-        <div>
+        <div className="bookingdetail-body">
             <h3>Welcome To Booking Detail Page. {admin.fname}</h3>
             {Fetch && 
                 <div>
@@ -85,13 +155,28 @@ export default function BookingDetail(){
                     <p>Guest Email: {guestinfo.bookingDetails.guest_email}</p>
                     <p>Guest Telnumber:{guestinfo.bookingDetails.guest_telnum}</p>
                     <p>Guest Address:{guestinfo.bookingDetails.guest_address}</p>
-                    {
-                        guestinfo.bookingDetails.room_ids.map((item) => (
-                            <div>
-                                <p>Room ID: {item}</p>
-                                <button>Check Out</button>
+                    {guestinfo.bookingDetails.booking_status !== 'cancel' && 
+                        guestinfo.bookingDetails.rooms.map((item) => (
+                            <div key={item.id}>
+                                <p>Room ID: {item.room_id}</p>
+                                <p>Room Type: {item.room_type_name}</p>
+                                <p>Room Status: {item.room_status}</p>
+                                {item.room_status === "free" && <button className="update-btn" onClick={() => update_room_status(item.room_id)}>Check Out</button>}
                             </div>
                         ))}
+                    {guestinfo.bookingDetails.booking_status === 'cancel' &&
+                        guestinfo.bookingDetails.rooms.map((item) => (
+                            <div key={item.id}>
+                                <p>Room ID: {item.room_id}</p>
+                                <p>Room Type: {item.room_type_name}</p>
+                                <p>Room Status: {item.room_status}</p>
+                            </div>
+                        ))
+                    }
+                    <div className="btn-bookingadmin">
+                    <button onClick={back}>back</button>
+                    <button onClick={logout}>Log Out</button>
+                    </div>
                 </div>
             }
             
