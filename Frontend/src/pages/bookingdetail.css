@@ -1,0 +1,20 @@
+.btn-bookingadmin button{
+    margin-top: 10px; 
+    margin-left: 20px;
+    background-color: rgb(0, 179, 80); 
+    color: #fff; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    border: none; 
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.bookingdetail-body .update-btn{
+    background-color: rgb(255, 42, 42);
+    color: #fff; 
+    padding: 5px 5px; 
+    border: none; 
+    cursor: pointer; 
+    border-radius: 5px;
+}

@@ -245,7 +245,7 @@ export default function Roomadmin() {
                     <th>Booking Detail</th>
                     <th>Booking Status</th>
                     <th>Update Status</th>
-                    <th></th>
+                    <th>Booking Detail</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -256,9 +256,9 @@ export default function Roomadmin() {
                       <td>{item.guest_telnum}</td>
                       <td>{item.booking_detail}</td>
                       <td>{item.booking_status}</td>
-                      {item.booking_status === "checked_in" && <td><button onClick={()=>check_out(item.booking_id)}>Check Out</button></td>}
-                      {item.booking_status === "checked_out" && <td><button onClick={()=>check_in(item.booking_id)}>Check In</button></td>} 
-                      <td><button onClick={() => booking_detail(item.booking_id)}>Detail</button></td>
+                      {item.booking_status === "checked_in" && <td><button className="btn-checkin" onClick={()=>check_out(item.booking_id)}>Check Out</button></td>}
+                      {item.booking_status === "checked_out" && <td><button className="btn-cancel" onClick={()=>check_in(item.booking_id)}>Check In</button></td>} 
+                      <td><button className="btn-detail" onClick={() => booking_detail(item.booking_id)}>Detail</button></td>
                     </tr>
                   ))}
                   {search === true && searchBooking.map(item => (

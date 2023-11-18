@@ -141,6 +141,7 @@ export default function Viewallroomadmin() {
             <th>Booking Detail</th>
             <th>Booking Status</th>
             <th>Cancel Booking</th>
+            <th>Booking Detail</th>
           </tr>
         </thead>
         <tbody>
@@ -152,8 +153,9 @@ export default function Viewallroomadmin() {
                 <td>{item.guest_tel}</td>
                 <td>{item.booking_detail}</td>
                 <td>{item.booking_status}</td>
-                {item.booking_status !== 'cancel' && <td><button onClick={()=>cancel_booking(item.booking_id)}>Cancel</button></td>}
-                <td><button onClick={() => booking_detail(item.booking_id)}>Detail</button></td>
+                {item.booking_status !== 'cancel' && <td><button className="btn-cancel" onClick={()=>cancel_booking(item.booking_id)}>Cancel</button></td>}
+                {item.booking_status === 'cancel' && <td></td>}
+                <td><button className="btn-detail" onClick={() => booking_detail(item.booking_id)}>Detail</button></td>
               </tr>
             ))}
         </tbody>

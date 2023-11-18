@@ -160,3 +160,11 @@ th {
     background-color: #c42b59;
 }
 
+.table .btn-checkin{
+    background-color: rgb(60, 255, 42);
+    color: #fff; 
+    padding: 5px 5px; 
+    border: none; 
+    cursor: pointer; 
+    border-radius: 5px;
+}

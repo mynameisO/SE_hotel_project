@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { React, useEffect, useState } from "react"
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import './bookingdetail.css'
 
 export default function BookingDetail(){
     const navigate = useNavigate();
@@ -12,6 +13,17 @@ export default function BookingDetail(){
     const MySwal = withReactContent(Swal);
     const [guestinfo, setGuest_Info] = useState([]);
     const [Fetch, setFetch] = useState(false);
+    const back=()=>{
+        navigate('/viewallroomadmin')
+    }
+    const logout=()=>{
+        localStorage.removeItem('token')
+        MySwal.fire({
+            html : <i>Log Out Successful</i>,
+            icon : 'success'
+        })
+            navigate('/loginadmin') 
+    }
     useEffect(() => {
         const token = localStorage.getItem('token');
         var myHeaders = new Headers();
@@ -73,6 +85,7 @@ export default function BookingDetail(){
         myHeaders.append("Content-Type", "application/json");
 
         var raw = JSON.stringify({
+        "booking_id" : location.state.booking_id,
         "room_id": room_id,
         "status": "check_out"
         });
@@ -127,7 +140,7 @@ export default function BookingDetail(){
     if(isLoaded) return(<div>Loading...</div>)
 
     return(
-        <div>
+        <div className="bookingdetail-body">
             <h3>Welcome To Booking Detail Page. {admin.fname}</h3>
             {Fetch && 
                 <div>
@@ -148,9 +161,13 @@ export default function BookingDetail(){
                                 <p>Room ID: {item.room_id}</p>
                                 <p>Room Type: {item.room_type_name}</p>
                                 <p>Room Status: {item.room_status}</p>
-                                {item.room_status === "free" && <button onClick={() => update_room_status(item.room_id)}>Check Out</button>}
+                                {item.room_status === "free" && <button className="update-btn" onClick={() => update_room_status(item.room_id)}>Check Out</button>}
                             </div>
                         ))}
+                    <div className="btn-bookingadmin">
+                    <button onClick={back}>back</button>
+                    <button onClick={logout}>Log Out</button>
+                    </div>
                 </div>
             }
             

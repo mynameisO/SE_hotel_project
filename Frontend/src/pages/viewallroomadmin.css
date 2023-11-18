@@ -1,0 +1,17 @@
+.table .btn-cancel{
+    background-color: rgb(255, 42, 42);
+    color: #fff; 
+    padding: 5px 5px; 
+    border: none; 
+    cursor: pointer; 
+    border-radius: 5px;
+}
+
+.table .btn-detail{
+    background-color: rgb(65, 65, 65);
+    color: #fff; 
+    padding: 5px 5px; 
+    border: none; 
+    cursor: pointer; 
+    border-radius: 5px;
+}
