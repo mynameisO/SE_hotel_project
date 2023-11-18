@@ -15,7 +15,7 @@ export default function Roomadmin() {
     const [bookings, setBookings] = useState([]);
     const [guestTelnum,setGuestTelnum] = useState('');
     const [guestName, setGuestName] = useState('');
-    const options = ['checked_in', 'checked_out', 'none'];
+    const options = ['checked_in', 'checked_out', 'paid'];
     const [search, setSearch] = useState(false);
     const [searchBooking, setSearchBooking] = useState([]);
     //const [bookingID, setBookingID] = useState([]);
