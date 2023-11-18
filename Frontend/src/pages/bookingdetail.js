@@ -155,7 +155,7 @@ export default function BookingDetail(){
                     <p>Guest Email: {guestinfo.bookingDetails.guest_email}</p>
                     <p>Guest Telnumber:{guestinfo.bookingDetails.guest_telnum}</p>
                     <p>Guest Address:{guestinfo.bookingDetails.guest_address}</p>
-                    {
+                    {guestinfo.bookingDetails.booking_status !== 'cancel' && 
                         guestinfo.bookingDetails.rooms.map((item) => (
                             <div key={item.id}>
                                 <p>Room ID: {item.room_id}</p>
@@ -164,6 +164,15 @@ export default function BookingDetail(){
                                 {item.room_status === "free" && <button className="update-btn" onClick={() => update_room_status(item.room_id)}>Check Out</button>}
                             </div>
                         ))}
+                    {guestinfo.bookingDetails.booking_status === 'cancel' &&
+                        guestinfo.bookingDetails.rooms.map((item) => (
+                            <div key={item.id}>
+                                <p>Room ID: {item.room_id}</p>
+                                <p>Room Type: {item.room_type_name}</p>
+                                <p>Room Status: {item.room_status}</p>
+                            </div>
+                        ))
+                    }
                     <div className="btn-bookingadmin">
                     <button onClick={back}>back</button>
                     <button onClick={logout}>Log Out</button>
