@@ -151,6 +151,39 @@ export default function Roomadmin() {
           })
           .catch(error => console.log('error', error));
       }
+      const paid = (booking_id) =>{
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+          "booking_id": booking_id,
+          "status": "paid"
+        });
+
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: raw,
+          redirect: 'follow'
+        };
+
+        fetch("http://omar-server.trueddns.com:52302/api/admin/updateBookingStatus", requestOptions)
+          .then(response => response.json())
+          .then(result => {
+            if(result.success === true ){
+              MySwal.fire({
+                html : <i>{result.message}</i>,
+                icon : 'success'
+            })
+            }else if(result.success === false){
+              MySwal.fire({
+                html : <i>{result.message}</i>,
+                icon : 'error'
+            })
+            }
+          })
+          .catch(error => console.log('error', error));
+      }
       const booking_detail = (booking_id) =>{
         navigate('/bookingdetail', {replace: true, state:{booking_id}});
       }
@@ -271,7 +304,7 @@ export default function Roomadmin() {
                       {item.booking_status === "checked_in" && <td><button className="btn-checkin" onClick={()=>check_out(item.booking_id)}>Check Out</button></td>}
                       {item.booking_status === "paid" && <td><button className="btn-cancel" onClick={()=>check_in(item.booking_id)}>Check In</button></td>} 
                       {item.booking_status === 'checked_out' && <td></td>}
-                      {item.booking_status === 'pending' && <td></td>}
+                      {item.booking_status === 'pending' && <td><button className="btn-checkin" onClick={()=>paid(item.booking_id)}>Paid</button></td>}
                       <td><button className="btn-detail" onClick={() => booking_detail(item.booking_id)}>Detail</button></td>
                     </tr>
                   ))}
