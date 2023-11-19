@@ -2,6 +2,7 @@ import React from "react";
 import './dine.css'
 import Restaurant3 from "./image/res3.jpg"
 import Restaurant4 from "./image/res4.jpg"
+
 export default function Dine() {
     return (
     <div className="dine-container">
@@ -47,6 +48,7 @@ export default function Dine() {
           <p>se-hotel@gmail.com</p>     
         </div>
         </div>
+
       </div>
     </div>
   );

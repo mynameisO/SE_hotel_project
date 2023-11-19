@@ -1,24 +1,57 @@
 .facilities-container {
-    text-align: center;
-    margin: 20px;
-}
-
-.facilities {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-top: 20px;
-    margin-block: auto;
+  }
+  
+.swimming,
+.fitness,
+.spa,
+.meeting {
+    margin-top: 20px;
+    padding: 20px;
     background-color: #f9f9f9;
     border: 1px solid #ccc;
     border-radius: 10px;
-    padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+    display:block;
+    margin: 10px;
+  }
 
-.services {
-    margin-block: auto;
-    margin-top: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+  
+  .image {
+    flex: 1;
+  }
+  
+  .details {
+    flex: 2;
+    text-align: left;
+    padding: 10px;
+  }
+  
+  .swimming h3,
+  .fitness h3,
+  .spa h3,
+  .meeting h3 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .swimming p,
+  .fitness p,
+  .spa p,
+  .meeting p {
+    color: #666;
+    font-size: 16px;
+    margin: 10px 0;
+  }
+  
+  .opening-hours {
+    font-weight: bold;
+  }
+  
+  .contact-details {
+    margin-top: 10px;
+  }
