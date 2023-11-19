@@ -15,3 +15,23 @@
     cursor: pointer; 
     border-radius: 5px;
 }
+
+.viewallout {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; 
+}
+  
+  .viewallout button {
+    background-color: #f44336; /* Red color for the button */
+    color: #fff; /* White text color */
+    padding: 10px 20px; /* Padding for better visual appearance */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+  
+  .viewallout button:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+}
