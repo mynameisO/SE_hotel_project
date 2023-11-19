@@ -44,6 +44,8 @@ async function searchBooking({ guest_name, guest_tel, status }) {
       queryParams.push(currentDate);
     } else if (status === 'paid') {
       whereClause += ' AND booking.booking_status = "paid"';
+    } else if (status === 'pending') {
+      whereClause += ' AND booking.booking_status = "pending"';
     } else {
       whereClause += ` AND (
         (DATE(booking.checkout_date) >= ? AND booking.booking_status = "checked_in") OR 
