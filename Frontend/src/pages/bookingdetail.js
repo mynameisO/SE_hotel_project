@@ -155,7 +155,7 @@ export default function BookingDetail(){
                     <p>Guest Email: {guestinfo.bookingDetails.guest_email}</p>
                     <p>Guest Telnumber:{guestinfo.bookingDetails.guest_telnum}</p>
                     <p>Guest Address:{guestinfo.bookingDetails.guest_address}</p>
-                    {guestinfo.bookingDetails.booking_status !== 'cancel' && guestinfo.bookingDetails.booking_status !== 'checked_out' &&
+                    {guestinfo.bookingDetails.booking_status !== 'cancel' && guestinfo.bookingDetails.booking_status !== 'checked_out' && guestinfo.bookingDetails.booking_status !== 'pending' &&
                         guestinfo.bookingDetails.rooms.map((item) => (
                             <div key={item.id}>
                                 <p>Room ID: {item.room_id}</p>
@@ -174,6 +174,15 @@ export default function BookingDetail(){
                         ))
                     }
                     {guestinfo.bookingDetails.booking_status === 'checked_out' &&
+                        guestinfo.bookingDetails.rooms.map((item) => (
+                            <div key={item.id}>
+                                <p>Room ID: {item.room_id}</p>
+                                <p>Room Type: {item.room_type_name}</p>
+                                <p>Room Status: {item.room_status}</p>
+                            </div>
+                        ))
+                    }
+                    {guestinfo.bookingDetails.booking_status === 'pending' &&
                         guestinfo.bookingDetails.rooms.map((item) => (
                             <div key={item.id}>
                                 <p>Room ID: {item.room_id}</p>
