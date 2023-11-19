@@ -11,11 +11,11 @@ export default function Roomadmin() {
     const [isLoaded, setIsLoaded] = useState(true);
     const [admin, setAdmin] = useState([]);
     const [isActive, setIsActive] = useState(false);
-    const [status, setStatus] = useState('none');
+    const [status, setStatus] = useState('paid');
     const [bookings, setBookings] = useState([]);
     const [guestTelnum,setGuestTelnum] = useState('');
     const [guestName, setGuestName] = useState('');
-    const options = ['checked_in', 'checked_out', 'paid'];
+    const options = ['checked_in', 'checked_out', 'paid', 'pending'];
     const [search, setSearch] = useState(false);
     const [searchBooking, setSearchBooking] = useState([]);
     //const [bookingID, setBookingID] = useState([]);
@@ -269,7 +269,8 @@ export default function Roomadmin() {
                       <td>{item.booking_detail}</td>
                       <td>{item.booking_status}</td>
                       {item.booking_status === "checked_in" && <td><button className="btn-checkin" onClick={()=>check_out(item.booking_id)}>Check Out</button></td>}
-                      {item.booking_status === "checked_out" && <td><button className="btn-cancel" onClick={()=>check_in(item.booking_id)}>Check In</button></td>} 
+                      {item.booking_status === "paid" && <td><button className="btn-cancel" onClick={()=>check_in(item.booking_id)}>Check In</button></td>} 
+                      {item.booking_status === 'checked_out' && <td></td>}
                       <td><button className="btn-detail" onClick={() => booking_detail(item.booking_id)}>Detail</button></td>
                     </tr>
                   ))}
@@ -281,7 +282,9 @@ export default function Roomadmin() {
                       <td>{item.booking_detail}</td>
                       <td>{item.booking_status}</td>
                       {item.booking_status === "checked_in" && <td><button className="btn-checkin" onClick={()=>check_out(item.booking_id)}>Check Out</button></td>}
-                      {item.booking_status === "checked_out" && <td><button className="btn-cancel" onClick={()=>check_in(item.booking_id)}>Check In</button></td>} 
+                      {item.booking_status === "paid" && <td><button className="btn-cancel" onClick={()=>check_in(item.booking_id)}>Check In</button></td>} 
+                      {item.booking_status === 'checked_out' && <td></td>}
+                      {item.booking_status === 'pending' && <td></td>}
                       <td><button className="btn-detail" onClick={() => booking_detail(item.booking_id)}>Detail</button></td>
                     </tr>
                   ))}
