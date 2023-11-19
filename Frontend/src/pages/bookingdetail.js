@@ -1,4 +1,3 @@
-
 import { useLocation, useNavigate } from "react-router-dom"
 import { React, useEffect, useState } from "react"
 import Swal from 'sweetalert2'
@@ -193,11 +192,10 @@ export default function BookingDetail(){
                     }
                     <div className="btn-bookingadmin">
                     <button onClick={back}>back</button>
-                    <button onClick={logout}>Log Out</button>
+                    <button onClick={logout}>Logout</button>
                     </div>
                 </div>
-            }
-            
+            }           
         </div>
     )
 }

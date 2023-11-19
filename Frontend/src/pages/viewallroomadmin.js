@@ -160,7 +160,9 @@ export default function Viewallroomadmin() {
             ))}
         </tbody>
       </table>
-      <button onClick={logout}>Logout</button>
+      <div className="viewallout">
+      <div><button onClick={logout}>Logout</button></div>
+      </div>
     </div>
   )
 }
