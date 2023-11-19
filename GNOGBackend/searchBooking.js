@@ -21,30 +21,29 @@ async function searchBooking({ guest_name, guest_tel, status }) {
     const currentDate = new Date().toLocaleDateString('en-CA');
 
     // Build the WHERE clause based on the provided parameters
-    let whereClause = '';
+    let whereClause = '1'; // Default WHERE condition to avoid empty WHERE
     let queryParams = [];
 
     // Add conditions for guest_name and guest_tel
     if (guest_name) {
-      whereClause += 'guest.guest_first_name LIKE ?';
+      whereClause += ' AND guest.guest_first_name LIKE ?';
       queryParams.push(`%${guest_name}%`);
     }
 
     if (guest_tel) {
-      if (whereClause !== '') {
-        whereClause += ' OR ';
-      }
-      whereClause += 'guest.guest_telnum = ?';
+      whereClause += ' AND guest.guest_telnum = ?';
       queryParams.push(guest_tel);
     }
 
     // Add a condition to filter by status if it is provided
-    if (status === 'check_in') {
-      whereClause += ` AND (DATE(booking.checkin_date) = ? AND booking.booking_status = "checked in")`;
+    if (status === 'checked_in') {
+      whereClause += ' AND (DATE(booking.checkin_date) = ? AND booking.booking_status = "checked in")';
       queryParams.push(currentDate);
-    } else if (status === 'check_out') {
-      whereClause += ` AND (DATE(booking.checkout_date) >= ? AND booking.booking_status = "checked_in")`;
+    } else if (status === 'checked_out') {
+      whereClause += ' AND (DATE(booking.checkout_date) >= ? AND booking.booking_status = "checked_in")';
       queryParams.push(currentDate);
+    } else if (status === 'paid') {
+      whereClause += ' AND booking.booking_status = "paid"';
     } else {
       whereClause += ` AND (
         (DATE(booking.checkout_date) >= ? AND booking.booking_status = "checked_in") OR 
@@ -61,7 +60,7 @@ async function searchBooking({ guest_name, guest_tel, status }) {
     const [results, fields] = await connection.execute(`
       SELECT booking.booking_id, 
              CONCAT(guest.guest_first_name, ' ', guest.guest_last_name) AS guest_name, 
-             guest.guest_telnum AS guest_telnum,  -- Include guest_telnum in the SELECT statement
+             guest.guest_telnum AS guest_telnum,
              GROUP_CONCAT(DISTINCT CONCAT('Room ID: ', room.room_id, ' - Room Type: ', room_type.room_type_name) SEPARATOR ', ') AS booking_detail, 
              booking.booking_status
       FROM booking
@@ -92,3 +91,4 @@ async function searchBooking({ guest_name, guest_tel, status }) {
 module.exports = {
   searchBooking: searchBooking,
 };
+
