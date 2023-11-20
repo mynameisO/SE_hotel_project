@@ -19,6 +19,9 @@ export default function Roomadmin() {
     const [search, setSearch] = useState(false);
     const [searchBooking, setSearchBooking] = useState([]);
     //const [bookingID, setBookingID] = useState([]);
+    const back=()=>{
+      navigate('/adminmenu')
+  }
     
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -31,7 +34,7 @@ export default function Roomadmin() {
           redirect: 'follow'
         };
         
-        fetch("http://omar-server.trueddns.com:52302/api/admin/auth", requestOptions)
+        fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/admin/auth`, requestOptions)
           .then(response => response.json())
           .then(result => {
             if(result.status === 'ok'){
@@ -77,7 +80,7 @@ export default function Roomadmin() {
           redirect: 'follow'
         };
         
-        fetch("http://omar-server.trueddns.com:52302/api/admin/showBooking", requestOptions)
+        fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/admin/showBooking`, requestOptions)
           .then(response => response.json())
           .then(result => {
             console.log(result)
@@ -109,7 +112,7 @@ export default function Roomadmin() {
           redirect: 'follow'
         };
 
-        fetch("http://omar-server.trueddns.com:52302/api/admin/searchBooking", requestOptions)
+        fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/admin/searchBooking`, requestOptions)
           .then(response => response.json())
           .then(result => {
             console.log(result)
@@ -134,7 +137,7 @@ export default function Roomadmin() {
           redirect: 'follow'
         };
 
-        fetch("http://omar-server.trueddns.com:52302/api/admin/updateBookingStatus", requestOptions)
+        fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/admin/updateBookingStatus`, requestOptions)
           .then(response => response.json())
           .then(result => {
             if(result.success === true ){
@@ -167,7 +170,7 @@ export default function Roomadmin() {
           redirect: 'follow'
         };
 
-        fetch("http://omar-server.trueddns.com:52302/api/admin/updateBookingStatus", requestOptions)
+        fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/admin/updateBookingStatus`, requestOptions)
           .then(response => response.json())
           .then(result => {
             if(result.success === true ){
@@ -204,7 +207,7 @@ export default function Roomadmin() {
           redirect: 'follow'
         };
 
-        fetch("http://omar-server.trueddns.com:52302/api/admin/updateBookingStatus", requestOptions)
+        fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/admin/updateBookingStatus`, requestOptions)
           .then(response => response.json())
           .then(result => {
             if(result.success === true ){
@@ -217,7 +220,7 @@ export default function Roomadmin() {
                 redirect: 'follow'
               };
               
-              fetch("http://omar-server.trueddns.com:52302/api/admin/showBooking", requestOptions)
+              fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/admin/showBooking`, requestOptions)
                 .then(response => response.json())
                 .then(result => {
                   console.log(result)
@@ -324,6 +327,9 @@ export default function Roomadmin() {
                   ))}
                 </tbody>
               </table>
+            </div>
+            <div className="btn-bookingadmin">
+              <button onClick={back}>back</button>
             </div>
         </div>                     
     )

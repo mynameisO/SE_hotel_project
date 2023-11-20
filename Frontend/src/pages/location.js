@@ -1,7 +1,5 @@
 import React from "react";
 import './location.css'
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
 export default function Location() {
     return (
       <div className="location-container">

@@ -25,7 +25,7 @@ export default function Adminmenu() {
           redirect: 'follow'
         };
         
-        fetch("http://omar-server.trueddns.com:52302/api/admin/auth", requestOptions)
+        fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/admin/auth`, requestOptions)
           .then(response => response.json())
           .then(result => {
             if(result.status === 'ok'){

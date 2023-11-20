@@ -12,6 +12,10 @@ export default function Viewallroomadmin() {
     const [isLoaded, setIsLoaded] = useState(true);
     const [ErrorFetchChecker, setErrorFetchChecker] = useState(false);
 
+    const back=()=>{
+      navigate('/adminmenu')
+  }
+
     useEffect(() => {
       const token = localStorage.getItem('token');
       var myHeaders = new Headers();
@@ -23,7 +27,7 @@ export default function Viewallroomadmin() {
         redirect: 'follow'
       };
       
-      fetch("http://omar-server.trueddns.com:52302/api/admin/auth", requestOptions)
+      fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/admin/auth`, requestOptions)
         .then(response => response.json())
         .then(result => {
           if(result.status === 'ok'){
@@ -47,7 +51,7 @@ export default function Viewallroomadmin() {
         redirect: 'follow'
       };
       
-      fetch("http://omar-server.trueddns.com:52302/api/admin/viewAllBooking", requestOptions)
+      fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/admin/viewAllBooking`, requestOptions)
         .then(response => response.json())
         .then(result => {
           console.log(result)
@@ -80,7 +84,7 @@ export default function Viewallroomadmin() {
         redirect: 'follow'
       };
 
-      fetch("http://omar-server.trueddns.com:52302/api/admin/updateBookingStatus", requestOptions)
+      fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/admin/updateBookingStatus`, requestOptions)
         .then(response => response.json())
         .then(result => {
           if(result.success === true){
@@ -93,7 +97,7 @@ export default function Viewallroomadmin() {
                 redirect: 'follow'
               };
               
-              fetch("http://omar-server.trueddns.com:52302/api/admin/viewAllBooking", requestOptions)
+              fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/admin/viewAllBooking`, requestOptions)
                 .then(response => response.json())
                 .then(result => {
                   setBookings(result)
@@ -162,6 +166,7 @@ export default function Viewallroomadmin() {
       </table>
       <div className="viewallout">
       <div><button onClick={logout}>Logout</button></div>
+      <button onClick={back}>back</button>
       </div>
     </div>
   )

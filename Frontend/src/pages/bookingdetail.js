@@ -34,7 +34,7 @@ export default function BookingDetail(){
           redirect: 'follow'
         };
         
-        fetch("http://omar-server.trueddns.com:52302/api/admin/auth", requestOptions)
+        fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/admin/auth`, requestOptions)
           .then(response => response.json())
           .then(result => {
             if(result.status === 'ok'){
@@ -66,7 +66,7 @@ export default function BookingDetail(){
         redirect: 'follow'
         };
 
-        fetch("http://omar-server.trueddns.com:52302/api/admin/viewBookingDetail", requestOptions)
+        fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/admin/viewBookingDetail`, requestOptions)
         .then(response => response.json())
         .then(result => {
             console.log(result)
@@ -96,7 +96,7 @@ export default function BookingDetail(){
         redirect: 'follow'
         };
 
-        fetch("http://omar-server.trueddns.com:52302/api/admin/updateRoomStatus", requestOptions)
+        fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/admin/updateRoomStatus`, requestOptions)
         .then(response => response.json())
         .then(result => {
                             if(result.success === true){
@@ -120,7 +120,7 @@ export default function BookingDetail(){
                                         redirect: 'follow'
                                         };
                                 
-                                        fetch("http://omar-server.trueddns.com:52302/api/admin/viewBookingDetail", requestOptions)
+                                        fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/admin/viewBookingDetail`, requestOptions)
                                         .then(response => response.json())
                                         .then(result => {
                                             console.log(result)
@@ -154,7 +154,7 @@ export default function BookingDetail(){
                     <p>Guest Email: {guestinfo.bookingDetails.guest_email}</p>
                     <p>Guest Telnumber:{guestinfo.bookingDetails.guest_telnum}</p>
                     <p>Guest Address:{guestinfo.bookingDetails.guest_address}</p>
-                    {guestinfo.bookingDetails.booking_status !== 'cancel' && guestinfo.bookingDetails.booking_status !== 'checked_out' && guestinfo.bookingDetails.booking_status !== 'pending' &&
+                    {guestinfo.bookingDetails.booking_status !== 'cancel' && guestinfo.bookingDetails.booking_status !== 'checked_out' && guestinfo.bookingDetails.booking_status !== 'pending' && guestinfo.bookingDetails.booking_status !== 'paid' &&
                         guestinfo.bookingDetails.rooms.map((item) => (
                             <div key={item.id}>
                                 <p>Room ID: {item.room_id}</p>
@@ -163,25 +163,7 @@ export default function BookingDetail(){
                                 {item.room_status === "free" && <button className="update-btn" onClick={() => update_room_status(item.room_id)}>Check Out</button>}
                             </div>
                         ))}
-                    {guestinfo.bookingDetails.booking_status === 'cancel' &&
-                        guestinfo.bookingDetails.rooms.map((item) => (
-                            <div key={item.id}>
-                                <p>Room ID: {item.room_id}</p>
-                                <p>Room Type: {item.room_type_name}</p>
-                                <p>Room Status: {item.room_status}</p>
-                            </div>
-                        ))
-                    }
-                    {guestinfo.bookingDetails.booking_status === 'checked_out' &&
-                        guestinfo.bookingDetails.rooms.map((item) => (
-                            <div key={item.id}>
-                                <p>Room ID: {item.room_id}</p>
-                                <p>Room Type: {item.room_type_name}</p>
-                                <p>Room Status: {item.room_status}</p>
-                            </div>
-                        ))
-                    }
-                    {guestinfo.bookingDetails.booking_status === 'pending' &&
+                    {guestinfo.bookingDetails.booking_status === 'cancel' || guestinfo.bookingDetails.booking_status === 'pending' || guestinfo.bookingDetails.booking_status === 'checked_out' || guestinfo.bookingDetails.booking_status === 'paid' &&
                         guestinfo.bookingDetails.rooms.map((item) => (
                             <div key={item.id}>
                                 <p>Room ID: {item.room_id}</p>
