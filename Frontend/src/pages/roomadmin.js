@@ -11,14 +11,17 @@ export default function Roomadmin() {
     const [isLoaded, setIsLoaded] = useState(true);
     const [admin, setAdmin] = useState([]);
     const [isActive, setIsActive] = useState(false);
-    const [status, setStatus] = useState('none');
+    const [status, setStatus] = useState('paid');
     const [bookings, setBookings] = useState([]);
     const [guestTelnum,setGuestTelnum] = useState('');
     const [guestName, setGuestName] = useState('');
-    const options = ['checked_in', 'checked_out', 'paid'];
+    const options = ['checked_in', 'checked_out', 'paid', 'pending'];
     const [search, setSearch] = useState(false);
     const [searchBooking, setSearchBooking] = useState([]);
     //const [bookingID, setBookingID] = useState([]);
+    const back=()=>{
+      navigate('/adminmenu')
+  }
     
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -31,7 +34,7 @@ export default function Roomadmin() {
           redirect: 'follow'
         };
         
-        fetch("http://omar-server.trueddns.com:52302/api/admin/auth", requestOptions)
+        fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/admin/auth`, requestOptions)
           .then(response => response.json())
           .then(result => {
             if(result.status === 'ok'){
@@ -77,7 +80,7 @@ export default function Roomadmin() {
           redirect: 'follow'
         };
         
-        fetch("http://omar-server.trueddns.com:52302/api/admin/showBooking", requestOptions)
+        fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/admin/showBooking`, requestOptions)
           .then(response => response.json())
           .then(result => {
             console.log(result)
@@ -109,7 +112,7 @@ export default function Roomadmin() {
           redirect: 'follow'
         };
 
-        fetch("http://omar-server.trueddns.com:52302/api/admin/searchBooking", requestOptions)
+        fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/admin/searchBooking`, requestOptions)
           .then(response => response.json())
           .then(result => {
             console.log(result)
@@ -134,7 +137,40 @@ export default function Roomadmin() {
           redirect: 'follow'
         };
 
-        fetch("http://omar-server.trueddns.com:52302/api/admin/updateBookingStatus", requestOptions)
+        fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/admin/updateBookingStatus`, requestOptions)
+          .then(response => response.json())
+          .then(result => {
+            if(result.success === true ){
+              MySwal.fire({
+                html : <i>{result.message}</i>,
+                icon : 'success'
+            })
+            }else if(result.success === false){
+              MySwal.fire({
+                html : <i>{result.message}</i>,
+                icon : 'error'
+            })
+            }
+          })
+          .catch(error => console.log('error', error));
+      }
+      const paid = (booking_id) =>{
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+          "booking_id": booking_id,
+          "status": "paid"
+        });
+
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: raw,
+          redirect: 'follow'
+        };
+
+        fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/admin/updateBookingStatus`, requestOptions)
           .then(response => response.json())
           .then(result => {
             if(result.success === true ){
@@ -171,7 +207,7 @@ export default function Roomadmin() {
           redirect: 'follow'
         };
 
-        fetch("http://omar-server.trueddns.com:52302/api/admin/updateBookingStatus", requestOptions)
+        fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/admin/updateBookingStatus`, requestOptions)
           .then(response => response.json())
           .then(result => {
             if(result.success === true ){
@@ -184,7 +220,7 @@ export default function Roomadmin() {
                 redirect: 'follow'
               };
               
-              fetch("http://omar-server.trueddns.com:52302/api/admin/showBooking", requestOptions)
+              fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/admin/showBooking`, requestOptions)
                 .then(response => response.json())
                 .then(result => {
                   console.log(result)
@@ -268,8 +304,10 @@ export default function Roomadmin() {
                       <td>{item.guest_telnum}</td>
                       <td>{item.booking_detail}</td>
                       <td>{item.booking_status}</td>
-                      {item.booking_status === "checked_in" && <td><button className="btn-checkin" onClick={()=>check_out(item.booking_id)}>Check Out</button></td>}
-                      {item.booking_status === "checked_out" && <td><button className="btn-cancel" onClick={()=>check_in(item.booking_id)}>Check In</button></td>} 
+                      {item.booking_status === "checked_in" && <td><button className="btn-cancel" onClick={()=>check_out(item.booking_id)}>Check Out</button></td>}
+                      {item.booking_status === "paid" && <td><button className="btn-checkin" onClick={()=>check_in(item.booking_id)}>Check In</button></td>} 
+                      {item.booking_status === 'checked_out' && <td></td>}
+                      {item.booking_status === 'pending' && <td><button className="btn-checkin" onClick={()=>paid(item.booking_id)}>Paid</button></td>}
                       <td><button className="btn-detail" onClick={() => booking_detail(item.booking_id)}>Detail</button></td>
                     </tr>
                   ))}
@@ -280,13 +318,18 @@ export default function Roomadmin() {
                       <td>{item.guest_telnum}</td>
                       <td>{item.booking_detail}</td>
                       <td>{item.booking_status}</td>
-                      {item.booking_status === "checked_in" && <td><button className="btn-checkin" onClick={()=>check_out(item.booking_id)}>Check Out</button></td>}
-                      {item.booking_status === "checked_out" && <td><button className="btn-cancel" onClick={()=>check_in(item.booking_id)}>Check In</button></td>} 
+                      {item.booking_status === "checked_in" && <td><button className="btn-cancel" onClick={()=>check_out(item.booking_id)}>Check Out</button></td>}
+                      {item.booking_status === "paid" && <td><button className="btn-checkin" onClick={()=>check_in(item.booking_id)}>Check In</button></td>} 
+                      {item.booking_status === 'checked_out' && <td></td>}
+                      {item.booking_status === 'pending' && <td><button className="btn-checkin" onClick={()=>paid(item.booking_id)}>Paid</button></td>}
                       <td><button className="btn-detail" onClick={() => booking_detail(item.booking_id)}>Detail</button></td>
                     </tr>
                   ))}
                 </tbody>
               </table>
+            </div>
+            <div className="btn-bookingadmin">
+              <button onClick={back}>back</button>
             </div>
         </div>                     
     )

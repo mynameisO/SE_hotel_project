@@ -38,7 +38,7 @@ export default function Loginadmin() {
         redirect: 'follow'
         };
 
-        fetch("http://omar-server.trueddns.com:52302/api/admin/login", requestOptions)
+        fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/admin/login`, requestOptions)
         .then(response => response.json())
         .then(result => {
             if(result.error){

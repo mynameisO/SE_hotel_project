@@ -46,5 +46,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:3050/"
+  "proxy": "http://omar-server.trueddns.com:52302"
 }
