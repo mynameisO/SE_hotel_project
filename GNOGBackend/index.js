@@ -40,6 +40,16 @@ app.get('/api/room/room_available', async (req, res) => {
 
   const { checkin_date, checkout_date } = req.query;
 
+  // Check if checkout_date is before checkin_date
+  const checkinDateObj = new Date(checkin_date);
+  const checkoutDateObj = new Date(checkout_date);
+
+
+  if (checkoutDateObj < checkinDateObj) {
+    console.error('Error: Checkout date is before check-in date');
+    return res.status(400).json({ error: 'Checkout date cannot be before check-in date' });
+  }
+
   try {
     const connection = await pool.getConnection();
     const [results, fields] = await connection.execute(`
@@ -64,6 +74,7 @@ app.get('/api/room/room_available', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
 
 
 app.post('/api/createBooking', async (req, res) => {
