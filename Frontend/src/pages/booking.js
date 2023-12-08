@@ -31,7 +31,7 @@ export default function Booking() {
           .catch(error => console.log('error', error));
     }
     return (
-        <bodylhh>
+        <div className="BookingContainer">
             <div className="booking">
                 <form onSubmit={handleSubmit}>
                 <h1>Booking</h1>
@@ -50,6 +50,6 @@ export default function Booking() {
                 <button type="submit">Booking</button>
                 </form>
             </div>
-       </bodylhh>
+       </div>
     )
 }

@@ -3,7 +3,6 @@ import './home.css'
 
 export default function Home() {
     return (
-    <bodyhome>
         <div className="homebody">    
             <div className="box">
                 <div className="centered">
@@ -17,7 +16,7 @@ export default function Home() {
                     </a>
                 </div>
             </div>
+            <div className="HomeBackground"/>
         </div>
-    </bodyhome>
     );
 }

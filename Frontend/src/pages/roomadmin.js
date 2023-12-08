@@ -245,7 +245,7 @@ export default function Roomadmin() {
       }
     
     return (
-        <div>
+        <div className="">
             <h3>Welcome! {admin.fname} </h3>
             <h4>Room Editing</h4>
               <div className="dropdown">

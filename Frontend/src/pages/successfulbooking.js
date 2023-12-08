@@ -35,28 +35,28 @@ export default function Successfulbooking() {
     }
 
     return (
-    <div className="sbbody">
-        <body>
-        <h1>Your payment was successful</h1>
-        <h1>{Guest_Firstname} {Guest_Lastname}</h1>
-        <h2>Thank you for your payment. </h2>
-        <p>If you have any questions or inquiries, please feel free to reach out to us</p>
-        <form onSubmit={handleSubmit}>
+        <div className="sbbody">
+            <div className="sbhome">
+                <h1>Your payment was successful</h1>
+                <h1>{Guest_Firstname} {Guest_Lastname}</h1>
+                <h2>Thank you for your payment. </h2>
+                <p>If you have any questions or inquiries, please feel free to reach out to us</p>
+                <form onSubmit={handleSubmit}>
 
-        <div className="sbbutton">
-            <button type="submit" className="sbhome">
-                Home
-              </button>
+                    <div className="sbbutton">
+                        <button type="submit" className="sbdetail">
+                            Home
+                        </button>
+                    </div>
+                </form>
+                <form onSubmit={handleSubmit_detail}>
+                    <div className="sbbutton">
+                        <button type="submit" className="sbdetail">
+                            See Detail
+                        </button>
+                    </div>
+                </form>
             </div>
-        </form>
-        <form onSubmit={handleSubmit_detail}>
-            <div className="sbbutton">
-                <button type="submit" className="sbdetail">
-                    See Detail
-                </button>
-                </div>
-            </form>
-        </body>
-    </div>
+        </div>
     )
 }

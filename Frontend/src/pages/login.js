@@ -58,36 +58,36 @@ export default function Login() {
         .catch(error => console.log('error', error));
     }
     return (
-    <bodyl>
+    <div className="LoginContainer">
       <div className = "Login">
-        <form onSubmit={handleSubmit}>
-            <h1>Login</h1>
-            <div class = "input-box">
-                <input type = "text" placeholder = "Username"
-                required
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                />
-            </div>
-            <div className = "input-box">
-                <input type = "password" placeholder = "Password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                />
-            </div>
-            <div className = "remember-forger">
-                <label><input type = "checkbox"></input> Remember me </label>
-                <Link to = "/forgotpass">Forgot Your Password?</Link>
-            </div>
-            <button type = "submit" className = "btn-login">Login</button>
-            <div className = "register-link">
-                <p>Don't have an account?
-                    <Link to="/register"> Register</Link>
-                </p>
-            </div>
-        </form>
+            <form onSubmit={handleSubmit}>
+                <h1>Login</h1>
+                <div className = "input-box">
+                    <input type = "text" placeholder = "Username"
+                    required
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    />
+                </div>
+                <div className = "input-box">
+                    <input type = "password" placeholder = "Password"
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    />
+                </div>
+                <div className = "remember-forger">
+                    <label><input type = "checkbox"></input> Remember me </label>
+                    <Link to = "/forgotpass">Forgot Your Password?</Link>
+                </div>
+                <button type = "submit" className = "btn-login">Login</button>
+                <div className = "register-link">
+                    <p>Don't have an account?
+                        <Link to="/register"> Register</Link>
+                    </p>
+                </div>
+            </form>
+        </div>
     </div>
-    </bodyl>
     )
 }
