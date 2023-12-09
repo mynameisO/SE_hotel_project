@@ -42,6 +42,7 @@ async function showBookings() {
     `, [currentDate, currentDate]);
 
     console.log('currentDate: ', currentDate);
+    console.log(results);
     connection.release(); // Release the connection back to the pool
 
     const formattedResults = results.map((result) => ({
