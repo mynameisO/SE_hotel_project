@@ -41,9 +41,9 @@ export default function Login() {
         fetch("http://omar-server.trueddns.com:52302/api/admin/login", requestOptions)
         .then(response => response.json())
         .then(result => {
-            if(result.error){
+            if(result.status !== 'ok'){
                 MySwal.fire({
-                    html : <i>{result.error}</i>,
+                    html : <i>{result.status} Wrong Username/Password.</i>,
                     icon : 'error'
                 })
                navigate('/login');
