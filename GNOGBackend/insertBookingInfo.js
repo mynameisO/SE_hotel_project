@@ -128,13 +128,23 @@ async function createBooking(bookingData) {
                 const { room_type_id, num_rooms } = room;
                 // Query room_id based on room_type_id
                 const selectRoomIdQuery = `
-                  SELECT room_id
-                  FROM room
-                  WHERE room_type_id = ?
-                  ORDER BY room_id ASC
-                  LIMIT ?;
-                `;
-                const selectValues = [room_type_id, num_rooms];
+                SELECT room_id
+                FROM room
+                WHERE room_type_id = ?
+                  AND room_id NOT IN (
+                    SELECT room_id
+                    FROM booking_room
+                    WHERE booking_id IN (
+                      SELECT booking_id
+                      FROM booking
+                      WHERE (checkin_date BETWEEN ? AND ? OR checkout_date BETWEEN ? AND ?)
+                    )
+                  )
+                ORDER BY room_id ASC
+                LIMIT ?;
+              `;
+
+              const selectValues = [room_type_id, bookingData.checkin_date, bookingData.checkout_date, bookingData.checkin_date, bookingData.checkout_date, num_rooms];
                 
                 connection.query(selectRoomIdQuery, selectValues, (selectError, selectResults) => {
                   if (selectError || selectResults.length === 0) {
@@ -163,7 +173,7 @@ async function createBooking(bookingData) {
                         console.log(`Room ${room_id} updated to 'booked'.`);
                         connection.query(insertBookingRoomQuery, bookingRoomValues, (bookingRoomError, bookingRoomResults) => {
                           if (bookingRoomError) {
-                            console.error('Error inserting into booking_room:', bookingRoomError);
+                            console.error('Error inserting into boovking_room:', bookingRoomError);
                           } else {
                             console.log('Booking_room entry added successfully.');
                           }
