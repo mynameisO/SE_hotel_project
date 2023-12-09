@@ -8,7 +8,7 @@ import withReactContent from 'sweetalert2-react-content'
 
 export default function Payment(){
     const MySwal = withReactContent(Swal);
-    const [Guest_title, setTitle] = useState('');
+    const [Guest_title, setTitle] = useState('Title');
     const [Guest_first_name, setFirstname] = useState('');
     const [Guest_last_name, setLastname] = useState('');
     const [Guest_email, setEmail] = useState('');
@@ -18,6 +18,7 @@ export default function Payment(){
     const [Guest_telnum, setTelnum] = useState('');
     const [country, setCountry] = useState('');
     const [zipcode, setZipcode] = useState('');
+    const options = ['Mr', 'MS']
    /* const [cardholdername, setCardholdername] = useState('');
     const [cardnum, setCardnum] = useState('');
     const [expdate, setExpdate] = useState('');
@@ -26,6 +27,7 @@ export default function Payment(){
     const [addinfomation, setAddinformation] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
+    const [isActive, setIsActive] = useState(false);
     const Checkin_date = location.state.firstdate_Booking;
     const Checkout_date = location.state.enddate_Booking;
     const StdRoom_Detail = location.state.StdRoom_Detail;
@@ -36,43 +38,61 @@ export default function Payment(){
     const addonStd = 0;
     const addondlx_count = 0;
     const addonlux_count = 0;
-    const addonstd_count = 0; */
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const Room = {StdRoom_Detail, DlxRoom_Detail, LuxRoom_Detail};
-        const Guest_address = {address, state, provice, country, zipcode}
-        /*if(addonstd_count > 0 && addondlx_count > 0 && addonlux_count > 0){
-            const addon_All = {addonStd, addonDlx, addonLux}
-        }
-        else if(addondlx_count > 0 && addonstd_count > 0 && addonlux_count == 0){
-            const addon_DlxnStd = {addonStd, addonDlx}
-        }
-        else if(addonstd_count > 0 && addonlux_count > 0 && addondlx_count == 0){
-            const addon_StdnLux = {addonStd, addonLux}
-        }
-        else if(addonlux_count > 0 && addondlx_count > 0 && addonstd_count == 0){
-            const addon_LuxnDlx = {addonDlx, addonLux}
-        }
-        else if(addonstd_count > 0 && addondlx_count == 0 && addonlux_count == 0){
-            const addon_Standard = {addonStd}
-        }*/
-        // const addon = [{addonStd, addonDlx, addonLux}]
-        const Payment = {Checkin_date, Checkout_date, Room, Guest_title, Guest_first_name, Guest_last_name, Guest_email, Guest_address, Guest_telnum, 
-            addinfomation}
-            console.log(Payment)
-            fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/createBooking`,{ //${process.env.REACT_APP_BACKEND_IP}/api/createBooking http://localhost:3050/payments
-                method:'POST',
-                headers:{"content-type":"application/json"},
-                body:JSON.stringify(Payment)
-            }).then((res)=>{
+    const addonstd_count = 0; 
+    .then((res)=>{
                 MySwal.fire({
                     html : <i>Confirm Booking Success!</i>,
                     icon : 'success'
                 }).then((value) =>{
                     navigate('/successfulbooking', {replace: true, state:{Guest_title,Guest_first_name, Guest_last_name, Checkin_date, Checkout_date, StdRoom_Detail, DlxRoom_Detail, LuxRoom_Detail, address, state, provice, country, zipcode, Guest_telnum, addinfomation, voucher}});
                 })
-            })
+    */
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+            "Checkin_date": Checkin_date,
+            "Checkout_date": Checkout_date,
+            "Guest_address": {
+                "address": address,
+                "country": country,
+                "province": provice,
+                "state": state,
+                "zipcode": zipcode
+            },
+            "Guest_email": Guest_email,
+            "Guest_first_name": Guest_first_name,
+            "Guest_last_name": Guest_last_name,
+            "Guest_telnum": Guest_telnum,
+            "Guest_title": Guest_title,
+            "Room": {
+                "DlxRoom_Detail": DlxRoom_Detail,
+                "LuxRoom_Detail": LuxRoom_Detail,
+                "StdRoom_Detail": StdRoom_Detail
+            },
+            "addinfomation": addinfomation
+        });
+
+        var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+        };
+
+        fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/createBooking`, requestOptions)
+        .then(response => response.json())
+        .then(result => 
+            MySwal.fire({
+            html : <i>{result.message}</i>,
+            icon : 'success'
+        }).then((value) =>{
+            navigate('/successfulbooking', {replace: true, state:{Guest_title,Guest_first_name, Guest_last_name, Checkin_date, Checkout_date, StdRoom_Detail, DlxRoom_Detail, LuxRoom_Detail, address, state, provice, country, zipcode, Guest_telnum, addinfomation, voucher}});
+        }))
+        .catch(error => console.log('error', error));
     }
     return (
          <div className="container">
@@ -93,11 +113,27 @@ export default function Payment(){
 
                         <div className="inputBox">
                             <span>title :</span>
-                            <input type="text" placeholder="Title"
-                            required
-                            value={Guest_title}
-                            onChange={(e) => setTitle(e.target.value)}
-                            />
+                            <div className="dropdown">
+                                <div className="dropdown-btn" onClick={(e) =>
+                                setIsActive(!isActive)}>
+                                    {Guest_title}
+                                    <span className="dropdown-span">v</span>
+                                </div>
+                                {isActive && (
+                                    <div className="dropdown-content">
+                                    { options.map((options) =>
+                                        <div
+                                        onClick={(e) => {
+                                            setTitle(options);
+                                            setIsActive(false);
+                                        }}
+                                        className="dropdown-item">
+                                            {options}
+                                    </div>
+                                    )}
+                                    </div>
+                                )}
+                            </div>
                         </div>
                         <div className="inputBox">
                             <span>first name :</span>
