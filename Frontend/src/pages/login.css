@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 
-bodyl{
+.LoginContainer{
     display: flex;
     justify-content: center;
     align-items: center;

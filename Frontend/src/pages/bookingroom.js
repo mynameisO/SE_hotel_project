@@ -131,7 +131,6 @@ export default function Bookingroom() {
     } 
       return (
     <div className="brbody">
-      <body>
         <div className="bookingRoom">
           <form onSubmit={handleSubmit_std}>
             <div>
@@ -220,7 +219,6 @@ export default function Bookingroom() {
             </form>
           </div>
         </div>
-      </body>
     </div>
   );
 }

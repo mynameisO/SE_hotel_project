@@ -15,14 +15,15 @@ export default function BookingDetail(){
     const back=()=>{
         navigate('/viewallroomadmin')
     }
-    const logout=()=>{
-        localStorage.removeItem('token')
+    const logout = ()=> {
         MySwal.fire({
-            html : <i>Log Out Successful</i>,
-            icon : 'success'
-        })
-            navigate('/loginadmin') 
-    }
+          html : <i>Log Out Success!</i>,
+          icon : 'success'
+      }).then((value) => {
+        localStorage.removeItem('token')
+        navigate('/loginadmin')
+      })
+      }
     useEffect(() => {
         const token = localStorage.getItem('token');
         var myHeaders = new Headers();

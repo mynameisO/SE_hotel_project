@@ -1,5 +1,5 @@
 export default function Forgotpass(){
     return (
-        <p>DKub</p>
+        <p>Working in process</p>
     )
 }

@@ -3,11 +3,10 @@ import './home.css'
 
 export default function Home() {
     return (
-    <bodyhome>
         <div className="homebody">    
             <div className="box">
                 <div className="centered">
-                    <h1>Welcome to SE Hotel</h1>
+                    <h1>Welcome to Ranger Bangkok Inn</h1>
                     <p>Discover a world of luxury and comfort.</p>
                     <a href = "/location">
                         <button type = "submit" className = "btn">More Information </button>
@@ -17,7 +16,7 @@ export default function Home() {
                     </a>
                 </div>
             </div>
+            <div className="HomeBackground"/>
         </div>
-    </bodyhome>
     );
 }

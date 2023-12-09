@@ -61,11 +61,11 @@ export default function Loginadmin() {
         .catch(error => console.log('error', error));
     }
     return (
-    <bodyl>
+    <div className="LoginContainer">
       <div className = "Login">
         <form onSubmit={handleSubmit}>
             <h1>Admin Login</h1>
-            <div class = "input-box">
+            <div className = "input-box">
                 <input type = "text" placeholder = "Email"
                 required
                 value={username}
@@ -82,6 +82,6 @@ export default function Loginadmin() {
             <button type = "submit" className = "btn-login">Login</button>
         </form>
     </div>
-    </bodyl>
+    </div>
     )
 }

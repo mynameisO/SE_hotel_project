@@ -1,4 +1,5 @@
 .sbbody{
+    background: url('./image/home3.jpg');;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -11,17 +12,18 @@
 }
 
 .sbhome{
-    background-color: #292929;
-    color: #fff;
-    border: none;
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid white;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
     padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
+    border-radius: 10px;
     font-size: 16px;
     margin: 20px;
 }
 
-.sbdetail{
+.sbbutton .sbdetail{
     background-color: #292929;
     color: #fff;
     border: none;
@@ -29,5 +31,6 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    margin: 10px;
 }
 

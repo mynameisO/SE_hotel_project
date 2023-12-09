@@ -11,11 +11,11 @@ export default function Roomadmin() {
     const [isLoaded, setIsLoaded] = useState(true);
     const [admin, setAdmin] = useState([]);
     const [isActive, setIsActive] = useState(false);
-    const [status, setStatus] = useState('paid');
+    const [status, setStatus] = useState('none');
     const [bookings, setBookings] = useState([]);
     const [guestTelnum,setGuestTelnum] = useState('');
     const [guestName, setGuestName] = useState('');
-    const options = ['checked_in', 'checked_out', 'paid', 'pending'];
+    const options = ['checked_in', 'checked_out', 'paid', 'pending','none'];
     const [search, setSearch] = useState(false);
     const [searchBooking, setSearchBooking] = useState([]);
     //const [bookingID, setBookingID] = useState([]);
@@ -90,8 +90,13 @@ export default function Roomadmin() {
       },[]
       )
       const logout = ()=> {
+        MySwal.fire({
+          html : <i>Log Out Success!</i>,
+          icon : 'success'
+      }).then((value) => {
         localStorage.removeItem('token')
         navigate('/loginadmin')
+      })
       }
 
       const handlesubmit_search = (e) => {
@@ -144,6 +149,19 @@ export default function Roomadmin() {
               MySwal.fire({
                 html : <i>{result.message}</i>,
                 icon : 'success'
+            }).then((value)=>{
+              var requestOptions = {
+                method: 'GET',
+                redirect: 'follow'
+              };
+              
+              fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/admin/showBooking`, requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                  console.log(result)
+                  setBookings(result)
+                })
+                .catch(error => console.log('error', error));
             })
             }else if(result.success === false){
               MySwal.fire({
@@ -177,6 +195,19 @@ export default function Roomadmin() {
               MySwal.fire({
                 html : <i>{result.message}</i>,
                 icon : 'success'
+            }).then((value)=>{
+              var requestOptions = {
+                method: 'GET',
+                redirect: 'follow'
+              };
+              
+              fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/admin/showBooking`, requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                  console.log(result)
+                  setBookings(result)
+                })
+                .catch(error => console.log('error', error));
             })
             }else if(result.success === false){
               MySwal.fire({
@@ -245,7 +276,7 @@ export default function Roomadmin() {
       }
     
     return (
-        <div>
+        <div className="">
             <h3>Welcome! {admin.fname} </h3>
             <h4>Room Editing</h4>
               <div className="dropdown">

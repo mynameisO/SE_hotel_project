@@ -21,7 +21,6 @@ export default function Confirmbooking() {
     }
     return (
         <div className="cbbody">
-            <body>
                 <div className="Cfbooking-style">
                     <h1> Confirm Booking</h1>
                     <p>Room Detail:</p>
@@ -37,7 +36,6 @@ export default function Confirmbooking() {
                         <button type="submit" className="btn-confirm">Confirm</button>
                     </form>
                 </div>
-            </body>
         </div>
     )
 }
