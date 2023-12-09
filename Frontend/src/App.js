@@ -15,7 +15,6 @@ import Forgotpass from "./pages/forgotpass"
 import Payment from "./pages/payment"
 import Bookingroom from "./pages/bookingroom"
 import Confirmbooking from "./pages/confirmbooking"
-import Editbookingroom from "./pages/editbookingroom"
 import Successfulbooking from "./pages/successfulbooking"
 import Seedetail from "./pages/seedetail"
 import Loginadmin from "./pages/loginadmin"
@@ -46,7 +45,6 @@ function App() {
         <Route path="/payment" element={<Payment />} />
         <Route path="/bookingroom" element={<Bookingroom />} />
         <Route path="/confirmbooking" element={<Confirmbooking />} />
-        <Route path="/editbookingroom" element={<Editbookingroom />} />
         <Route path="/successfulbooking" element={<Successfulbooking />} />
         <Route path="/seedetail" element={<Seedetail />} />
         <Route path="/loginadmin" element={<Loginadmin />} />

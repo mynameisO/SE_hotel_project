@@ -28,8 +28,8 @@ export default function Payment(){
     const navigate = useNavigate();
     const location = useLocation();
     const [isActive, setIsActive] = useState(false);
-    const Checkin_date = location.state.firstdate_Booking;
-    const Checkout_date = location.state.enddate_Booking;
+    const Checkin_date = location.state.firstdate;
+    const Checkout_date = location.state.enddate;
     const StdRoom_Detail = location.state.StdRoom_Detail;
     const DlxRoom_Detail = location.state.DlxRoom_Detail;
     const LuxRoom_Detail = location.state.LuxRoom_Detail;
