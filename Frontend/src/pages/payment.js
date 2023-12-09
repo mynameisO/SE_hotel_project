@@ -90,15 +90,7 @@ export default function Payment(){
                         {StdRoom_Detail > 0 && <p>Standard Room : {StdRoom_Detail} rooms</p>}
                         {DlxRoom_Detail > 0 && <p>Deluxe Room : {DlxRoom_Detail} rooms</p>}
                         {LuxRoom_Detail > 0 && <p>Luxury Room : {LuxRoom_Detail} rooms</p>}
-
-                        <div className="inputBox">
-                            <span>title :</span>
-                            <input type="text" placeholder="Title"
-                            required
-                            value={Guest_title}
-                            onChange={(e) => setTitle(e.target.value)}
-                            />
-                        </div>
+                        
                         <div className="inputBox">
                             <span>first name :</span>
                             <input type="text" placeholder="FirstName"
