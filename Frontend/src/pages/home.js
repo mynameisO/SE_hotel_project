@@ -6,7 +6,7 @@ export default function Home() {
         <div className="homebody">    
             <div className="box">
                 <div className="centered">
-                    <h1>Welcome to SE Hotel</h1>
+                    <h1>Welcome to Ranger Bangkok Inn</h1>
                     <p>Discover a world of luxury and comfort.</p>
                     <a href = "/location">
                         <button type = "submit" className = "btn">More Information </button>
