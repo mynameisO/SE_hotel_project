@@ -43,8 +43,13 @@ export default function Adminmenu() {
           .catch(error => console.log('error', error));
       }, [])
       const logout = ()=> {
+        MySwal.fire({
+          html : <i>Log Out Success!</i>,
+          icon : 'success'
+      }).then((value) => {
         localStorage.removeItem('token')
         navigate('/loginadmin')
+      })
       }
 
     if(isLoaded) return(<div>Loading..</div>)

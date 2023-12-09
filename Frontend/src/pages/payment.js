@@ -3,7 +3,11 @@ import './payment.css'
 //import card from './image/card.jpg';
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
 export default function Payment(){
+    const MySwal = withReactContent(Swal);
     const [Guest_title, setTitle] = useState('');
     const [Guest_first_name, setFirstname] = useState('');
     const [Guest_last_name, setLastname] = useState('');
@@ -62,7 +66,12 @@ export default function Payment(){
                 headers:{"content-type":"application/json"},
                 body:JSON.stringify(Payment)
             }).then((res)=>{
-                navigate('/successfulbooking', {replace: true, state:{Guest_title,Guest_first_name, Guest_last_name, Checkin_date, Checkout_date, StdRoom_Detail, DlxRoom_Detail, LuxRoom_Detail, address, state, provice, country, zipcode, Guest_telnum, addinfomation, voucher}});
+                MySwal.fire({
+                    html : <i>Confirm Booking Success!</i>,
+                    icon : 'success'
+                }).then((value) =>{
+                    navigate('/successfulbooking', {replace: true, state:{Guest_title,Guest_first_name, Guest_last_name, Checkin_date, Checkout_date, StdRoom_Detail, DlxRoom_Detail, LuxRoom_Detail, address, state, provice, country, zipcode, Guest_telnum, addinfomation, voucher}});
+                })
             })
     }
     return (

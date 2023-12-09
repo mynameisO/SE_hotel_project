@@ -90,8 +90,13 @@ export default function Roomadmin() {
       },[]
       )
       const logout = ()=> {
+        MySwal.fire({
+          html : <i>Log Out Success!</i>,
+          icon : 'success'
+      }).then((value) => {
         localStorage.removeItem('token')
         navigate('/loginadmin')
+      })
       }
 
       const handlesubmit_search = (e) => {

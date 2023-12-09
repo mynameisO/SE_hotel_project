@@ -64,8 +64,13 @@ export default function Viewallroomadmin() {
     }, [ErrorFetchChecker]
     )
     const logout = ()=> {
+      MySwal.fire({
+        html : <i>Log Out Success!</i>,
+        icon : 'success'
+    }).then((value) => {
       localStorage.removeItem('token')
       navigate('/loginadmin')
+    })
     }
     const cancel_booking = (booking_id) =>{
       console.log(booking_id,'cancel')
