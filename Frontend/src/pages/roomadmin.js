@@ -167,6 +167,19 @@ export default function Roomadmin() {
               MySwal.fire({
                 html : <i>{result.message}</i>,
                 icon : 'error'
+            }).then((value)=>{
+              var requestOptions = {
+                method: 'GET',
+                redirect: 'follow'
+              };
+              
+              fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/admin/showBooking`, requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                  console.log(result)
+                  setBookings(result)
+                })
+                .catch(error => console.log('error', error));
             })
             }
           })
@@ -213,6 +226,19 @@ export default function Roomadmin() {
               MySwal.fire({
                 html : <i>{result.message}</i>,
                 icon : 'error'
+            }).then((value)=>{
+              var requestOptions = {
+                method: 'GET',
+                redirect: 'follow'
+              };
+              
+              fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/admin/showBooking`, requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                  console.log(result)
+                  setBookings(result)
+                })
+                .catch(error => console.log('error', error));
             })
             }
           })
@@ -264,6 +290,19 @@ export default function Roomadmin() {
                 html : <i>{result.message}</i>,
                 icon : 'error'
             })}
+          }).then((value)=>{
+            var requestOptions = {
+              method: 'GET',
+              redirect: 'follow'
+            };
+            
+            fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/admin/showBooking`, requestOptions)
+              .then(response => response.json())
+              .then(result => {
+                console.log(result)
+                setBookings(result)
+              })
+              .catch(error => console.log('error', error));
           })
           .catch(error => console.log('error', error));
       }
