@@ -319,26 +319,26 @@ export default function Roomadmin() {
             <h3>Welcome! {admin.fname} </h3>
             <h4>Room Editing</h4>
               <div className="dropdown">
-              <div className="dropdown-btn" onClick={(e) =>
-              setIsActive(!isActive)}>
-                {status}
-                <span className="dropdown-span">v</span>
-              </div>
-              {isActive && (
-                <div className="dropdown-content">
-                  { options.map((options) =>
-                    <div
-                      onClick={(e) => {
-                        setStatus(options);
-                        setIsActive(false);
-                      }}
-                      className="dropdown-item">
-                        {options}
-                  </div>
-                  )}
+                <div className="dropdown-btn" onClick={(e) =>
+                setIsActive(!isActive)}>
+                  {status}
+                  <span className="dropdown-span">v</span>
+                </div>
+                {isActive && (
+                  <div className="dropdown-content">
+                    { options.map((options) =>
+                      <div
+                        onClick={(e) => {
+                          setStatus(options);
+                          setIsActive(false);
+                        }}
+                        className="dropdown-item">
+                          {options}
+                    </div>
+                    )}
                 </div>
               )}
-            </div>
+              </div>
             <div className="searchbar">
               <p>Tel:<input type="text" placeholder="Guest TelNum" onChange={e => 
               setGuestTelnum(e.target.value)} /></p>
@@ -377,6 +377,7 @@ export default function Roomadmin() {
                       {item.booking_status === "checked_in" && <td><button className="btn-cancel" onClick={()=>check_out(item.booking_id)}>Check Out</button></td>}
                       {item.booking_status === "paid" && <td><button className="btn-checkin" onClick={()=>check_in(item.booking_id)}>Check In</button></td>} 
                       {item.booking_status === 'checked_out' && <td></td>}
+                      {item.booking_status === 'cancel' && <td></td>}
                       {item.booking_status === 'pending' && <td><button className="btn-checkin" onClick={()=>paid(item.booking_id)}>Paid</button></td>}
                       <td><button className="btn-detail" onClick={() => booking_detail(item.booking_id)}>Detail</button></td>
                     </tr>

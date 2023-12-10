@@ -85,7 +85,7 @@ export default function Payment(){
 
         fetch(`http://${process.env.REACT_APP_BACKEND_IP}/api/createBooking`, requestOptions)
         .then(response => response.json())
-        .then(result => 
+        .then(result =>
             MySwal.fire({
             html : <i>{result.message}</i>,
             icon : 'success'
