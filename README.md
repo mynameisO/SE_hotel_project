@@ -40,7 +40,7 @@ $ touch ./GNOGBackend/.env
   
 Example
 ```console
-DB_HOST=localhost
+DB_HOST=host.docker.internal
 DB_PORT=3306
 DB_USER=testuser
 DB_PASSWORD=testuserpassword
